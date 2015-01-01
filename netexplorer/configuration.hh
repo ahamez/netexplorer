@@ -10,7 +10,7 @@ namespace ntx {
 
 /*------------------------------------------------------------------------------------------------*/
 
-class configuration
+class configuration final
 {
 private:
 

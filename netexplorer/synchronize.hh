@@ -71,6 +71,8 @@ synchronize( const folder& distant_folder, const folder& local_folder, const fs:
 
   // Folders.
   {
+    // Nested folders are sorted by name, we can thus iterate on both sides comparing names
+    // to detect different and similar folders.
     auto distant_cit = begin(distant_folder.folders());
     auto local_cit   = begin(local_folder.folders());
 

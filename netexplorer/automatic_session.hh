@@ -8,7 +8,7 @@ namespace ntx {
 /*------------------------------------------------------------------------------------------------*/
 
 /// @brief Automatically connect and close a session.
-class automatic_session
+class automatic_session final
 {
 private:
 

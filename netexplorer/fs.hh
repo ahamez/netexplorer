@@ -30,7 +30,7 @@ namespace detail {
 
 /// @internal
 /// @brief The real file in a virtual system.
-class file_impl
+class file_impl final
 {
 private:
 
@@ -60,7 +60,7 @@ public:
 
 /// @internal
 /// @brief The real folder in a virtual system.
-class folder_impl
+class folder_impl final
 {
 private:
 
@@ -124,7 +124,7 @@ public:
 /*------------------------------------------------------------------------------------------------*/
 
 /// @brief Describe a file in a virtual filesystem.
-class file
+class file final
 {
 private:
 
@@ -157,7 +157,7 @@ public:
 /*------------------------------------------------------------------------------------------------*/
 
 /// @brief Describe a folder in a virtual filesystem.
-class folder
+class folder final
 {
 private:
 

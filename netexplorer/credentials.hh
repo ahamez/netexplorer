@@ -8,7 +8,7 @@ namespace ntx {
 
 /*------------------------------------------------------------------------------------------------*/
 
-class credentials
+class credentials final
 {
 private:
 

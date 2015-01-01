@@ -12,7 +12,7 @@ namespace ntx {
 
 /// Represent a session when connected to the NetExplorer platform. Only one session for one login
 /// is permitted at a time.
-class session
+class session final
 {
 private:
 
