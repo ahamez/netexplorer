@@ -119,8 +119,8 @@ push::operator()(ntx::id_type parent_id, const ntx::file& f, const fs::path& par
       }
       if (status(response) != 201u)
       {
-        throw std::runtime_error("Cannot create distant file " + f.name() + ": "
-                                 + std::to_string(status(response)));
+        throw std::runtime_error( "Cannot create distant file " + f.name() + ": "
+                                + std::to_string(status(response)));
       }
 
       auto file_id = 0ul;
@@ -159,7 +159,7 @@ push::operator()(ntx::id_type parent_id, const ntx::file& f, const fs::path& par
       std::copy( std::istreambuf_iterator<char>{file}, std::istreambuf_iterator<char>{}
                , std::back_inserter(str));
 
-      const auto response = http::client{}.post(request, str);
+      const auto response = http::client{}.put(request, str);
       if (status(response) != 200u)
       {
         throw std::runtime_error( "Cannot upload file " + file_path.string() + " status = "
