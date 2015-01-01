@@ -4,6 +4,7 @@
 #include "distant_root.hh"
 #include "fs.hh"
 #include "local_root.hh"
+#include "push.hh"
 #include "synchronize.hh"
 
 /*------------------------------------------------------------------------------------------------*/
@@ -16,14 +17,14 @@ struct tmp
   operator()(ntx::id_type parent_id, const ntx::folder& f, const boost::filesystem::path& path)
   const
   {
-    std::cout << '[' << prefix << "] folder " << f.name() << " @ " << path.string() << '\n';
+//    std::cout << '[' << prefix << "] folder " << f.name() << " @ " << path.string() << '\n';
   }
 
   void
   operator()(ntx::id_type parent_id, const ntx::file& f, const boost::filesystem::path& path)
   const
   {
-    std::cout << '[' << prefix << "] file " << f.name() << " @ " << path.string() << '\n';
+//    std::cout << '[' << prefix << "] file " << f.name() << " @ " << path.string() << '\n';
   }
 };
 
@@ -50,7 +51,7 @@ main()
     const auto local_root   = ntx::get_local_root(conf);
 
     ntx::synchronize( distant_root, local_root, conf.local_root()
-                    , tmp{"pull"}, tmp{"push"}, tmp{"conflict"});
+                    , tmp{"pull"}, ntx::push{conf, session}, tmp{"conflict"});
   }
   catch (std::exception& e)
   {

@@ -2,6 +2,7 @@ set(NETEXPLORER_SOURCES automatic_session.cc
                         distant_root.cc
                         local_root.cc
                         main.cc
+                        push.cc
                         session.cc)
 
 add_executable(netexplorer ${NETEXPLORER_SOURCES})
