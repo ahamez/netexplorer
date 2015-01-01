@@ -18,7 +18,7 @@ private:
 public:
 
   credentials(const std::string& login, const std::string& password)
-    : login_(login), password_(password)
+    : login_{login}, password_{password}
   {}
 
   ~credentials()

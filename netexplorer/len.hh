@@ -5,6 +5,7 @@ namespace detail {
 
 /*------------------------------------------------------------------------------------------------*/
 
+/// @brief Compile-time length of a C string.
 constexpr
 inline
 std::size_t

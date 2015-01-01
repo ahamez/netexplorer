@@ -17,6 +17,7 @@ namespace fs = boost::filesystem;
 
 /*------------------------------------------------------------------------------------------------*/
 
+/// @todo Use a better ('C++-ier') MD5.
 file
 mk_file(const fs::path& p)
 {
