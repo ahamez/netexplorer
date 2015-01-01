@@ -17,6 +17,8 @@ mk_file(const rapidjson::Value& v)
 {
   assert(v.IsObject());
   assert(v.HasMember("name"));
+  assert(v.HasMember("id"));
+  assert(v.HasMember("size"));
   assert(v.HasMember("hash"));
 
   if (v["hash"].GetStringLength() != 32)
@@ -24,7 +26,11 @@ mk_file(const rapidjson::Value& v)
     throw std::runtime_error("Invalid hash on server");
   }
 
+  std::cout << "file " << v["name"].GetString() << " has size " << v["size"].GetUint64() << '\n';
+
   return file{ std::string{v["name"].GetString(), v["name"].GetStringLength()}
+             , v["id"].GetUint64()
+             , v["size"].GetUint64()
              , std::string{v["hash"].GetString(), v["hash"].GetStringLength()}};
 }
 
@@ -71,9 +77,8 @@ get_distant_root(const configuration& conf, const session& s, unsigned long root
 {
   using namespace boost::network;
 
-  auto parameters = uri::uri{conf.folder_url()};
-  parameters << uri::uri{"/" + std::to_string(root)}
-             << uri::query("depth", uri::encoded("-1"));
+  auto parameters = uri::uri{conf.folder_url() + "/" + std::to_string(root)};
+  parameters << uri::query("depth", uri::encoded("-1"));
 
   auto request = http::client::request{parameters};
   request << header("Connection", "close")

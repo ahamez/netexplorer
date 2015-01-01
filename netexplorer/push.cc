@@ -1,4 +1,7 @@
-#include <iostream>
+#include <chrono>
+#include <fstream>
+#include <iosfwd>
+#include <iterator>
 
 #include <boost/filesystem.hpp>
 #define BOOST_NETWORK_ENABLE_HTTPS
@@ -17,11 +20,33 @@ using namespace boost::network;
 
 /*------------------------------------------------------------------------------------------------*/
 
-void
-push::operator()(ntx::id_type parent_id, const ntx::folder& f, const fs::path& path)
-const
+push::push(const configuration& conf, const session& s)
+  : conf_{conf}, session_{s}
+{}
+
+/*------------------------------------------------------------------------------------------------*/
+
+push::~push()
 {
-  std::cout << "[push] folder " << f.name() << " @ " << path.string()
+  for (auto& f : futures_)
+  {
+    try
+    {
+      f.get();
+    }
+    catch (std::exception& e)
+    {
+      std::cerr << e.what() << '\n';
+    }
+  }
+}
+
+/*------------------------------------------------------------------------------------------------*/
+
+void
+push::operator()(ntx::id_type parent_id, const ntx::folder& f, const fs::path& parent_path)
+{
+  std::cout << "[push] folder " << f.name() << " @ " << parent_path.string()
             << " (parent_id = " << parent_id << ")\n";
 
   auto request = http::client::request{conf_.folder_url()};
@@ -33,14 +58,9 @@ const
     = "{\"name\":\"" + f.name() + "\",\"parent_id\":\"" + std::to_string(parent_id) + "\"}";
 
   const auto response = http::client{}.post(request, json);
-  if (status(response) != 200u)
+  if (status(response) != 201u)
   {
-    // Creation fails on first call???
-    const auto response2 = http::client{}.post(request, json);
-    if (status(response2) != 200u)
-    {
-      throw std::runtime_error("Cannot create distant folder " + f.name());
-    }
+    throw std::runtime_error("Cannot create distant folder " + f.name());
   }
 
   const auto new_id = [&]
@@ -60,25 +80,117 @@ const
 
   for (const auto& sub_file : f.files())
   {
-    (*this)(new_id, sub_file, path / fs::path{f.name()});
+    (*this)(new_id, sub_file, parent_path / fs::path{f.name()});
   }
 
   for (const auto& sub_folder : f.folders())
   {
-    (*this)(new_id, sub_folder, path / fs::path{f.name()});
+    (*this)(new_id, sub_folder, parent_path / fs::path{f.name()});
   }
 }
 
 /*------------------------------------------------------------------------------------------------*/
 
 void
-push::operator()(ntx::id_type, const ntx::file& f, const fs::path& path)
-const
+push::operator()(ntx::id_type parent_id, const ntx::file& f, const fs::path& parent_path)
 {
-  std::cout << "[push] file " << f.name() << " @ " << path.string() << '\n';
+  std::cout << "[push] file " << f.name() << " @ " << parent_path.string()
+            << " (parent_id = " << parent_id << ")\n";
+
+  auto future = std::async(std::launch::async, [&]
+  {
+    // Create distant placeholder.
+    const auto file_id = [&]
+    {
+      auto request = http::client::request{conf_.file_url()};
+      request << header("Connection", "close")
+              << header("Token", session_.token())
+              << header("Content-Type", "application/json");
+
+      const auto json
+        = "{\"name\":\"" + f.name() + "\",\"parent_id\":\"" + std::to_string(parent_id)
+        + "\",\"hash\":\"" + f.md5() + "\"}";
+
+      auto tries = 5u;
+      auto response = http::client{}.post(request, json);
+      while (status(response) != 201u and tries-- != 0)
+      {
+        response = http::client{}.post(request, json);
+      }
+      if (status(response) != 201u)
+      {
+        throw std::runtime_error("Cannot create distant file " + f.name() + ": "
+                                 + std::to_string(status(response)));
+      }
+
+      auto file_id = 0ul;
+      auto d = rapidjson::Document{};
+      if (not d.Parse<0>(response.body().c_str()).HasParseError())
+      {
+        file_id = d["id"].GetUint();
+      }
+      else
+      {
+        throw std::runtime_error("Distant file " + f.name() + " creation: can't read response");
+      }
+      return file_id;
+    }();
+
+    // Effectively upload file.
+    {
+      auto parameters = uri::uri{conf_.file_url()};
+      parameters << uri::path("/")
+                 << uri::path(std::to_string(file_id))
+                 << uri::path("/upload");
+
+      auto request = http::client::request{parameters};
+      request << header("Connection", "close")
+              << header("Token", session_.token())
+              << header("Content-Type", "x-application/octet-stream")
+              << header("Content-Length", std::to_string(f.size()));
+
+      const auto file_path = parent_path / fs::path{f.name()};
+      auto&& file = std::ifstream{file_path.string(), std::ios::binary};
+      if (not file.is_open())
+      {
+        throw std::runtime_error("Can't read file " + file_path.string() + " to be uploaded");
+      }
+      auto str = std::string{};
+      str.reserve(f.size());
+      std::copy( std::istreambuf_iterator<char>{file}, std::istreambuf_iterator<char>{}
+               , std::back_inserter(str));
+
+      const auto put_response = http::client{}.post(request, str);
+      if (status(put_response) != 200u)
+      {
+        throw std::runtime_error("Cannot upload file " + file_path.string());
+      }
+    }
+  });
+
+  // Cheap way of limiting the maximum number of concurrent uploads.
+  while (futures_.size() >= conf_.max_ul_tasks())
+  {
+    for (auto it = begin(futures_); it != end(futures_); ++it)
+    {
+      if (it->wait_for(std::chrono::milliseconds(100)) == std::future_status::ready)
+      {
+        try
+        {
+          it->get();
+        }
+        catch (std::exception& e)
+        {
+          std::cerr << e.what() << '\n';
+        }
+        futures_.erase(it);
+        break;
+      }
+    }
+  }
+  futures_.emplace_back(std::move(future));
 }
 
 /*------------------------------------------------------------------------------------------------*/
 
 } // namespace ntx
-

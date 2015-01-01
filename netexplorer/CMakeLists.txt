@@ -2,6 +2,7 @@ set(NETEXPLORER_SOURCES automatic_session.cc
                         distant_root.cc
                         local_root.cc
                         main.cc
+                        pull.cc
                         push.cc
                         session.cc)
 

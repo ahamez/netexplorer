@@ -55,7 +55,7 @@ mk_file(const fs::path& p)
     ss << std::hex <<  std::setw(2) << std::setfill('0') << +c;
   }
 
-  return {p.filename().string(), ss.str()};
+  return {p.filename().string(), sz, ss.str()};
 }
 
 /*------------------------------------------------------------------------------------------------*/

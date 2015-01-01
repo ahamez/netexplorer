@@ -10,6 +10,9 @@
 
 namespace ntx {
 
+/// @todo Should have two distinct types for local and distant filesystems (for instance, local
+/// folders don't have an id, it should not appear in their interface).
+
 /*------------------------------------------------------------------------------------------------*/
 
 // Forward declarations for recursive data structures.
@@ -32,19 +35,24 @@ class file_impl
 private:
 
   std::string name_;
+  boost::optional<id_type> id_; // A local file doesn't have an id.
+  std::size_t size_;
   md5_digest_type md5_;
 
 public:
 
-  file_impl(const std::string& name, const md5_digest_type& md5)
-    : name_{name}, md5_(md5)
+  file_impl(const std::string& name, id_type id, std::size_t size, const md5_digest_type& md5)
+    : name_{name}, id_{id}, size_{size}, md5_(md5)
   {}
 
-  file_impl(std::string&& name, md5_digest_type&& md5)
-    : name_{std::move(name)}, md5_(std::move(md5))
+  file_impl(const std::string& name, std::size_t size, const md5_digest_type& md5)
+    : name_{name}, id_{}, size_{size}, md5_(md5)
   {}
 
   const auto& name() const noexcept {return name_;}
+  const auto& id()      const noexcept {return id_;}
+        auto  size() const noexcept {return size_;}
+  /// @todo Lazy md5 computation for local files.
   const auto&  md5() const noexcept {return md5_;}
 };
 
@@ -68,7 +76,7 @@ public:
   {}
 
   folder_impl(const std::string& name)
-    : name_{name}, files_{}, folders_{}
+    : name_{name}, id_{}, files_{}, folders_{}
   {}
 
   const auto& name()    const noexcept {return name_;}
@@ -124,15 +132,17 @@ private:
 
 public:
 
-  file(const std::string& name, const md5_digest_type& md5)
-    : ptr_{std::make_shared<detail::file_impl>(name, md5)}
+  file(const std::string& name, id_type id, std::size_t size, const md5_digest_type& md5)
+    : ptr_{std::make_shared<detail::file_impl>(name, id, size, md5)}
   {}
 
-  file(std::string&& name, md5_digest_type&& md5)
-    : ptr_{std::make_shared<detail::file_impl>(std::move(name), std::move(md5))}
+  file(const std::string& name, std::size_t size, const md5_digest_type& md5)
+    : ptr_{std::make_shared<detail::file_impl>(name, size, md5)}
   {}
 
   const auto& name() const noexcept {return ptr_->name();}
+  const auto& id()   const noexcept {return ptr_->id();}
+        auto  size() const noexcept {return ptr_->size();}
   const auto& md5()  const noexcept {return ptr_->md5();}
 
   friend
@@ -163,10 +173,10 @@ public:
     : ptr_{std::make_shared<detail::folder_impl>(name)}
   {}
 
-  const auto& name()    const {return ptr_->name();}
-  const auto& id()      const {return ptr_->id();}
-  const auto& files()   const {return ptr_->files();}
-  const auto& folders() const {return ptr_->folders();}
+  const auto& name()    const noexcept {return ptr_->name();}
+  const auto& id()      const noexcept {return ptr_->id();}
+  const auto& files()   const noexcept {return ptr_->files();}
+  const auto& folders() const noexcept {return ptr_->folders();}
 
   /// @brief Add one or more files to this folder.
   ///

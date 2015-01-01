@@ -39,7 +39,7 @@ synchronize( const folder& distant_folder, const folder& local_folder, const fs:
 
       if (distant.name() == local.name())
       {
-        if (distant.md5() != local.md5())
+        if (distant.size() != local.size() or distant.md5() != local.md5())
         {
           conflict(*distant_folder.id(), distant, local_path);
         }

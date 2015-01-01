@@ -67,9 +67,9 @@ connect(const configuration& conf, const credentials& creds)
     request << header("Connection", "close")
             << header("Content-Type", "application/json");
 
-    const auto json_auth
+    const auto json
       = "{\"user\":\"" + creds.login() + "\",\"password\":\"" + creds.password() + "\"}";
-    const auto response = http::client{}.post(request, json_auth);
+    const auto response = http::client{}.post(request, json);
 
     if (status(response) != 200u)
     {
