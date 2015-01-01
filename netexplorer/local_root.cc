@@ -1,4 +1,5 @@
 #include <array>
+#include <algorithm> // copy
 #include <fstream>
 #include <iomanip>
 #include <sstream>
@@ -21,26 +22,29 @@ namespace fs = boost::filesystem;
 file
 mk_file(const fs::path& p)
 {
-  auto buffer = std::array<char, 4096>{};
-  auto md5 = std::array<unsigned char, 16>{};
+  static constexpr auto buffer_size = 4096u;
+
+  const auto sz = file_size(p);
+
+  auto md5 = std::array<unsigned char, MD5_DIGEST_LENGTH>{};
+  auto buffer = std::array<char, buffer_size>{};
+
+  auto&& file  = std::ifstream{p.string(), std::ios::binary};
+  auto fstream = std::istreambuf_iterator<char>{file};
 
   auto ctx = MD5_CTX{};
   MD5_Init(&ctx);
 
-  auto&& file = fs::ifstream{p, std::ios::binary};
-  auto fstream = std::istreambuf_iterator<char>{file};
-
-  const auto sz = file_size(p);
-  auto nb_loops = sz / 4096;
-  const auto rem = sz - (nb_loops * 4096);
+  auto nb_loops = sz / buffer_size;
+  const auto rem = sz % buffer_size;
 
   while (nb_loops--)
   {
-    std::copy_n(fstream, 4096, begin(buffer));
-    ++fstream;
-    MD5_Update(&ctx, buffer.data(), 4096);
+    std::copy_n(fstream, buffer_size, begin(buffer));
+    ++fstream; // actual reading of the next character
+    MD5_Update(&ctx, buffer.data(), buffer_size);
   }
-  std::copy_n(++fstream, rem, begin(buffer));
+  std::copy_n(fstream, rem, begin(buffer));
   MD5_Update(&ctx, buffer.data(), rem);
   MD5_Final(md5.data(), &ctx);
 
