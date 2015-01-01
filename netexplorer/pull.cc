@@ -71,7 +71,7 @@ pull::operator()(ntx::id_type parent_id, const ntx::file& f, const fs::path& par
   std::cout << "[pull] file " << f.name() << " @ " << parent_path.string()
             << " (parent_id = " << parent_id << ")\n";
 
-  auto future = std::async(std::launch::async, [&]
+  auto future = std::async(std::launch::async, [=,&f]
   {
     auto parameters = uri::uri{};
     parameters << uri::path(conf_.file_url())

@@ -52,7 +52,7 @@ mk_file(const fs::path& p)
   std::stringstream ss;
   for (auto c : md5)
   {
-    ss << std::hex <<  std::setw(2) << std::setfill('0') << +c;
+    ss << std::hex << std::setw(2) << std::setfill('0') << +c;
   }
 
   return {p.filename().string(), sz, ss.str()};

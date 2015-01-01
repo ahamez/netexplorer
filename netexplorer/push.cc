@@ -4,6 +4,7 @@
 #include <iterator>
 
 #include <boost/filesystem.hpp>
+#include <boost/filesystem/fstream.hpp>
 #define BOOST_NETWORK_ENABLE_HTTPS
 #include <boost/network/protocol/http/client.hpp>
 
@@ -97,7 +98,7 @@ push::operator()(ntx::id_type parent_id, const ntx::file& f, const fs::path& par
   std::cout << "[push] file " << f.name() << " @ " << parent_path.string()
             << " (parent_id = " << parent_id << ")\n";
 
-  auto future = std::async(std::launch::async, [&]
+  auto future = std::async(std::launch::async, [=,&f]
   {
     // Create distant placeholder.
     const auto file_id = [&]
@@ -111,12 +112,7 @@ push::operator()(ntx::id_type parent_id, const ntx::file& f, const fs::path& par
         = "{\"name\":\"" + f.name() + "\",\"parent_id\":\"" + std::to_string(parent_id)
         + "\",\"hash\":\"" + f.md5() + "\"}";
 
-      auto tries = 5u;
-      auto response = http::client{}.post(request, json);
-      while (status(response) != 201u and tries-- != 0)
-      {
-        response = http::client{}.post(request, json);
-      }
+      const auto response = http::client{}.post(request, json);
       if (status(response) != 201u)
       {
         throw std::runtime_error( "Cannot create distant file " + f.name() + ": "
@@ -149,9 +145,10 @@ push::operator()(ntx::id_type parent_id, const ntx::file& f, const fs::path& par
               << header("Content-Length", std::to_string(f.size()));
 
       const auto file_path = parent_path / fs::path{f.name()};
-      auto&& file = std::ifstream{file_path.string(), std::ios::binary};
+      auto&& file = fs::ifstream{file_path, std::ios::binary};
       if (not file.is_open())
       {
+        std::cerr << "'" <<file_path.string() << "'\n";
         throw std::runtime_error("Can't read file to be uploaded " + file_path.string());
       }
       auto str = std::string{};
