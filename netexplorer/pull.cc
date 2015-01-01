@@ -3,6 +3,7 @@
 #include <iterator>
 
 #include <boost/filesystem.hpp>
+#include <boost/filesystem/fstream.hpp>
 #define BOOST_NETWORK_ENABLE_HTTPS
 #include <boost/network/protocol/http/client.hpp>
 #include <boost/range/algorithm/copy.hpp>
@@ -84,7 +85,7 @@ pull::operator()(ntx::id_type parent_id, const ntx::file& f, const fs::path& par
             << header("Token", session_.token());
 
     const auto file_path = parent_path / fs::path{f.name()};
-    auto&& file = std::ofstream{file_path.string(), std::ios::binary};
+    auto&& file = fs::ofstream{file_path, std::ios::binary};
     if (not file.is_open())
     {
       throw std::runtime_error("Can't write to " + file_path.string());
