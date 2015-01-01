@@ -70,15 +70,16 @@ folder
 get_distant_root(const configuration& conf, const session& s, unsigned long root)
 {
   using namespace boost::network;
-  auto client  = http::client{};
 
   auto parameters = uri::uri{conf.folder_url()};
-  parameters << uri::uri{"/" + std::to_string(root)} << uri::query("depth", uri::encoded("-1"));
+  parameters << uri::uri{"/" + std::to_string(root)}
+             << uri::query("depth", uri::encoded("-1"));
 
   auto request = http::client::request{parameters};
-  request << header("Connection", "close") << header("Token", s.token());
+  request << header("Connection", "close")
+          << header("Token", s.token());
 
-  const auto response = client.get(request);
+  const auto response = http::client{}.get(request);
   if (status(response) != 200u)
   {
     throw std::runtime_error("Can't get root folder");

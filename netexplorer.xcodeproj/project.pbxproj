@@ -11,6 +11,7 @@
 		2B67A0E21A51D07300DB958A /* main.cc in Sources */ = {isa = PBXBuildFile; fileRef = 2B67A0E11A51D07300DB958A /* main.cc */; };
 		2B7670B81A54BB26007C12BD /* local_root.cc in Sources */ = {isa = PBXBuildFile; fileRef = 2B7670B61A54BB26007C12BD /* local_root.cc */; };
 		2BE2100F1A553ECE00E3D2FB /* automatic_session.cc in Sources */ = {isa = PBXBuildFile; fileRef = 2BE2100D1A553ECE00E3D2FB /* automatic_session.cc */; };
+		2BE210121A55459900E3D2FB /* push.cc in Sources */ = {isa = PBXBuildFile; fileRef = 2BE210101A55459900E3D2FB /* push.cc */; };
 		2BEA3BFB1A51FA1E0091D522 /* session.cc in Sources */ = {isa = PBXBuildFile; fileRef = 2BEA3BF91A51FA1E0091D522 /* session.cc */; };
 /* End PBXBuildFile section */
 
@@ -42,6 +43,8 @@
 		2B9600961A51E3980080E3E3 /* CMakeLists.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CMakeLists.txt; sourceTree = "<group>"; };
 		2BE2100D1A553ECE00E3D2FB /* automatic_session.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = automatic_session.cc; sourceTree = "<group>"; };
 		2BE2100E1A553ECE00E3D2FB /* automatic_session.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = automatic_session.hh; sourceTree = "<group>"; };
+		2BE210101A55459900E3D2FB /* push.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = push.cc; sourceTree = "<group>"; };
+		2BE210111A55459900E3D2FB /* push.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = push.hh; sourceTree = "<group>"; };
 		2BEA3BF91A51FA1E0091D522 /* session.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = session.cc; sourceTree = "<group>"; };
 		2BEA3BFA1A51FA1E0091D522 /* session.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = session.hh; sourceTree = "<group>"; };
 		2BEA3BFD1A51FD2D0091D522 /* allocators.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = allocators.h; sourceTree = "<group>"; };
@@ -113,6 +116,8 @@
 				2B3FEAD81A5402E700EDF088 /* credentials.hh */,
 				2B67A0E11A51D07300DB958A /* main.cc */,
 				2B3FEACF1A531BF200EDF088 /* len.hh */,
+				2BE210111A55459900E3D2FB /* push.hh */,
+				2BE210101A55459900E3D2FB /* push.cc */,
 				2BEA3BFA1A51FA1E0091D522 /* session.hh */,
 				2BEA3BF91A51FA1E0091D522 /* session.cc */,
 				2B3FEAD61A534B5700EDF088 /* distant_root.hh */,
@@ -242,6 +247,7 @@
 				2BE2100F1A553ECE00E3D2FB /* automatic_session.cc in Sources */,
 				2BEA3BFB1A51FA1E0091D522 /* session.cc in Sources */,
 				2B7670B81A54BB26007C12BD /* local_root.cc in Sources */,
+				2BE210121A55459900E3D2FB /* push.cc in Sources */,
 				2B3FEAD71A534B5700EDF088 /* distant_root.cc in Sources */,
 				2B67A0E21A51D07300DB958A /* main.cc in Sources */,
 			);

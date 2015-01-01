@@ -80,7 +80,7 @@ synchronize( const folder& distant_folder, const folder& local_folder, const fs:
       const auto& local   = *local_cit;
       if (distant.name() == local.name())
       {
-        synchronize( distant, local, local_path / fs::path{local_folder.name()}
+        synchronize( distant, local, local_path / fs::path{local.name()}
                    , std::forward<Pull>(pull), std::forward<Push>(push)
                    , std::forward<Conflict>(conflict));
         ++distant_cit;

@@ -64,7 +64,8 @@ connect(const configuration& conf, const credentials& creds)
   if (registered_sessions.insert(conf).second)
   {
     auto request = http::client::request{conf.auth_url()};
-    request << header("Connection", "close") << header("Content-Type", "application/json");
+    request << header("Connection", "close")
+            << header("Content-Type", "application/json");
 
     const auto json_auth
       = "{\"user\":\"" + creds.login() + "\",\"password\":\"" + creds.password() + "\"}";
