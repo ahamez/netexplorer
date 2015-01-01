@@ -7,7 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2B67A0E21A51D07300DB958A /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2B67A0E11A51D07300DB958A /* main.cpp */; };
+		2B3FEAD41A53319800EDF088 /* account.cc in Sources */ = {isa = PBXBuildFile; fileRef = 2B3FEAD21A53319800EDF088 /* account.cc */; };
+		2B3FEAD71A534B5700EDF088 /* distant_root.cc in Sources */ = {isa = PBXBuildFile; fileRef = 2B3FEAD51A534B5700EDF088 /* distant_root.cc */; };
+		2B67A0E21A51D07300DB958A /* main.cc in Sources */ = {isa = PBXBuildFile; fileRef = 2B67A0E11A51D07300DB958A /* main.cc */; };
+		2B7670B81A54BB26007C12BD /* local_root.cc in Sources */ = {isa = PBXBuildFile; fileRef = 2B7670B61A54BB26007C12BD /* local_root.cc */; };
+		2BE2100F1A553ECE00E3D2FB /* automatic_session.cc in Sources */ = {isa = PBXBuildFile; fileRef = 2BE2100D1A553ECE00E3D2FB /* automatic_session.cc */; };
+		2BEA3BFB1A51FA1E0091D522 /* session.cc in Sources */ = {isa = PBXBuildFile; fileRef = 2BEA3BF91A51FA1E0091D522 /* session.cc */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -23,8 +28,53 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		2B3FEACF1A531BF200EDF088 /* len.hh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = len.hh; sourceTree = "<group>"; };
+		2B3FEAD01A531C8600EDF088 /* configuration.hh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = configuration.hh; sourceTree = "<group>"; };
+		2B3FEAD21A53319800EDF088 /* account.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = account.cc; sourceTree = "<group>"; };
+		2B3FEAD31A53319800EDF088 /* account.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = account.hh; sourceTree = "<group>"; };
+		2B3FEAD51A534B5700EDF088 /* distant_root.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = distant_root.cc; sourceTree = "<group>"; };
+		2B3FEAD61A534B5700EDF088 /* distant_root.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = distant_root.hh; sourceTree = "<group>"; };
+		2B3FEAD81A5402E700EDF088 /* credentials.hh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = credentials.hh; sourceTree = "<group>"; };
+		2B53C3CC1A54ABBA000CC367 /* fs.hh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = fs.hh; sourceTree = "<group>"; };
+		2B53C3CD1A54AC2D000CC367 /* synchronize.hh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = synchronize.hh; sourceTree = "<group>"; };
 		2B67A0DE1A51D07300DB958A /* netexplorer */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = netexplorer; sourceTree = BUILT_PRODUCTS_DIR; };
-		2B67A0E11A51D07300DB958A /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		2B67A0E11A51D07300DB958A /* main.cc */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cc; sourceTree = "<group>"; };
+		2B7670B61A54BB26007C12BD /* local_root.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = local_root.cc; sourceTree = "<group>"; };
+		2B7670B71A54BB26007C12BD /* local_root.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = local_root.hh; sourceTree = "<group>"; };
+		2B9600951A51E36F0080E3E3 /* CMakeLists.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CMakeLists.txt; sourceTree = "<group>"; };
+		2B9600961A51E3980080E3E3 /* CMakeLists.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CMakeLists.txt; sourceTree = "<group>"; };
+		2BE2100D1A553ECE00E3D2FB /* automatic_session.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = automatic_session.cc; sourceTree = "<group>"; };
+		2BE2100E1A553ECE00E3D2FB /* automatic_session.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = automatic_session.hh; sourceTree = "<group>"; };
+		2BEA3BF91A51FA1E0091D522 /* session.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = session.cc; sourceTree = "<group>"; };
+		2BEA3BFA1A51FA1E0091D522 /* session.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = session.hh; sourceTree = "<group>"; };
+		2BEA3BFD1A51FD2D0091D522 /* allocators.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = allocators.h; sourceTree = "<group>"; };
+		2BEA3BFE1A51FD2D0091D522 /* document.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = document.h; sourceTree = "<group>"; };
+		2BEA3BFF1A51FD2D0091D522 /* encodedstream.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = encodedstream.h; sourceTree = "<group>"; };
+		2BEA3C001A51FD2D0091D522 /* encodings.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = encodings.h; sourceTree = "<group>"; };
+		2BEA3C021A51FD2D0091D522 /* en.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = en.h; sourceTree = "<group>"; };
+		2BEA3C031A51FD2D0091D522 /* error.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = error.h; sourceTree = "<group>"; };
+		2BEA3C041A51FD2D0091D522 /* filereadstream.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = filereadstream.h; sourceTree = "<group>"; };
+		2BEA3C051A51FD2D0091D522 /* filestream.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = filestream.h; sourceTree = "<group>"; };
+		2BEA3C061A51FD2D0091D522 /* filewritestream.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = filewritestream.h; sourceTree = "<group>"; };
+		2BEA3C081A51FD2D0091D522 /* biginteger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = biginteger.h; sourceTree = "<group>"; };
+		2BEA3C091A51FD2D0091D522 /* diyfp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = diyfp.h; sourceTree = "<group>"; };
+		2BEA3C0A1A51FD2D0091D522 /* dtoa.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = dtoa.h; sourceTree = "<group>"; };
+		2BEA3C0B1A51FD2D0091D522 /* ieee754.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ieee754.h; sourceTree = "<group>"; };
+		2BEA3C0C1A51FD2D0091D522 /* itoa.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = itoa.h; sourceTree = "<group>"; };
+		2BEA3C0D1A51FD2D0091D522 /* meta.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = meta.h; sourceTree = "<group>"; };
+		2BEA3C0E1A51FD2D0091D522 /* pow10.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = pow10.h; sourceTree = "<group>"; };
+		2BEA3C0F1A51FD2D0091D522 /* stack.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = stack.h; sourceTree = "<group>"; };
+		2BEA3C101A51FD2D0091D522 /* strfunc.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = strfunc.h; sourceTree = "<group>"; };
+		2BEA3C111A51FD2D0091D522 /* strtod.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = strtod.h; sourceTree = "<group>"; };
+		2BEA3C121A51FD2D0091D522 /* memorybuffer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = memorybuffer.h; sourceTree = "<group>"; };
+		2BEA3C131A51FD2D0091D522 /* memorystream.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = memorystream.h; sourceTree = "<group>"; };
+		2BEA3C151A51FD2D0091D522 /* inttypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = inttypes.h; sourceTree = "<group>"; };
+		2BEA3C161A51FD2D0091D522 /* stdint.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = stdint.h; sourceTree = "<group>"; };
+		2BEA3C171A51FD2D0091D522 /* prettywriter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = prettywriter.h; sourceTree = "<group>"; };
+		2BEA3C181A51FD2D0091D522 /* rapidjson.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = rapidjson.h; sourceTree = "<group>"; };
+		2BEA3C191A51FD2D0091D522 /* reader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = reader.h; sourceTree = "<group>"; };
+		2BEA3C1A1A51FD2D0091D522 /* stringbuffer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = stringbuffer.h; sourceTree = "<group>"; };
+		2BEA3C1B1A51FD2D0091D522 /* writer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = writer.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -41,25 +91,102 @@
 		2B67A0D51A51D07300DB958A = {
 			isa = PBXGroup;
 			children = (
+				2B9600961A51E3980080E3E3 /* CMakeLists.txt */,
+				2BEA3BFC1A51FD2D0091D522 /* rapidjson */,
 				2B67A0E01A51D07300DB958A /* netexplorer */,
-				2B67A0DF1A51D07300DB958A /* Products */,
+				2B67A0DF1A51D07300DB958A /* bin */,
 			);
 			sourceTree = "<group>";
 		};
-		2B67A0DF1A51D07300DB958A /* Products */ = {
+		2B67A0DF1A51D07300DB958A /* bin */ = {
 			isa = PBXGroup;
 			children = (
 				2B67A0DE1A51D07300DB958A /* netexplorer */,
 			);
-			name = Products;
+			name = bin;
 			sourceTree = "<group>";
 		};
 		2B67A0E01A51D07300DB958A /* netexplorer */ = {
 			isa = PBXGroup;
 			children = (
-				2B67A0E11A51D07300DB958A /* main.cpp */,
+				2B9600951A51E36F0080E3E3 /* CMakeLists.txt */,
+				2B3FEAD31A53319800EDF088 /* account.hh */,
+				2B3FEAD21A53319800EDF088 /* account.cc */,
+				2BE2100E1A553ECE00E3D2FB /* automatic_session.hh */,
+				2BE2100D1A553ECE00E3D2FB /* automatic_session.cc */,
+				2B3FEAD01A531C8600EDF088 /* configuration.hh */,
+				2B3FEAD81A5402E700EDF088 /* credentials.hh */,
+				2B67A0E11A51D07300DB958A /* main.cc */,
+				2B3FEACF1A531BF200EDF088 /* len.hh */,
+				2BEA3BFA1A51FA1E0091D522 /* session.hh */,
+				2BEA3BF91A51FA1E0091D522 /* session.cc */,
+				2B3FEAD61A534B5700EDF088 /* distant_root.hh */,
+				2B3FEAD51A534B5700EDF088 /* distant_root.cc */,
+				2B53C3CC1A54ABBA000CC367 /* fs.hh */,
+				2B53C3CD1A54AC2D000CC367 /* synchronize.hh */,
+				2B7670B71A54BB26007C12BD /* local_root.hh */,
+				2B7670B61A54BB26007C12BD /* local_root.cc */,
 			);
 			path = netexplorer;
+			sourceTree = "<group>";
+		};
+		2BEA3BFC1A51FD2D0091D522 /* rapidjson */ = {
+			isa = PBXGroup;
+			children = (
+				2BEA3BFD1A51FD2D0091D522 /* allocators.h */,
+				2BEA3BFE1A51FD2D0091D522 /* document.h */,
+				2BEA3BFF1A51FD2D0091D522 /* encodedstream.h */,
+				2BEA3C001A51FD2D0091D522 /* encodings.h */,
+				2BEA3C011A51FD2D0091D522 /* error */,
+				2BEA3C041A51FD2D0091D522 /* filereadstream.h */,
+				2BEA3C051A51FD2D0091D522 /* filestream.h */,
+				2BEA3C061A51FD2D0091D522 /* filewritestream.h */,
+				2BEA3C071A51FD2D0091D522 /* internal */,
+				2BEA3C121A51FD2D0091D522 /* memorybuffer.h */,
+				2BEA3C131A51FD2D0091D522 /* memorystream.h */,
+				2BEA3C141A51FD2D0091D522 /* msinttypes */,
+				2BEA3C171A51FD2D0091D522 /* prettywriter.h */,
+				2BEA3C181A51FD2D0091D522 /* rapidjson.h */,
+				2BEA3C191A51FD2D0091D522 /* reader.h */,
+				2BEA3C1A1A51FD2D0091D522 /* stringbuffer.h */,
+				2BEA3C1B1A51FD2D0091D522 /* writer.h */,
+			);
+			path = rapidjson;
+			sourceTree = "<group>";
+		};
+		2BEA3C011A51FD2D0091D522 /* error */ = {
+			isa = PBXGroup;
+			children = (
+				2BEA3C021A51FD2D0091D522 /* en.h */,
+				2BEA3C031A51FD2D0091D522 /* error.h */,
+			);
+			path = error;
+			sourceTree = "<group>";
+		};
+		2BEA3C071A51FD2D0091D522 /* internal */ = {
+			isa = PBXGroup;
+			children = (
+				2BEA3C081A51FD2D0091D522 /* biginteger.h */,
+				2BEA3C091A51FD2D0091D522 /* diyfp.h */,
+				2BEA3C0A1A51FD2D0091D522 /* dtoa.h */,
+				2BEA3C0B1A51FD2D0091D522 /* ieee754.h */,
+				2BEA3C0C1A51FD2D0091D522 /* itoa.h */,
+				2BEA3C0D1A51FD2D0091D522 /* meta.h */,
+				2BEA3C0E1A51FD2D0091D522 /* pow10.h */,
+				2BEA3C0F1A51FD2D0091D522 /* stack.h */,
+				2BEA3C101A51FD2D0091D522 /* strfunc.h */,
+				2BEA3C111A51FD2D0091D522 /* strtod.h */,
+			);
+			path = internal;
+			sourceTree = "<group>";
+		};
+		2BEA3C141A51FD2D0091D522 /* msinttypes */ = {
+			isa = PBXGroup;
+			children = (
+				2BEA3C151A51FD2D0091D522 /* inttypes.h */,
+				2BEA3C161A51FD2D0091D522 /* stdint.h */,
+			);
+			path = msinttypes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -103,7 +230,7 @@
 				en,
 			);
 			mainGroup = 2B67A0D51A51D07300DB958A;
-			productRefGroup = 2B67A0DF1A51D07300DB958A /* Products */;
+			productRefGroup = 2B67A0DF1A51D07300DB958A /* bin */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -117,7 +244,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2B67A0E21A51D07300DB958A /* main.cpp in Sources */,
+				2BE2100F1A553ECE00E3D2FB /* automatic_session.cc in Sources */,
+				2BEA3BFB1A51FA1E0091D522 /* session.cc in Sources */,
+				2B7670B81A54BB26007C12BD /* local_root.cc in Sources */,
+				2B3FEAD71A534B5700EDF088 /* distant_root.cc in Sources */,
+				2B67A0E21A51D07300DB958A /* main.cc in Sources */,
+				2B3FEAD41A53319800EDF088 /* account.cc in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -128,7 +260,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LANGUAGE_STANDARD = "c++14";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -157,9 +289,32 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					/usr/local/include,
+					"$(BOOST_INCLUDE)",
+					"$(SRCROOT)",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(BOOST_LIB)",
+					/usr/local/lib,
+					/opt/local/lib,
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = (
+					"-lboost_thread",
+					"-lboost_system",
+					"-lboost_regex",
+					"-lboost_date_time",
+					"-lcppnetlib-client-connections",
+					"-lcppnetlib-uri",
+					"-lssl",
+					"-lcrypto",
+					"-lboost_filesystem",
+				);
 				SDKROOT = macosx;
 			};
 			name = Debug;
@@ -168,7 +323,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LANGUAGE_STANDARD = "c++14";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -192,8 +347,31 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					/usr/local/include,
+					"$(BOOST_INCLUDE)",
+					"$(SRCROOT)",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(BOOST_LIB)",
+					/usr/local/lib,
+					/opt/local/lib,
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = (
+					"-lboost_thread",
+					"-lboost_system",
+					"-lboost_regex",
+					"-lboost_date_time",
+					"-lcppnetlib-client-connections",
+					"-lcppnetlib-uri",
+					"-lssl",
+					"-lcrypto",
+					"-lboost_filesystem",
+				);
 				SDKROOT = macosx;
 			};
 			name = Release;
@@ -201,6 +379,10 @@
 		2B67A0E61A51D07300DB958A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"/usr/local/boost-1.57/lib",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -208,6 +390,10 @@
 		2B67A0E71A51D07300DB958A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"/usr/local/boost-1.57/lib",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -231,6 +417,7 @@
 				2B67A0E71A51D07300DB958A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
