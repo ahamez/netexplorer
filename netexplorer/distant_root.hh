@@ -9,7 +9,7 @@ namespace ntx {
 /*------------------------------------------------------------------------------------------------*/
 
 folder
-get_distant_root(const configuration&, const session&);
+get_distant_root(const configuration&, const session&, unsigned long root);
 
 /*------------------------------------------------------------------------------------------------*/
 

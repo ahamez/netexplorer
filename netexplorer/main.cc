@@ -1,6 +1,5 @@
 #include <iostream>
 
-#include "account.hh"
 #include "automatic_session.hh"
 #include "distant_root.hh"
 #include "fs.hh"
@@ -46,19 +45,8 @@ main()
       return ntx::automatic_session{conf, credentials};
     }(); // credentials scrambled here
 
-    // Check some facts about the account's roots.
-    /// @todo Select distant folder from one of the roots
-    const auto account = ntx::account{conf, session};
-    if (account.roots().size() == 0)
-    {
-      throw std::runtime_error("Account with no associated roots.");
-    }
-    if (not account.roots().count(1ul))
-    {
-      throw std::runtime_error("Account doesn't have root with id '1'.");
-    }
-
-    const auto distant_root = ntx::get_distant_root(conf, session);
+    /// @todo Select distant folder from one of the account's roots
+    const auto distant_root = ntx::get_distant_root(conf, session, 1ul);
     const auto local_root   = ntx::get_local_root(conf);
 
     ntx::synchronize( distant_root, local_root, conf.local_root()

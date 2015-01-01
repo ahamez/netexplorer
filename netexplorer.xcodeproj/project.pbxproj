@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2B3FEAD41A53319800EDF088 /* account.cc in Sources */ = {isa = PBXBuildFile; fileRef = 2B3FEAD21A53319800EDF088 /* account.cc */; };
 		2B3FEAD71A534B5700EDF088 /* distant_root.cc in Sources */ = {isa = PBXBuildFile; fileRef = 2B3FEAD51A534B5700EDF088 /* distant_root.cc */; };
 		2B67A0E21A51D07300DB958A /* main.cc in Sources */ = {isa = PBXBuildFile; fileRef = 2B67A0E11A51D07300DB958A /* main.cc */; };
 		2B7670B81A54BB26007C12BD /* local_root.cc in Sources */ = {isa = PBXBuildFile; fileRef = 2B7670B61A54BB26007C12BD /* local_root.cc */; };
@@ -30,8 +29,6 @@
 /* Begin PBXFileReference section */
 		2B3FEACF1A531BF200EDF088 /* len.hh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = len.hh; sourceTree = "<group>"; };
 		2B3FEAD01A531C8600EDF088 /* configuration.hh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = configuration.hh; sourceTree = "<group>"; };
-		2B3FEAD21A53319800EDF088 /* account.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = account.cc; sourceTree = "<group>"; };
-		2B3FEAD31A53319800EDF088 /* account.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = account.hh; sourceTree = "<group>"; };
 		2B3FEAD51A534B5700EDF088 /* distant_root.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = distant_root.cc; sourceTree = "<group>"; };
 		2B3FEAD61A534B5700EDF088 /* distant_root.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = distant_root.hh; sourceTree = "<group>"; };
 		2B3FEAD81A5402E700EDF088 /* credentials.hh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = credentials.hh; sourceTree = "<group>"; };
@@ -110,8 +107,6 @@
 			isa = PBXGroup;
 			children = (
 				2B9600951A51E36F0080E3E3 /* CMakeLists.txt */,
-				2B3FEAD31A53319800EDF088 /* account.hh */,
-				2B3FEAD21A53319800EDF088 /* account.cc */,
 				2BE2100E1A553ECE00E3D2FB /* automatic_session.hh */,
 				2BE2100D1A553ECE00E3D2FB /* automatic_session.cc */,
 				2B3FEAD01A531C8600EDF088 /* configuration.hh */,
@@ -249,7 +244,6 @@
 				2B7670B81A54BB26007C12BD /* local_root.cc in Sources */,
 				2B3FEAD71A534B5700EDF088 /* distant_root.cc in Sources */,
 				2B67A0E21A51D07300DB958A /* main.cc in Sources */,
-				2B3FEAD41A53319800EDF088 /* account.cc in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

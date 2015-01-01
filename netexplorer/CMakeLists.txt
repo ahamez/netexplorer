@@ -1,5 +1,4 @@
 set(NETEXPLORER_SOURCES automatic_session.cc
-                        account.cc
                         distant_root.cc
                         local_root.cc
                         main.cc

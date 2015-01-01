@@ -67,13 +67,13 @@ mk_folder(const rapidjson::Value& v)
 /*------------------------------------------------------------------------------------------------*/
 
 folder
-get_distant_root(const configuration& conf, const session& s)
+get_distant_root(const configuration& conf, const session& s, unsigned long root)
 {
   using namespace boost::network;
   auto client  = http::client{};
 
   auto parameters = uri::uri{conf.folder_url()};
-  parameters << uri::uri{"/1"} << uri::query("depth", uri::encoded("-1"));
+  parameters << uri::uri{"/" + std::to_string(root)} << uri::query("depth", uri::encoded("-1"));
 
   auto request = http::client::request{parameters};
   request << header("Connection", "close") << header("Token", s.token());
