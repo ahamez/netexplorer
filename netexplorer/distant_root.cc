@@ -26,8 +26,6 @@ mk_file(const rapidjson::Value& v)
     throw std::runtime_error("Invalid hash on server");
   }
 
-  std::cout << "file " << v["name"].GetString() << " has size " << v["size"].GetUint64() << '\n';
-
   return file{ std::string{v["name"].GetString(), v["name"].GetStringLength()}
              , v["id"].GetUint64()
              , v["size"].GetUint64()

@@ -146,24 +146,24 @@ push::operator()(ntx::id_type parent_id, const ntx::file& f, const fs::path& par
       auto request = http::client::request{parameters};
       request << header("Connection", "close")
               << header("Token", session_.token())
-              << header("Content-Type", "x-application/octet-stream")
               << header("Content-Length", std::to_string(f.size()));
 
       const auto file_path = parent_path / fs::path{f.name()};
       auto&& file = std::ifstream{file_path.string(), std::ios::binary};
       if (not file.is_open())
       {
-        throw std::runtime_error("Can't read file " + file_path.string() + " to be uploaded");
+        throw std::runtime_error("Can't read file to be uploaded " + file_path.string());
       }
       auto str = std::string{};
       str.reserve(f.size());
       std::copy( std::istreambuf_iterator<char>{file}, std::istreambuf_iterator<char>{}
                , std::back_inserter(str));
 
-      const auto put_response = http::client{}.post(request, str);
-      if (status(put_response) != 200u)
+      const auto response = http::client{}.post(request, str);
+      if (status(response) != 200u)
       {
-        throw std::runtime_error("Cannot upload file " + file_path.string());
+        throw std::runtime_error( "Cannot upload file " + file_path.string() + " status = "
+                                + std::to_string(status(response)));
       }
     }
   });
