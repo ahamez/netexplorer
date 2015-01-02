@@ -4,6 +4,7 @@
 #include "ntx/conflict.hh"
 #include "ntx/distant_filesystem.hh"
 #include "ntx/fs.hh"
+#include "ntx/handle_conflict.hh"
 #include "ntx/local_filesystem.hh"
 #include "ntx/pull.hh"
 #include "ntx/push.hh"
@@ -33,7 +34,8 @@ main()
 
     ntx::synchronize( distant_fs, local_fs, conf.local_root()
                     , ntx::pull{conf, session}, ntx::push{conf, session}
-                    , ntx::conflict{conf, session});
+                    , ntx::conflict{}
+                    , ntx::handle_conflict{conf, session});
   }
   catch (std::exception& e)
   {

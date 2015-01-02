@@ -1,26 +1,16 @@
 #pragma once
 
-#include "ntx/configuration.hh"
-#include "ntx/session.hh"
 #include "ntx/fs.hh"
 
 namespace ntx {
 
 /*------------------------------------------------------------------------------------------------*/
 
-/// @brief Action to perform when a file or folder is missing on the local filesystem.
-class conflict final
+/// @brief Check if two files conflict.
+struct conflict final
 {
-private:
-
-  const configuration& conf_;
-  const session& session_;
-
-public:
-
-  conflict(const configuration&, const session&);
-
-  void operator()(ntx::id_type, const ntx::file&, const boost::filesystem::path&);
+  bool
+  operator()(const ntx::file&, const ntx::file&) const noexcept;
 };
 
 /*------------------------------------------------------------------------------------------------*/

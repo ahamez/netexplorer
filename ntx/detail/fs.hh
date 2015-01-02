@@ -20,7 +20,7 @@ class file_impl final
 private:
 
   std::string name_;
-  boost::optional<id_type> id_;
+  boost::optional<id_type> id_; // A local file doesn't have an id.
   std::size_t size_;
   md5_digest_type md5_;
 

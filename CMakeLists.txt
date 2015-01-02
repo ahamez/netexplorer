@@ -43,13 +43,35 @@ set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -O0")
 
 #--------------------------------------------------------------------------------------------------#
 
-find_package(cppnetlib 0.11.0 REQUIRED)
+find_package(OpenSSL REQUIRED)
+if (NOT OPENSSL_FOUND)
+  message(FATAL_ERROR "OpenSSL not found")
+endif ()
+
+#--------------------------------------------------------------------------------------------------#
+
+include(ExternalProject)
+ExternalProject_Add(
+   cpp-netlib
+   PREFIX cpp-netlib
+   SOURCE_DIR ${CMAKE_SOURCE_DIR}/ext/cpp-netlib
+   CMAKE_ARGS -DCMAKE_BUILD_TYPE=${CMAKE_BUILD_TYPE}
+              -DBOOST_ROOT=${BOOST_ROOT}
+              -DCPP-NETLIB_BUILD_TESTS=0
+              -DCPP-NETLIB_BUILD_EXAMPLES=0
+              -DCMAKE_INSTALL_PREFIX=${CMAKE_BINARY_DIR}/ext
+              -DCMAKE_CXX_COMPILER=${CMAKE_CXX_COMPILER}
+              -DCMAKE_C_COMPILER=${CMAKE_C_COMPILER}
+)
 
 #--------------------------------------------------------------------------------------------------#
 
 include_directories("${PROJECT_SOURCE_DIR}")
+include_directories("${PROJECT_SOURCE_DIR}/ext/")
 include_directories("${Boost_INCLUDE_DIRS}")
-include_directories(${CPPNETLIB_INCLUDE_DIRS})
+
+include_directories(${CMAKE_BINARY_DIR}/ext/include)
+link_directories(${CMAKE_BINARY_DIR}/ext/lib)
 
 #--------------------------------------------------------------------------------------------------#
 

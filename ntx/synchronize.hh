@@ -18,11 +18,13 @@ namespace fs = boost::filesystem;
 /// @brief Synchronize a distant and a local filesystem.
 /// @arg pull Function object called when a file is missing in the local filesystem. 
 /// @arg push Function object called when a file is missing in the distant filesystem.
-/// @arg push Function object called when a file exists on both filesystem with different contents.
-template <typename Pull, typename Push, typename Conflict>
+/// @arg conflict Function object called to check if two files conflict.
+/// @arg handle_conflict Function object called when a file exists on both filesystem with different
+/// contents.
+template <typename Pull, typename Push, typename Conflict, typename HandleConflict>
 void
 synchronize( const folder& distant_folder, const folder& local_folder, const fs::path& local_path
-           , Pull&& pull, Push&& push, Conflict&& conflict)
+           , Pull&& pull, Push&& push, Conflict&& conflict, HandleConflict&& handle_conflict)
 {
   // Files.
   {
@@ -38,9 +40,9 @@ synchronize( const folder& distant_folder, const folder& local_folder, const fs:
 
       if (distant.name() == local.name())
       {
-        if (distant.size() != local.size() or distant.md5() != local.md5())
+        if (conflict(distant, local))
         {
-          conflict(*distant_folder.id(), distant, local_path);
+          handle_conflict(*distant_folder.id(), distant, local_path);
         }
         ++distant_cit;
         ++local_cit;
@@ -83,7 +85,8 @@ synchronize( const folder& distant_folder, const folder& local_folder, const fs:
       {
         synchronize( distant, local, local_path / fs::path{local.name()}
                    , std::forward<Pull>(pull), std::forward<Push>(push)
-                   , std::forward<Conflict>(conflict));
+                   , std::forward<Conflict>(conflict)
+                   , std::forward<HandleConflict>(handle_conflict));
         ++distant_cit;
         ++local_cit;
       }
