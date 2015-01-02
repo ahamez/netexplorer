@@ -20,7 +20,7 @@ using namespace boost::network;
 /*------------------------------------------------------------------------------------------------*/
 
 pull::pull(const configuration& conf, const session& s)
-  : conf_{conf}, session_{s}, async_{conf_.max_dl_tasks()}
+  : conf_{conf}, session_{s}, async_{}
 {}
 
 /*------------------------------------------------------------------------------------------------*/

@@ -22,7 +22,7 @@ using namespace boost::network;
 /*------------------------------------------------------------------------------------------------*/
 
 push::push(const configuration& conf, const session& s)
-  : conf_{conf}, session_{s}, async_{conf_.max_ul_tasks()}
+  : conf_{conf}, session_{s}, async_{}
 {}
 
 /*------------------------------------------------------------------------------------------------*/

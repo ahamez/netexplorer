@@ -15,20 +15,17 @@ namespace detail {
 /*------------------------------------------------------------------------------------------------*/
 
 /// @internal
-/// @brief Launch a maximum number of asynchronous tasks.
+/// @brief Handle asynchronous tasks.
+/// @todo Limit the maximum number of tasks.
 class async final
 {
 private:
 
-  /// @todo Use this information
-  std::size_t max_concurrent_tasks_;
   std::vector<std::future<void>> futures_;
 
 public:
 
-  async(std::size_t max_concurrent_tasks)
-    : max_concurrent_tasks_{max_concurrent_tasks}, futures_{}
-  {}
+  async() = default;
 
   ~async()
   {
