@@ -1,33 +1,13 @@
 #include <iostream>
 
 #include "automatic_session.hh"
+#include "conflict.hh"
 #include "distant_root.hh"
 #include "fs.hh"
 #include "local_root.hh"
 #include "pull.hh"
 #include "push.hh"
 #include "synchronize.hh"
-
-/*------------------------------------------------------------------------------------------------*/
-
-struct tmp
-{
-  std::string prefix;
-
-  void
-  operator()(ntx::id_type parent_id, const ntx::folder& f, const boost::filesystem::path& path)
-  const
-  {
-    std::cout << '[' << prefix << "] folder " << f.name() << " @ " << path.string() << '\n';
-  }
-
-  void
-  operator()(ntx::id_type parent_id, const ntx::file& f, const boost::filesystem::path& path)
-  const
-  {
-    std::cout << '[' << prefix << "] file " << f.name() << " @ " << path.string() << '\n';
-  }
-};
 
 /*------------------------------------------------------------------------------------------------*/
 
@@ -52,7 +32,8 @@ main()
     const auto local_root   = ntx::get_local_root(conf);
 
     ntx::synchronize( distant_root, local_root, conf.local_root()
-                    , ntx::pull{conf, session}, ntx::push{conf, session}, tmp{"conflict"});
+                    , ntx::pull{conf, session}, ntx::push{conf, session}
+                    , ntx::conflict{conf, session});
   }
   catch (std::exception& e)
   {

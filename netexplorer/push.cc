@@ -1,4 +1,4 @@
-#include <chrono>
+#include <algorithm> // copy
 #include <fstream>
 #include <iosfwd>
 #include <iterator>
@@ -22,25 +22,8 @@ using namespace boost::network;
 /*------------------------------------------------------------------------------------------------*/
 
 push::push(const configuration& conf, const session& s)
-  : conf_{conf}, session_{s}
+  : conf_{conf}, session_{s}, async_{conf_.max_ul_tasks()}
 {}
-
-/*------------------------------------------------------------------------------------------------*/
-
-push::~push()
-{
-  for (auto& f : futures_)
-  {
-    try
-    {
-      f.get();
-    }
-    catch (std::exception& e)
-    {
-      std::cerr << e.what() << '\n';
-    }
-  }
-}
 
 /*------------------------------------------------------------------------------------------------*/
 
@@ -98,7 +81,7 @@ push::operator()(ntx::id_type parent_id, const ntx::file& f, const fs::path& par
   std::cout << "[push] file " << f.name() << " @ " << parent_path.string()
             << " (parent_id = " << parent_id << ")\n";
 
-  auto future = std::async(std::launch::async, [=,&f]
+  async_([=]
   {
     // Create distant placeholder.
     const auto file_id = [&]
@@ -148,7 +131,6 @@ push::operator()(ntx::id_type parent_id, const ntx::file& f, const fs::path& par
       auto&& file = fs::ifstream{file_path, std::ios::binary};
       if (not file.is_open())
       {
-        std::cerr << "'" <<file_path.string() << "'\n";
         throw std::runtime_error("Can't read file to be uploaded " + file_path.string());
       }
       auto str = std::string{};
@@ -164,28 +146,6 @@ push::operator()(ntx::id_type parent_id, const ntx::file& f, const fs::path& par
       }
     }
   });
-
-  // Cheap way of limiting the maximum number of concurrent uploads.
-  while (futures_.size() >= conf_.max_ul_tasks())
-  {
-    for (auto it = begin(futures_); it != end(futures_); ++it)
-    {
-      if (it->wait_for(std::chrono::milliseconds(100)) == std::future_status::ready)
-      {
-        try
-        {
-          it->get();
-        }
-        catch (std::exception& e)
-        {
-          std::cerr << e.what() << '\n';
-        }
-        futures_.erase(it);
-        break;
-      }
-    }
-  }
-  futures_.emplace_back(std::move(future));
 }
 
 /*------------------------------------------------------------------------------------------------*/

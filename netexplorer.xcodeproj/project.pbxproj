@@ -13,6 +13,7 @@
 		2BE2100F1A553ECE00E3D2FB /* automatic_session.cc in Sources */ = {isa = PBXBuildFile; fileRef = 2BE2100D1A553ECE00E3D2FB /* automatic_session.cc */; };
 		2BE210121A55459900E3D2FB /* push.cc in Sources */ = {isa = PBXBuildFile; fileRef = 2BE210101A55459900E3D2FB /* push.cc */; };
 		2BE210151A55979F00E3D2FB /* pull.cc in Sources */ = {isa = PBXBuildFile; fileRef = 2BE210131A55979F00E3D2FB /* pull.cc */; };
+		2BE210181A55EF4700E3D2FB /* conflict.cc in Sources */ = {isa = PBXBuildFile; fileRef = 2BE210161A55EF4700E3D2FB /* conflict.cc */; };
 		2BEA3BFB1A51FA1E0091D522 /* session.cc in Sources */ = {isa = PBXBuildFile; fileRef = 2BEA3BF91A51FA1E0091D522 /* session.cc */; };
 /* End PBXBuildFile section */
 
@@ -48,6 +49,9 @@
 		2BE210111A55459900E3D2FB /* push.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = push.hh; sourceTree = "<group>"; };
 		2BE210131A55979F00E3D2FB /* pull.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = pull.cc; sourceTree = "<group>"; };
 		2BE210141A55979F00E3D2FB /* pull.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = pull.hh; sourceTree = "<group>"; };
+		2BE210161A55EF4700E3D2FB /* conflict.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = conflict.cc; sourceTree = "<group>"; };
+		2BE210171A55EF4700E3D2FB /* conflict.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = conflict.hh; sourceTree = "<group>"; };
+		2BE210191A5680B800E3D2FB /* async.hh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = async.hh; sourceTree = "<group>"; };
 		2BEA3BF91A51FA1E0091D522 /* session.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = session.cc; sourceTree = "<group>"; };
 		2BEA3BFA1A51FA1E0091D522 /* session.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = session.hh; sourceTree = "<group>"; };
 		2BEA3BFD1A51FD2D0091D522 /* allocators.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = allocators.h; sourceTree = "<group>"; };
@@ -113,9 +117,12 @@
 			isa = PBXGroup;
 			children = (
 				2B9600951A51E36F0080E3E3 /* CMakeLists.txt */,
+				2BE210191A5680B800E3D2FB /* async.hh */,
 				2BE2100E1A553ECE00E3D2FB /* automatic_session.hh */,
 				2BE2100D1A553ECE00E3D2FB /* automatic_session.cc */,
 				2B3FEAD01A531C8600EDF088 /* configuration.hh */,
+				2BE210171A55EF4700E3D2FB /* conflict.hh */,
+				2BE210161A55EF4700E3D2FB /* conflict.cc */,
 				2B3FEAD81A5402E700EDF088 /* credentials.hh */,
 				2B67A0E11A51D07300DB958A /* main.cc */,
 				2B3FEACF1A531BF200EDF088 /* len.hh */,
@@ -250,6 +257,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2BE2100F1A553ECE00E3D2FB /* automatic_session.cc in Sources */,
+				2BE210181A55EF4700E3D2FB /* conflict.cc in Sources */,
 				2BE210151A55979F00E3D2FB /* pull.cc in Sources */,
 				2BEA3BFB1A51FA1E0091D522 /* session.cc in Sources */,
 				2B7670B81A54BB26007C12BD /* local_root.cc in Sources */,

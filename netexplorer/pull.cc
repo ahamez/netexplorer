@@ -8,8 +8,6 @@
 #include <boost/network/protocol/http/client.hpp>
 #include <boost/range/algorithm/copy.hpp>
 
-#include <rapidjson/document.h>
-
 #include "pull.hh"
 
 namespace ntx {
@@ -22,25 +20,8 @@ using namespace boost::network;
 /*------------------------------------------------------------------------------------------------*/
 
 pull::pull(const configuration& conf, const session& s)
-  : conf_{conf}, session_{s}, futures_{}
+  : conf_{conf}, session_{s}, async_{conf_.max_dl_tasks()}
 {}
-
-/*------------------------------------------------------------------------------------------------*/
-
-pull::~pull()
-{
-  for (auto& f : futures_)
-  {
-    try
-    {
-      f.get();
-    }
-    catch (std::exception& e)
-    {
-      std::cerr << e.what() << '\n';
-    }
-  }
-}
 
 /*------------------------------------------------------------------------------------------------*/
 
@@ -72,7 +53,7 @@ pull::operator()(ntx::id_type parent_id, const ntx::file& f, const fs::path& par
   std::cout << "[pull] file " << f.name() << " @ " << parent_path.string()
             << " (parent_id = " << parent_id << ")\n";
 
-  auto future = std::async(std::launch::async, [=,&f]
+  async_([=]
   {
     auto parameters = uri::uri{};
     parameters << uri::path(conf_.file_url())
@@ -103,28 +84,6 @@ pull::operator()(ntx::id_type parent_id, const ntx::file& f, const fs::path& par
       throw std::runtime_error("Can't download " + f.name());
     }
   });
-
-  // Cheap way of limiting the maximum number of concurrent downloads.
-  while (futures_.size() >= conf_.max_ul_tasks())
-  {
-    for (auto it = begin(futures_); it != end(futures_); ++it)
-    {
-      if (it->wait_for(std::chrono::milliseconds(100)) == std::future_status::ready)
-      {
-        try
-        {
-          it->get();
-        }
-        catch (std::exception& e)
-        {
-          std::cerr << e.what() << '\n';
-        }
-        futures_.erase(it);
-        break;
-      }
-    }
-  }
-  futures_.emplace_back(std::move(future));
 }
 
 /*------------------------------------------------------------------------------------------------*/
