@@ -1,7 +1,7 @@
 #pragma once
 
-#include "configuration.hh"
-#include "session.hh"
+#include "ntx/configuration.hh"
+#include "ntx/session.hh"
 
 namespace ntx {
 

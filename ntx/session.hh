@@ -3,15 +3,16 @@
 #include <string>
 #include <unordered_set>
 
-#include "configuration.hh"
-#include "credentials.hh"
+#include "ntx/configuration.hh"
+#include "ntx/credentials.hh"
 
 namespace ntx {
 
 /*------------------------------------------------------------------------------------------------*/
 
-/// Represent a session when connected to the NetExplorer platform. Only one session for one login
-/// is permitted at a time.
+/// @brief Represent a session when connected to the NetExplorer platform.
+///
+/// Only one session for one login is permitted at a time.
 class session final
 {
 private:

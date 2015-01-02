@@ -1,4 +1,4 @@
-#include "automatic_session.hh"
+#include "ntx/automatic_session.hh"
 
 namespace ntx {
 

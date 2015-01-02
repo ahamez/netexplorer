@@ -1,9 +1,9 @@
 #pragma once
 
-#include "async.hh"
-#include "configuration.hh"
-#include "session.hh"
-#include "fs.hh"
+#include "ntx/configuration.hh"
+#include "ntx/session.hh"
+#include "ntx/fs.hh"
+#include "ntx/detail/async.hh"
 
 namespace ntx {
 
@@ -22,8 +22,8 @@ public:
 
   pull(const configuration&, const session&);
 
-  void operator()(ntx::id_type, const ntx::folder&, const boost::filesystem::path&);
-  void operator()(ntx::id_type, const ntx::file&, const boost::filesystem::path&);
+  void operator()(id_type, const folder&, const boost::filesystem::path&);
+  void operator()(id_type, const file&, const boost::filesystem::path&);
 };
 
 /*------------------------------------------------------------------------------------------------*/

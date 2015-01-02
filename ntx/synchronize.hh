@@ -5,7 +5,7 @@
 #include <boost/filesystem.hpp>
 #include <boost/filesystem/fstream.hpp>
 
-#include "fs.hh"
+#include "ntx/fs.hh"
 
 namespace ntx {
 
@@ -19,7 +19,6 @@ namespace fs = boost::filesystem;
 /// @arg pull Function object called when a file is missing in the local filesystem. 
 /// @arg push Function object called when a file is missing in the distant filesystem.
 /// @arg push Function object called when a file exists on both filesystem with different contents.
-/// @todo Should check modification date before comparing the md5 checksums.
 template <typename Pull, typename Push, typename Conflict>
 void
 synchronize( const folder& distant_folder, const folder& local_folder, const fs::path& local_path

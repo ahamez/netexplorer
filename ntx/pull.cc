@@ -8,7 +8,7 @@
 #include <boost/network/protocol/http/client.hpp>
 #include <boost/range/algorithm/copy.hpp>
 
-#include "pull.hh"
+#include "ntx/pull.hh"
 
 namespace ntx {
 

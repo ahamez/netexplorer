@@ -5,7 +5,7 @@
 
 #include <rapidjson/document.h>
 
-#include "distant_root.hh"
+#include "ntx/distant_root.hh"
 
 namespace ntx {
 namespace /*anonymous*/ {

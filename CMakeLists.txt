@@ -53,4 +53,4 @@ include_directories(${CPPNETLIB_INCLUDE_DIRS})
 
 #--------------------------------------------------------------------------------------------------#
 
-add_subdirectory(netexplorer)
+add_subdirectory(ntx)

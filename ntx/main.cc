@@ -1,13 +1,13 @@
 #include <iostream>
 
-#include "automatic_session.hh"
-#include "conflict.hh"
-#include "distant_root.hh"
-#include "fs.hh"
-#include "local_root.hh"
-#include "pull.hh"
-#include "push.hh"
-#include "synchronize.hh"
+#include "ntx/automatic_session.hh"
+#include "ntx/conflict.hh"
+#include "ntx/distant_root.hh"
+#include "ntx/fs.hh"
+#include "ntx/local_root.hh"
+#include "ntx/pull.hh"
+#include "ntx/push.hh"
+#include "ntx/synchronize.hh"
 
 /*------------------------------------------------------------------------------------------------*/
 

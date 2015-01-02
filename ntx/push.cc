@@ -10,7 +10,7 @@
 
 #include <rapidjson/document.h>
 
-#include "push.hh"
+#include "ntx/push.hh"
 
 namespace ntx {
 
@@ -28,7 +28,7 @@ push::push(const configuration& conf, const session& s)
 /*------------------------------------------------------------------------------------------------*/
 
 void
-push::operator()(ntx::id_type parent_id, const ntx::folder& f, const fs::path& parent_path)
+push::operator()(id_type parent_id, const folder& f, const fs::path& parent_path)
 {
   std::cout << "[push] folder " << f.name() << " @ " << parent_path.string()
             << " (parent_id = " << parent_id << ")\n";
@@ -76,7 +76,7 @@ push::operator()(ntx::id_type parent_id, const ntx::folder& f, const fs::path& p
 /*------------------------------------------------------------------------------------------------*/
 
 void
-push::operator()(ntx::id_type parent_id, const ntx::file& f, const fs::path& parent_path)
+push::operator()(id_type parent_id, const file& f, const fs::path& parent_path)
 {
   std::cout << "[push] file " << f.name() << " @ " << parent_path.string()
             << " (parent_id = " << parent_id << ")\n";

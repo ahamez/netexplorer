@@ -5,8 +5,8 @@
 
 #include <rapidjson/document.h>
 
-#include "len.hh"
-#include "session.hh"
+#include "ntx/session.hh"
+#include "ntx/detail/len.hh"
 
 namespace ntx {
 
