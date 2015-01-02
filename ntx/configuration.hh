@@ -1,8 +1,6 @@
 #pragma once
 
-#include <functional>  // hash
 #include <string>
-#include <type_traits> // decay
 
 #include <boost/filesystem.hpp>
 
@@ -49,21 +47,3 @@ public:
 
 } // namespace ntx
 
-namespace std {
-
-/*------------------------------------------------------------------------------------------------*/
-
-template <>
-struct hash<ntx::configuration>
-{
-  std::size_t
-  operator()(const ntx::configuration& c)
-  const noexcept
-  {
-    return std::hash<std::decay_t<decltype(c.base_url())>>{}(c.base_url());
-  }
-};
-
-/*------------------------------------------------------------------------------------------------*/
-
-} // namespace std

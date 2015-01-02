@@ -12,17 +12,15 @@ namespace ntx {
 
 /// @brief Represent a session when connected to the NetExplorer platform.
 ///
-/// Only one session for one login is permitted at a time.
+/// Only connect(const configuration&, const credentials&) can create a session.
 class session final
 {
 private:
 
   std::string token_;
 
-  /// @brief Only connect(const configuration&, const credentials&) can create a session.
-  session(std::string&& token)
-    : token_(std::move(token))
-  {}
+  session(const std::string& token);
+  session(std::string&& token) noexcept;
 
 public:
 
@@ -43,6 +41,7 @@ public:
 
 /*------------------------------------------------------------------------------------------------*/
 
+/// @
 session
 connect(const configuration&, const credentials&);
 

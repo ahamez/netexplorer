@@ -99,6 +99,7 @@
 			isa = PBXGroup;
 			children = (
 				2B4001841A57350D002261CC /* CMakeLists.txt */,
+				2B4001911A57350D002261CC /* main.cc */,
 				2B4001821A57350D002261CC /* automatic_session.cc */,
 				2B4001831A57350D002261CC /* automatic_session.hh */,
 				2B4001851A57350D002261CC /* configuration.hh */,
@@ -111,7 +112,6 @@
 				2B40018D1A57350D002261CC /* fs.hh */,
 				2B40018F1A57350D002261CC /* local_root.cc */,
 				2B4001901A57350D002261CC /* local_root.hh */,
-				2B4001911A57350D002261CC /* main.cc */,
 				2B4001921A57350D002261CC /* pull.cc */,
 				2B4001931A57350D002261CC /* pull.hh */,
 				2B4001941A57350D002261CC /* push.cc */,
