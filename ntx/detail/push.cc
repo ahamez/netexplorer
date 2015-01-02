@@ -10,9 +10,10 @@
 
 #include <rapidjson/document.h>
 
-#include "ntx/push.hh"
+#include "ntx/detail/push.hh"
 
 namespace ntx {
+namespace detail {
 
 /*------------------------------------------------------------------------------------------------*/
 
@@ -150,4 +151,5 @@ push::operator()(id_type parent_id, const file& f, const fs::path& parent_path)
 
 /*------------------------------------------------------------------------------------------------*/
 
+} // namespace detail
 } // namespace ntx

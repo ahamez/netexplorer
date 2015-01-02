@@ -1,13 +1,9 @@
 #include <iostream>
 
 #include "ntx/automatic_session.hh"
-#include "ntx/conflict.hh"
+#include "ntx/configuration.hh"
 #include "ntx/distant_filesystem.hh"
-#include "ntx/fs.hh"
-#include "ntx/handle_conflict.hh"
 #include "ntx/local_filesystem.hh"
-#include "ntx/pull.hh"
-#include "ntx/push.hh"
 #include "ntx/synchronize.hh"
 
 /*------------------------------------------------------------------------------------------------*/
@@ -32,10 +28,7 @@ main()
     const auto distant_fs = ntx::get_distant_filesystem(conf, session, 1ul /* root */);
     const auto local_fs   = ntx::get_local_filesystem(conf);
 
-    ntx::synchronize( distant_fs, local_fs, conf.local_root()
-                    , ntx::pull{conf, session}, ntx::push{conf, session}
-                    , ntx::conflict{}
-                    , ntx::handle_conflict{conf, session});
+    ntx::synchronize(conf, session, distant_fs, local_fs);
   }
   catch (std::exception& e)
   {

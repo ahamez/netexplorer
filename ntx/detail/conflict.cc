@@ -2,9 +2,10 @@
 #include <iosfwd>
 #include <iterator>
 
-#include "ntx/conflict.hh"
+#include "ntx/detail/conflict.hh"
 
 namespace ntx {
+namespace detail {
 
 /*------------------------------------------------------------------------------------------------*/
 
@@ -17,4 +18,5 @@ const noexcept
 
 /*------------------------------------------------------------------------------------------------*/
 
+} // namespace detail
 } // namespace ntx

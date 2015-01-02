@@ -1,7 +1,6 @@
 #pragma once
 
 #include <chrono>
-#include <iosfwd>
 #include <future>
 #include <vector>
 
@@ -38,7 +37,7 @@ public:
       catch (std::exception& e)
       {
         /// @todo Register a callback to handle error of asynchronous tasks.
-        std::cerr << e.what() << '\n';
+//        std::cerr << e.what() << '\n';
       }
     }
   }

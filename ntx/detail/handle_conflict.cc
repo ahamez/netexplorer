@@ -2,9 +2,10 @@
 
 #include <boost/filesystem.hpp>
 
-#include "ntx/handle_conflict.hh"
+#include "ntx/detail/handle_conflict.hh"
 
 namespace ntx {
+namespace detail {
 
 /*------------------------------------------------------------------------------------------------*/
 
@@ -27,4 +28,5 @@ handle_conflict::operator()(ntx::id_type parent_id, const ntx::file& f, const fs
 
 /*------------------------------------------------------------------------------------------------*/
 
+} // namespace detail
 } // namespace ntx

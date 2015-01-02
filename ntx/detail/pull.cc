@@ -8,9 +8,10 @@
 #include <boost/network/protocol/http/client.hpp>
 #include <boost/range/algorithm/copy.hpp>
 
-#include "ntx/pull.hh"
+#include "ntx/detail/pull.hh"
 
 namespace ntx {
+namespace detail {
 
 /*------------------------------------------------------------------------------------------------*/
 
@@ -88,4 +89,5 @@ pull::operator()(ntx::id_type parent_id, const ntx::file& f, const fs::path& par
 
 /*------------------------------------------------------------------------------------------------*/
 
+} // namespace detail
 } // namespace ntx
