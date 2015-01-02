@@ -1,13 +1,12 @@
 #pragma once
 
-#include <algorithm>
-#include <functional> // hash
 #include <string>
 
 namespace ntx {
 
 /*------------------------------------------------------------------------------------------------*/
 
+/// @brief The informations needed to log on the NetExplorer platform.
 class credentials final
 {
 private:

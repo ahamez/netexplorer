@@ -33,14 +33,6 @@ public:
 
   auto max_ul_tasks() const noexcept {return max_ul_tasks_;}
   auto max_dl_tasks() const noexcept {return max_dl_tasks_;}
-
-  friend
-  bool
-  operator==(const configuration& lhs, const configuration& rhs)
-  noexcept
-  {
-    return lhs.base_url_ == rhs.base_url_;
-  }
 };
 
 /*------------------------------------------------------------------------------------------------*/
