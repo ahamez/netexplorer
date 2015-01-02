@@ -2,6 +2,7 @@
 
 #include <chrono>
 #include <future>
+#include <functional> // function
 #include <vector>
 
 #include "ntx/configuration.hh"
@@ -18,13 +19,20 @@ namespace detail {
 /// @todo Limit the maximum number of tasks.
 class async final
 {
+public:
+
+  using error_callback_type = std::function<void (const std::exception&)>;
+
 private:
 
+  error_callback_type error_callback_;
   std::vector<std::future<void>> futures_;
 
 public:
 
-  async() = default;
+  async(const error_callback_type&& callback)
+    : error_callback_{callback}
+  {}
 
   ~async()
   {
@@ -34,10 +42,9 @@ public:
       {
         f.get();
       }
-      catch (std::exception& e)
+      catch (const std::exception& e)
       {
-        /// @todo Register a callback to handle error of asynchronous tasks.
-//        std::cerr << e.what() << '\n';
+        error_callback_(e);
       }
     }
   }

@@ -1,6 +1,6 @@
 #include <algorithm> // copy
 #include <fstream>
-#include <iosfwd>
+#include <iostream>
 #include <iterator>
 
 #include <boost/filesystem.hpp>
@@ -23,7 +23,7 @@ using namespace boost::network;
 /*------------------------------------------------------------------------------------------------*/
 
 push::push(const configuration& conf, const session& s)
-  : conf_{conf}, session_{s}, async_{}
+  : conf_{conf}, session_{s}, async_{[](const auto& e){std::cerr << e.what() << '\n';}}
 {}
 
 /*------------------------------------------------------------------------------------------------*/

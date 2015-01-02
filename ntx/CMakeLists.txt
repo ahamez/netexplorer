@@ -1,14 +1,15 @@
 set(
   NTX_SOURCES
-  automatic_session.cc
-  conflict.cc
-  distant_filesystem.cc
-  handle_conflict.cc
-  local_filesystem.cc
   main.cc
-  pull.cc
-  push.cc
+  automatic_session.cc
+  distant_filesystem.cc
+  local_filesystem.cc
   session.cc
+  synchronize.cc
+  detail/conflict.cc
+  detail/handle_conflict.cc
+  detail/pull.cc
+  detail/push.cc
   detail/mk_local_filesystem.cc
   detail/mk_distant_filesystem.cc
 )
