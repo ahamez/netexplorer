@@ -5,6 +5,7 @@ namespace detail {
 
 /*------------------------------------------------------------------------------------------------*/
 
+/// @internal
 /// @brief Compile-time length of a C string.
 constexpr
 inline

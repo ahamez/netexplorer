@@ -14,6 +14,7 @@ namespace detail {
 
 /*------------------------------------------------------------------------------------------------*/
 
+/// @internal
 /// @brief Launch a maximum number of asynchronous tasks.
 class async final
 {

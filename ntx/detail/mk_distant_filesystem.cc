@@ -75,11 +75,11 @@ mk_folder(const rapidjson::Value& v)
 /*------------------------------------------------------------------------------------------------*/
 
 folder
-mk_distant_folder(const configuration& conf, const session& s, unsigned long root)
+mk_distant_folder(const configuration& conf, const session& s, id_type id)
 {
   using namespace boost::network;
 
-  auto parameters = uri::uri{conf.folder_url() + "/" + std::to_string(root)};
+  auto parameters = uri::uri{conf.folder_url() + "/" + std::to_string(id)};
   parameters << uri::query("depth", uri::encoded("-1"));
 
   auto request = http::client::request{parameters};

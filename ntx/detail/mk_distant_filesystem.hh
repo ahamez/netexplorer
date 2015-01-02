@@ -9,9 +9,10 @@ namespace detail {
 
 /*------------------------------------------------------------------------------------------------*/
 
+/// @internal
 /// @brief Create a filesystem from a distant NetExplorer storage.
 folder
-mk_distant_folder(const configuration&, const session&, unsigned long root);
+mk_distant_folder(const configuration&, const session&, id_type);
 
 /*------------------------------------------------------------------------------------------------*/
 

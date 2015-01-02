@@ -58,6 +58,9 @@
 		2B4001A31A5739F2002261CC /* mk_local_filesystem.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = mk_local_filesystem.hh; sourceTree = "<group>"; };
 		2B4001A51A573BB7002261CC /* mk_distant_filesystem.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = mk_distant_filesystem.cc; sourceTree = "<group>"; };
 		2B4001A61A573BB7002261CC /* mk_distant_filesystem.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = mk_distant_filesystem.hh; sourceTree = "<group>"; };
+		2B4001A81A573E19002261CC /* fs.hh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = fs.hh; sourceTree = "<group>"; };
+		2B4001A91A573E5E002261CC /* fs_fwd.hh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = fs_fwd.hh; sourceTree = "<group>"; };
+		2B4001AA1A573EE1002261CC /* types.hh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = types.hh; sourceTree = "<group>"; };
 		2B67A0DE1A51D07300DB958A /* netexplorer */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = netexplorer; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B9600961A51E3980080E3E3 /* CMakeLists.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CMakeLists.txt; sourceTree = "<group>"; };
 		2BEA3BFD1A51FD2D0091D522 /* allocators.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = allocators.h; sourceTree = "<group>"; };
@@ -115,6 +118,7 @@
 				2B4001891A57350D002261CC /* detail */,
 				2B40018C1A57350D002261CC /* distant_filesystem.hh */,
 				2B40018B1A57350D002261CC /* distant_filesystem.cc */,
+				2B4001A91A573E5E002261CC /* fs_fwd.hh */,
 				2B40018D1A57350D002261CC /* fs.hh */,
 				2B4001901A57350D002261CC /* local_filesystem.hh */,
 				2B40018F1A57350D002261CC /* local_filesystem.cc */,
@@ -125,6 +129,7 @@
 				2B4001971A57350D002261CC /* session.hh */,
 				2B4001961A57350D002261CC /* session.cc */,
 				2B4001981A57350D002261CC /* synchronize.hh */,
+				2B4001AA1A573EE1002261CC /* types.hh */,
 			);
 			path = ntx;
 			sourceTree = "<group>";
@@ -133,6 +138,7 @@
 			isa = PBXGroup;
 			children = (
 				2B40018A1A57350D002261CC /* async.hh */,
+				2B4001A81A573E19002261CC /* fs.hh */,
 				2B4001A11A5735C9002261CC /* len.hh */,
 				2B4001A31A5739F2002261CC /* mk_local_filesystem.hh */,
 				2B4001A21A5739F2002261CC /* mk_local_filesystem.cc */,

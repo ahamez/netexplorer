@@ -1,16 +1,13 @@
 #pragma once
 
-#include "ntx/configuration.hh"
-#include "ntx/fs.hh"
-#include "ntx/session.hh"
-#include "ntx/types.hh"
+#include <string>
 
 namespace ntx {
 
 /*------------------------------------------------------------------------------------------------*/
 
-folder
-get_distant_filesystem(const configuration&, const session&, id_type root);
+using id_type  = unsigned long;
+using md5_digest_type = std::string;
 
 /*------------------------------------------------------------------------------------------------*/
 

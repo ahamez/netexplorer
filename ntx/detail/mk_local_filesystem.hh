@@ -9,6 +9,7 @@ namespace detail {
 
 /*------------------------------------------------------------------------------------------------*/
 
+/// @internal
 /// @brief Create a filesystem from a local path.
 folder
 mk_local_folder(const boost::filesystem::path&);
