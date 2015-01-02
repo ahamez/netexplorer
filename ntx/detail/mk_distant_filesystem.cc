@@ -5,9 +5,13 @@
 
 #include <rapidjson/document.h>
 
-#include "ntx/distant_root.hh"
+#include "ntx/detail/mk_distant_filesystem.hh"
 
 namespace ntx {
+namespace detail {
+
+/*------------------------------------------------------------------------------------------------*/
+
 namespace /*anonymous*/ {
 
 /*------------------------------------------------------------------------------------------------*/
@@ -71,7 +75,7 @@ mk_folder(const rapidjson::Value& v)
 /*------------------------------------------------------------------------------------------------*/
 
 folder
-get_distant_root(const configuration& conf, const session& s, unsigned long root)
+mk_distant_folder(const configuration& conf, const session& s, unsigned long root)
 {
   using namespace boost::network;
 
@@ -97,4 +101,5 @@ get_distant_root(const configuration& conf, const session& s, unsigned long root
 
 /*------------------------------------------------------------------------------------------------*/
 
+} // namespace detail
 } // namespace ntx

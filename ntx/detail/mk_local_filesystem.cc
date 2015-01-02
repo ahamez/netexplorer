@@ -9,18 +9,20 @@
 
 #include <openssl/md5.h>
 
-#include "ntx/local_root.hh"
+#include "ntx/detail/mk_local_filesystem.hh"
 
 namespace ntx {
-namespace /*anonymous*/ {
+namespace detail {
 
 namespace fs = boost::filesystem;
 
 /*------------------------------------------------------------------------------------------------*/
 
+namespace /* anonymous */ {
+
 /// @todo Use a better ('C++-ier') MD5.
 file
-mk_file(const fs::path& p)
+mk_local_file(const fs::path& p)
 {
   static constexpr auto buffer_size = 4096u;
 
@@ -58,21 +60,23 @@ mk_file(const fs::path& p)
   return {p.filename().string(), sz, ss.str()};
 }
 
+} // namespace anonymous
+
 /*------------------------------------------------------------------------------------------------*/
 
 folder
-mk_folder(const fs::path& p)
+mk_local_folder(const fs::path& p)
 {
   auto res = folder{basename(p)};
   for (auto cit = fs::directory_iterator{p}; cit != fs::directory_iterator{}; ++cit)
   {
     if (is_regular_file(*cit))
     {
-      res.add_file(mk_file(*cit));
+      res.add_file(mk_local_file(*cit));
     }
     else if (is_directory(*cit))
     {
-      res.add_folder(mk_folder(*cit));
+      res.add_folder(mk_local_folder(*cit));
     }
   }
   return res;
@@ -80,16 +84,5 @@ mk_folder(const fs::path& p)
 
 /*------------------------------------------------------------------------------------------------*/
 
-} // namespace anonymous
-
-/*------------------------------------------------------------------------------------------------*/
-
-folder
-get_local_root(const configuration& conf)
-{
-  return mk_folder(conf.local_root());
-}
-
-/*------------------------------------------------------------------------------------------------*/
-
+} // namespace detail
 } // namespace ntx

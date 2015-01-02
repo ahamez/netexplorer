@@ -1,16 +1,19 @@
 #pragma once
 
-#include "ntx/configuration.hh"
+#include <boost/filesystem.hpp>
+
 #include "ntx/fs.hh"
-#include "ntx/session.hh"
 
 namespace ntx {
+namespace detail {
 
 /*------------------------------------------------------------------------------------------------*/
 
+/// @brief Create a filesystem from a local path.
 folder
-get_local_root(const configuration&);
+mk_local_folder(const boost::filesystem::path&);
 
 /*------------------------------------------------------------------------------------------------*/
 
+} // namespace detail
 } // namespace ntx

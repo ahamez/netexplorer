@@ -1,15 +1,15 @@
-#pragma once
-
-#include "ntx/configuration.hh"
-#include "ntx/fs.hh"
-#include "ntx/session.hh"
+#include "ntx/distant_filesystem.hh"
+#include "ntx/detail/mk_distant_filesystem.hh"
 
 namespace ntx {
 
 /*------------------------------------------------------------------------------------------------*/
 
 folder
-get_distant_root(const configuration&, const session&, unsigned long root);
+get_distant_filesystem(const configuration& conf, const session& s, unsigned long root)
+{
+  return detail::mk_distant_folder(conf, s, root);
+}
 
 /*------------------------------------------------------------------------------------------------*/
 

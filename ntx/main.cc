@@ -2,9 +2,9 @@
 
 #include "ntx/automatic_session.hh"
 #include "ntx/conflict.hh"
-#include "ntx/distant_root.hh"
+#include "ntx/distant_filesystem.hh"
 #include "ntx/fs.hh"
-#include "ntx/local_root.hh"
+#include "ntx/local_filesystem.hh"
 #include "ntx/pull.hh"
 #include "ntx/push.hh"
 #include "ntx/synchronize.hh"
@@ -28,10 +28,10 @@ main()
     }(); // credentials scrambled here
 
     /// @todo Select distant folder from one of the account's roots
-    const auto distant_root = ntx::get_distant_root(conf, session, 1ul);
-    const auto local_root   = ntx::get_local_root(conf);
+    const auto distant_fs = ntx::get_distant_filesystem(conf, session, 1ul /* root */);
+    const auto local_fs   = ntx::get_local_filesystem(conf);
 
-    ntx::synchronize( distant_root, local_root, conf.local_root()
+    ntx::synchronize( distant_fs, local_fs, conf.local_root()
                     , ntx::pull{conf, session}, ntx::push{conf, session}
                     , ntx::conflict{conf, session});
   }
