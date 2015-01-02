@@ -67,7 +67,7 @@ mk_local_file(const fs::path& p)
 folder
 mk_local_folder(const fs::path& p)
 {
-  auto res = folder{basename(p)};
+  auto res = folder{p.filename().string()};
   for (auto cit = fs::directory_iterator{p}; cit != fs::directory_iterator{}; ++cit)
   {
     if (is_regular_file(*cit))
