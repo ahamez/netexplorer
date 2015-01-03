@@ -27,7 +27,8 @@ handle_conflict::handle_conflict(const configuration& conf, const session& s)
 /*------------------------------------------------------------------------------------------------*/
 
 void
-handle_conflict::operator()(id_type parent_id, const distant_file& f, const fs::path& parent_path)
+handle_conflict::operator()( id_type parent_id, const distant_file& f, const local_file&
+                           , const fs::path& parent_path)
 {
   std::cout << "[conflict] file " << f.name() << " @ " << parent_path.string() << '\n';
 

@@ -3,6 +3,7 @@
 #include "ntx/configuration.hh"
 #include "ntx/session.hh"
 #include "ntx/distant_filesystem.hh"
+#include "ntx/local_filesystem.hh"
 #include "ntx/detail/async.hh"
 
 namespace ntx {
@@ -24,7 +25,7 @@ public:
 
   handle_conflict(const configuration&, const session&);
 
-  void operator()(id_type, const distant_file&, const boost::filesystem::path&);
+  void operator()(id_type, const distant_file&, const local_file&, const boost::filesystem::path&);
 };
 
 /*------------------------------------------------------------------------------------------------*/

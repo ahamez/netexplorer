@@ -46,7 +46,7 @@ synchronize( const distant_folder& distant_f, const local_folder& local_f
       {
         if (conflict(distant, local))
         {
-          handle_conflict(distant_f.id(), distant, local_path);
+          handle_conflict(distant_f.id(), distant, local, local_path);
         }
         ++distant_cit;
         ++local_cit;
