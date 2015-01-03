@@ -28,7 +28,6 @@ pull::pull(const configuration& conf, const session& s)
 
 void
 pull::operator()(ntx::id_type parent_id, const ntx::folder& f, const fs::path& parent_path)
-noexcept
 {
   std::cout << "[pull] folder " << f.name() << " to " << parent_path.string() << '\n';
 
@@ -50,7 +49,6 @@ noexcept
 
 void
 pull::operator()(id_type parent_id, const file& f, const fs::path& parent_path)
-noexcept
 {
   std::cout << "[pull] file " << f.name() << " to " << parent_path.string() << '\n';
 

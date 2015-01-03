@@ -24,7 +24,7 @@ public:
 
   handle_conflict(const configuration&, const session&);
 
-  void operator()(ntx::id_type, const ntx::file&, const boost::filesystem::path&) noexcept;
+  void operator()(ntx::id_type, const ntx::file&, const boost::filesystem::path&);
 };
 
 /*------------------------------------------------------------------------------------------------*/

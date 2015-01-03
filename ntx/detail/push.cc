@@ -31,7 +31,6 @@ push::push(const configuration& conf, const session& s)
 
 void
 push::operator()(id_type parent_id, const folder& f, const fs::path& parent_path)
-noexcept
 {
   std::cout << "[push] folder " << f.name() << " from " << parent_path.string() << '\n';
 
@@ -79,7 +78,6 @@ noexcept
 
 void
 push::operator()(id_type parent_id, const file& f, const fs::path& parent_path)
-noexcept
 {
   std::cout << "[push] file " << f.name() << " from " << parent_path.string() << '\n';
 
@@ -138,7 +136,7 @@ noexcept
         auto str = std::string{};
         str.reserve(f.size());
         std::copy( std::istreambuf_iterator<char>{file}, std::istreambuf_iterator<char>{}
-                  , std::back_inserter(str));
+                 , std::back_inserter(str));
 
         const auto response = http::client{}.put(request, str);
         if (status(response) != 200u)
