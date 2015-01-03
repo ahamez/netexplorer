@@ -8,6 +8,7 @@ set(
   detail/async.cc
   detail/conflict.cc
   detail/handle_conflict.cc
+  detail/md5.cc
   detail/pull.cc
   detail/push.cc
   detail/mk_local_filesystem.cc
