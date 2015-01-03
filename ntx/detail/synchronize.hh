@@ -16,6 +16,7 @@ namespace fs = boost::filesystem;
 
 /*------------------------------------------------------------------------------------------------*/
 
+/// @internal
 /// @brief Synchronize a distant and a local filesystem.
 /// @arg pull Function object called when a file is missing in the local filesystem. 
 /// @arg push Function object called when a file is missing in the distant filesystem.

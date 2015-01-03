@@ -23,13 +23,14 @@ using namespace boost::network;
 /*------------------------------------------------------------------------------------------------*/
 
 push::push(const configuration& conf, const session& s)
-  : conf_{conf}, session_{s}, async_{[](const auto& e){std::cerr << e.what() << '\n';}}
+  : conf_{conf}, session_{s}, async_{}
 {}
 
 /*------------------------------------------------------------------------------------------------*/
 
 void
 push::operator()(id_type parent_id, const folder& f, const fs::path& parent_path)
+noexcept
 {
   std::cout << "[push] folder " << f.name() << " @ " << parent_path.string()
             << " (parent_id = " << parent_id << ")\n";
@@ -78,6 +79,7 @@ push::operator()(id_type parent_id, const folder& f, const fs::path& parent_path
 
 void
 push::operator()(id_type parent_id, const file& f, const fs::path& parent_path)
+noexcept
 {
   std::cout << "[push] file " << f.name() << " @ " << parent_path.string()
             << " (parent_id = " << parent_id << ")\n";

@@ -21,13 +21,14 @@ using namespace boost::network;
 /*------------------------------------------------------------------------------------------------*/
 
 pull::pull(const configuration& conf, const session& s)
-  : conf_{conf}, session_{s}, async_{[](const auto& e){std::cerr << e.what() << '\n';}}
+  : conf_{conf}, session_{s}, async_{}
 {}
 
 /*------------------------------------------------------------------------------------------------*/
 
 void
 pull::operator()(ntx::id_type parent_id, const ntx::folder& f, const fs::path& parent_path)
+noexcept
 {
   std::cout << "[pull] folder " << f.name() << " @ " << parent_path.string()
             << " (parent_id = " << parent_id << ")\n";
@@ -49,7 +50,8 @@ pull::operator()(ntx::id_type parent_id, const ntx::folder& f, const fs::path& p
 /*------------------------------------------------------------------------------------------------*/
 
 void
-pull::operator()(ntx::id_type parent_id, const ntx::file& f, const fs::path& parent_path)
+pull::operator()(id_type parent_id, const file& f, const fs::path& parent_path)
+noexcept
 {
   std::cout << "[pull] file " << f.name() << " @ " << parent_path.string()
             << " (parent_id = " << parent_id << ")\n";
@@ -74,7 +76,7 @@ pull::operator()(ntx::id_type parent_id, const ntx::file& f, const fs::path& par
     }
     auto fstream = std::ostreambuf_iterator<char>{file};
 
-    /// @todo Erase file if any error happen.w
+    /// @todo Erase file if any error happen.
     const auto response = http::client{}.get( request
                                             , [&](const auto& range, const auto& /*error*/)
                                               {

@@ -3,6 +3,7 @@
 #include <chrono>
 #include <future>
 #include <functional> // function
+#include <thread>
 #include <vector>
 
 #include "ntx/configuration.hh"
@@ -16,36 +17,21 @@ namespace detail {
 
 /// @internal
 /// @brief Handle asynchronous tasks.
-/// @todo Limit the maximum number of tasks.
 class async final
 {
-public:
-
-  using error_callback_type = std::function<void (const std::exception&)>;
-
 private:
 
-  error_callback_type error_callback_;
   std::vector<std::future<void>> futures_;
 
 public:
 
-  async(const error_callback_type&& callback)
-    : error_callback_{callback}
-  {}
+  async() = default;
 
   ~async()
   {
-    for (auto& f : futures_)
+    for (auto& t : futures_)
     {
-      try
-      {
-        f.get();
-      }
-      catch (const std::exception& e)
-      {
-        error_callback_(e);
-      }
+      t.get();
     }
   }
 
@@ -55,11 +41,23 @@ public:
   async(async&&) = default;
   async& operator= (async&&) = default;
 
-  template <typename Task>
   void
-  operator()(Task&& t)
+  operator()(const std::function<void (void)>& t)
   {
-    futures_.emplace_back(std::async(std::launch::async, std::forward<Task>(t)));
+    while (futures_.size() >= 8)
+    {
+      for (auto it = begin(futures_); it != end(futures_); ++it)
+      {
+        if (it->wait_for(std::chrono::nanoseconds{0}) == std::future_status::ready)
+        {
+          it->get();
+          futures_.erase(it);
+          break;
+        }
+      }
+      std::this_thread::sleep_for(std::chrono::milliseconds{50});
+    }
+    futures_.emplace_back(std::async(std::launch::async, t));
   }
 };
 

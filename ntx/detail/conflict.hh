@@ -7,6 +7,7 @@ namespace detail {
 
 /*------------------------------------------------------------------------------------------------*/
 
+/// @internal
 /// @brief Check if two files conflict.
 struct conflict final
 {

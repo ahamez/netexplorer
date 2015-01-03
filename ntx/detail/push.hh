@@ -10,6 +10,7 @@ namespace detail {
 
 /*------------------------------------------------------------------------------------------------*/
 
+/// @internal
 /// @brief Action to perform when a file or folder is missing on the distant filesystem.
 class push final
 {
@@ -23,8 +24,8 @@ public:
 
   push(const configuration&, const session&);
 
-  void operator()(id_type, const folder&, const boost::filesystem::path&);
-  void operator()(id_type, const file&, const boost::filesystem::path&);
+  void operator()(id_type, const folder&, const boost::filesystem::path&) noexcept;
+  void operator()(id_type, const file&, const boost::filesystem::path&) noexcept;
 };
 
 /*------------------------------------------------------------------------------------------------*/

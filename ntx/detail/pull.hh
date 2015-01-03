@@ -23,8 +23,8 @@ public:
 
   pull(const configuration&, const session&);
 
-  void operator()(id_type, const folder&, const boost::filesystem::path&);
-  void operator()(id_type, const file&, const boost::filesystem::path&);
+  void operator()(id_type, const folder&, const boost::filesystem::path&) noexcept;
+  void operator()(id_type, const file&, const boost::filesystem::path&) noexcept;
 };
 
 /*------------------------------------------------------------------------------------------------*/
