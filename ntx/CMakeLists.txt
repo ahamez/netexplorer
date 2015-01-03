@@ -1,6 +1,5 @@
 set(
   NTX_SOURCES
-  main.cc
   automatic_session.cc
   distant_filesystem.cc
   local_filesystem.cc
@@ -15,15 +14,4 @@ set(
   detail/mk_distant_filesystem.cc
 )
 
-add_executable(ntx ${NTX_SOURCES})
-add_dependencies(ntx cpp-netlib)
-
-target_link_libraries(
-  ntx
-  cppnetlib-client-connections
-  cppnetlib-server-parsers
-  cppnetlib-uri
-  ${Boost_LIBRARIES}
-  ${CMAKE_THREAD_LIBS_INIT}
-  ${OPENSSL_LIBRARIES}
-)
+add_library(ntx STATIC ${NTX_SOURCES})

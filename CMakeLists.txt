@@ -76,3 +76,4 @@ link_directories(${CMAKE_BINARY_DIR}/ext/lib)
 #--------------------------------------------------------------------------------------------------#
 
 add_subdirectory(ntx)
+add_subdirectory(sync)
