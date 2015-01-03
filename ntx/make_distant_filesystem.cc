@@ -6,9 +6,9 @@ namespace ntx {
 /*------------------------------------------------------------------------------------------------*/
 
 distant_folder
-make_distant_filesystem(const configuration& conf, const session& s, id_type root)
+make_distant_filesystem(const configuration& conf, const session& s, id_type id)
 {
-  return detail::mk_distant_folder(conf, s, root);
+  return detail::mk_distant_folder(conf, s, id);
 }
 
 /*------------------------------------------------------------------------------------------------*/
