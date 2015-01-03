@@ -68,13 +68,13 @@ noexcept
 /*------------------------------------------------------------------------------------------------*/
 
 session
-connect(const configuration& conf, const credentials& creds)
+connect(const configuration& conf)
 {
   auto request = http::client::request{conf.auth_url()};
   request << header("Connection", "close")
           << header("Content-Type", "application/json");
 
-  const auto json = detail::json_obj("user", creds.login(), "password", creds.password());
+  const auto json = detail::json_obj("user", conf.user(), "password", conf.password());
   const auto response = http::client{}.post(request, json);
 
   if (status(response) != 200u)
@@ -87,7 +87,6 @@ connect(const configuration& conf, const credentials& creds)
   const auto json_response = static_cast<std::string>(body(response));
   auto ss = rapidjson::StringStream{response.body().c_str()};
   auto h  = token_parser{token};
-  /// @todo handle parse errors
   rapidjson::Reader{}.Parse(ss, h);
 
   return {std::move(token)};

@@ -17,17 +17,9 @@ main(int argc, const char** argv)
   {
     if (const auto conf = configure(argc, argv))
     {
-      const auto session = [&]
-      {
-        /// @todo Read from OS's secure storage (like Mac OS X 's Keychain Access)
-        const auto credentials = ntx::credentials{"alexandre.hamez", "qptt5zwn"};
-        return ntx::automatic_session{*conf, credentials};
-      }(); // credentials scrambled here
-
-      /// @todo Select distant folder from one of the account's roots
+      const auto session    = ntx::automatic_session{*conf};
       const auto distant_fs = ntx::get_distant_filesystem(*conf, session, 1ul /* root */);
       const auto local_fs   = ntx::get_local_filesystem(*conf);
-
       ntx::synchronize(*conf, session, distant_fs, local_fs);
     }
     // else --help

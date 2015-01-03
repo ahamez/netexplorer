@@ -4,8 +4,8 @@ namespace ntx {
 
 /*------------------------------------------------------------------------------------------------*/
 
-automatic_session::automatic_session(const configuration& conf, const credentials& creds)
-  : conf_{conf}, session_{connect(conf, creds)}
+automatic_session::automatic_session(const configuration& conf)
+  : conf_{conf}, session_{connect(conf)}
 {}
 
 /*------------------------------------------------------------------------------------------------*/

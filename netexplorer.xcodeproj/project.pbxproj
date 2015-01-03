@@ -53,7 +53,6 @@
 		2B4001831A57350D002261CC /* automatic_session.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = automatic_session.hh; sourceTree = "<group>"; };
 		2B4001841A57350D002261CC /* CMakeLists.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CMakeLists.txt; sourceTree = "<group>"; };
 		2B4001851A57350D002261CC /* configuration.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = configuration.hh; sourceTree = "<group>"; };
-		2B4001881A57350D002261CC /* credentials.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = credentials.hh; sourceTree = "<group>"; };
 		2B40018A1A57350D002261CC /* async.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = async.hh; sourceTree = "<group>"; };
 		2B40018B1A57350D002261CC /* distant_filesystem.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = distant_filesystem.cc; sourceTree = "<group>"; };
 		2B40018C1A57350D002261CC /* distant_filesystem.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = distant_filesystem.hh; sourceTree = "<group>"; };
@@ -148,7 +147,6 @@
 				2B4001831A57350D002261CC /* automatic_session.hh */,
 				2B4001821A57350D002261CC /* automatic_session.cc */,
 				2B4001851A57350D002261CC /* configuration.hh */,
-				2B4001881A57350D002261CC /* credentials.hh */,
 				2B4001891A57350D002261CC /* detail */,
 				2B40018C1A57350D002261CC /* distant_filesystem.hh */,
 				2B40018B1A57350D002261CC /* distant_filesystem.cc */,

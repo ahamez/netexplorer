@@ -4,7 +4,6 @@
 #include <unordered_set>
 
 #include "ntx/configuration.hh"
-#include "ntx/credentials.hh"
 
 namespace ntx {
 
@@ -36,14 +35,13 @@ public:
   const std::string& token() const noexcept {return token_;}
 
   /// @internal
-  friend session connect(const configuration&, const credentials&);
+  friend session connect(const configuration&);
 };
 
 /*------------------------------------------------------------------------------------------------*/
 
-/// @
 session
-connect(const configuration&, const credentials&);
+connect(const configuration&);
 
 /*------------------------------------------------------------------------------------------------*/
 

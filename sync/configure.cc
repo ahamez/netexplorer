@@ -73,7 +73,9 @@ configure(int argc, const char** argv)
   }
 
   return ntx::configuration{ vm["distant"].as<std::string>()
-                           , vm["local"].as<std::string>()};
+                           , vm["local"].as<std::string>()
+                           , "alexandre.hamez"
+                           , "qptt5zwn"};
 }
 
 /*------------------------------------------------------------------------------------------------*/

@@ -18,7 +18,7 @@ private:
 public:
 
   /// @brief Connect a session.
-  automatic_session(const configuration&, const credentials&);
+  automatic_session(const configuration&);
 
   /// @brief Disconnect a session.
   ~automatic_session();
