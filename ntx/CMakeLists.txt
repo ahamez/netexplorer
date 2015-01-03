@@ -15,3 +15,4 @@ set(
 )
 
 add_library(ntx STATIC ${NTX_SOURCES})
+add_dependencies(ntx cpp-netlib)
