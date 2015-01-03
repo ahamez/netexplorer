@@ -43,13 +43,12 @@ handle_conflict::operator()(id_type parent_id, const file& f, const fs::path& pa
     request << header("Connection", "close")
             << header("Token", session_.token());
 
-    auto i = 0ul;
-    auto file_path = parent_path / fs::path{f.name() + ".distant." + std::to_string(i)};
-    while (exists(file_path))
+    const auto conflict_folder = conf_.conflict_folder() / parent_path;
+    const auto file_path = conflict_folder / fs::path{f.name()};
+    if (not exists(conflict_folder))
     {
-      file_path.replace_extension(std::to_string(++i));
+      create_directories(conflict_folder);
     }
-
     auto&& file = fs::ofstream{file_path, std::ios::binary};
     if (not file.is_open())
     {

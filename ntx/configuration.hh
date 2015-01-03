@@ -14,14 +14,17 @@ private:
 
   std::string base_url_;
   boost::filesystem::path local_root_;
+  boost::filesystem::path conflict_folder_;
   std::string user_;
   std::string password_;
 
 public:
 
   configuration( const std::string& base_url, const boost::filesystem::path& local_root
+               , const boost::filesystem::path& conflict_folder
                , const std::string& user, const std::string& password)
-    : base_url_{base_url}, local_root_{local_root}, user_{user}, password_{password}
+    : base_url_{base_url}, local_root_{local_root}, conflict_folder_{conflict_folder}
+    , user_{user}, password_{password}
   {}
 
   auto account_url() const {return base_url_ + "/account";}
@@ -29,10 +32,11 @@ public:
   auto folder_url()  const {return base_url_ + "/folder";}
   auto file_url()    const {return base_url_ + "/file";}
 
-  const auto& base_url()   const noexcept {return base_url_;}
-  const auto& local_root() const noexcept {return local_root_;}
-  const auto& user()       const noexcept {return user_;}
-  const auto& password()   const noexcept {return password_;}
+  const auto& base_url()        const noexcept {return base_url_;}
+  const auto& local_root()      const noexcept {return local_root_;}
+  const auto& conflict_folder() const noexcept {return conflict_folder_;}
+  const auto& user()            const noexcept {return user_;}
+  const auto& password()        const noexcept {return password_;}
 };
 
 /*------------------------------------------------------------------------------------------------*/
