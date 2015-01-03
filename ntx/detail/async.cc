@@ -23,7 +23,7 @@ void
 async::operator()(const std::function<void (void)>& t)
 {
   /// @todo parametrize the maximum number of concurrent tasks.
-  while (futures_.size() >= 8)
+  while (futures_.size() >= 24)
   {
     for (auto it = begin(futures_); it != end(futures_); ++it)
     {
