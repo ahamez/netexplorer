@@ -24,10 +24,10 @@ public:
     : ptr_{std::make_shared<detail::distant_file_impl>(id, name, size, md5)}
   {}
 
-  const auto& name() const noexcept {return ptr_->name();}
-        auto  id()   const noexcept {return ptr_->id();}
-        auto  size() const noexcept {return ptr_->size();}
-  const auto& md5()  const noexcept {return ptr_->md5();}
+  const std::string&     name() const noexcept {return ptr_->name();}
+        id_type          id()   const noexcept {return ptr_->id();}
+        std::size_t      size() const noexcept {return ptr_->size();}
+  const md5_digest_type& md5()  const noexcept {return ptr_->md5();}
 
   friend
   bool
@@ -53,10 +53,14 @@ public:
     : ptr_{std::make_shared<detail::distant_folder_impl>(id, name)}
   {}
 
-  const auto& name()    const noexcept {return ptr_->name();}
-        auto  id()      const noexcept {return ptr_->id();}
-  const auto& files()   const noexcept {return ptr_->files();}
-  const auto& folders() const noexcept {return ptr_->folders();}
+  const std::string& name() const noexcept {return ptr_->name();}
+        id_type      id()   const noexcept {return ptr_->id();}
+
+  /// @brief Return an iterable set of contained files.
+  auto files() const noexcept -> decltype(ptr_->files()) {return ptr_->files();}
+
+  /// @brief Return an iterable set of contained folders.
+  auto folders() const noexcept -> decltype(ptr_->folders()) {return ptr_->folders();}
 
   /// @brief Add one or more files to this folder.
   ///
