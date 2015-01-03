@@ -1,6 +1,7 @@
 set(
   SYNC_SOURCES
   main.cc
+  configure.cc
 )
 
 add_executable(sync ${SYNC_SOURCES})

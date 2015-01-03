@@ -57,6 +57,12 @@
             ReferencedContainer = "container:netexplorer.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
+      <CommandLineArguments>
+         <CommandLineArgument
+            argument = "~/Desktop/NetExplorer &apos;https://ahamez.netexplorer.pro/api&apos;"
+            isEnabled = "YES">
+         </CommandLineArgument>
+      </CommandLineArguments>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>

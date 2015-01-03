@@ -23,6 +23,7 @@
 		2B4002031A57C567002261CC /* liblibntx.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B4001E61A57C4C8002261CC /* liblibntx.a */; };
 		2B4002071A57E6A3002261CC /* md5.cc in Sources */ = {isa = PBXBuildFile; fileRef = 2B4002051A57E6A3002261CC /* md5.cc */; };
 		2B4002081A57E6A3002261CC /* md5.hh in Headers */ = {isa = PBXBuildFile; fileRef = 2B4002061A57E6A3002261CC /* md5.hh */; };
+		2B40020B1A57F315002261CC /* configure.cc in Sources */ = {isa = PBXBuildFile; fileRef = 2B4002091A57F315002261CC /* configure.cc */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -116,6 +117,8 @@
 		2B4002041A57C5C7002261CC /* CMakeLists.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = CMakeLists.txt; sourceTree = "<group>"; };
 		2B4002051A57E6A3002261CC /* md5.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = md5.cc; sourceTree = "<group>"; };
 		2B4002061A57E6A3002261CC /* md5.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = md5.hh; sourceTree = "<group>"; };
+		2B4002091A57F315002261CC /* configure.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = configure.cc; sourceTree = "<group>"; };
+		2B40020A1A57F315002261CC /* configure.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = configure.hh; sourceTree = "<group>"; };
 		2B9600961A51E3980080E3E3 /* CMakeLists.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CMakeLists.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -261,6 +264,8 @@
 			children = (
 				2B4002041A57C5C7002261CC /* CMakeLists.txt */,
 				2B4001FC1A57C541002261CC /* main.cc */,
+				2B40020A1A57F315002261CC /* configure.hh */,
+				2B4002091A57F315002261CC /* configure.cc */,
 			);
 			path = sync;
 			sourceTree = "<group>";
@@ -394,6 +399,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2B4001FD1A57C541002261CC /* main.cc in Sources */,
+				2B40020B1A57F315002261CC /* configure.cc in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -505,6 +511,7 @@
 					"-lssl",
 					"-lcrypto",
 					"-lboost_filesystem",
+					"-lboost_program_options",
 				);
 				SDKROOT = macosx;
 			};
@@ -563,6 +570,7 @@
 					"-lssl",
 					"-lcrypto",
 					"-lboost_filesystem",
+					"-lboost_program_options",
 				);
 				SDKROOT = macosx;
 			};
