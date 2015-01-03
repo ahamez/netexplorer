@@ -89,7 +89,7 @@ connect(const configuration& conf)
   auto h  = token_parser{token};
   rapidjson::Reader{}.Parse(ss, h);
 
-  return {std::move(token)};
+  return {token};
 }
 
 /*------------------------------------------------------------------------------------------------*/
