@@ -73,8 +73,7 @@ configure(int argc, const char** argv)
       std::cerr << "No password specified\n";
     }
 
-
-    std::cout << "Usage: " << argv[0] << " [options] local distant\n\n"
+    std::cout << "Usage: " << argv[0] << " [options] local distant user password\n\n"
               << general_options << '\n';
 
     if (vm.count("help"))
