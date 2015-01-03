@@ -33,8 +33,7 @@ void
 push::operator()(id_type parent_id, const folder& f, const fs::path& parent_path)
 noexcept
 {
-  std::cout << "[push] folder " << f.name() << " @ " << parent_path.string()
-            << " (parent_id = " << parent_id << ")\n";
+  std::cout << "[push] folder " << f.name() << " from " << parent_path.string() << '\n';
 
   auto request = http::client::request{conf_.folder_url()};
   request << header("Connection", "close")
@@ -82,8 +81,7 @@ void
 push::operator()(id_type parent_id, const file& f, const fs::path& parent_path)
 noexcept
 {
-  std::cout << "[push] file " << f.name() << " @ " << parent_path.string()
-            << " (parent_id = " << parent_id << ")\n";
+  std::cout << "[push] file " << f.name() << " from " << parent_path.string() << '\n';
 
   async_([=]
   {

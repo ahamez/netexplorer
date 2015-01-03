@@ -49,12 +49,12 @@ synchronize( const folder& distant_folder, const folder& local_folder, const fs:
         ++distant_cit;
         ++local_cit;
       }
-      else if (distant.name() < local.name())
+      if (distant.name() < local.name())
       {
         pull(*distant_folder.id(), distant, local_path);
         ++distant_cit;
       }
-      else // (distant.name() > local.name())
+      else if (distant.name() > local.name())
       {
         push(*distant_folder.id(), local, local_path);
         ++local_cit;

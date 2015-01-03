@@ -3,6 +3,7 @@
 #include "ntx/configuration.hh"
 #include "ntx/session.hh"
 #include "ntx/fs.hh"
+#include "ntx/detail/async.hh"
 
 namespace ntx {
 namespace detail {
@@ -17,12 +18,13 @@ private:
 
   const configuration& conf_;
   const session& session_;
+  async async_;
 
 public:
 
   handle_conflict(const configuration&, const session&);
 
-  void operator()(ntx::id_type, const ntx::file&, const boost::filesystem::path&);
+  void operator()(ntx::id_type, const ntx::file&, const boost::filesystem::path&) noexcept;
 };
 
 /*------------------------------------------------------------------------------------------------*/

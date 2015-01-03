@@ -30,8 +30,7 @@ void
 pull::operator()(ntx::id_type parent_id, const ntx::folder& f, const fs::path& parent_path)
 noexcept
 {
-  std::cout << "[pull] folder " << f.name() << " @ " << parent_path.string()
-            << " (parent_id = " << parent_id << ")\n";
+  std::cout << "[pull] folder " << f.name() << " to " << parent_path.string() << '\n';
 
   // No need to download anything.
   fs::create_directory(parent_path / fs::path{f.name()});
@@ -53,8 +52,7 @@ void
 pull::operator()(id_type parent_id, const file& f, const fs::path& parent_path)
 noexcept
 {
-  std::cout << "[pull] file " << f.name() << " @ " << parent_path.string()
-            << " (parent_id = " << parent_id << ")\n";
+  std::cout << "[pull] file " << f.name() << " to " << parent_path.string() << '\n';
 
   async_([=]
   {
