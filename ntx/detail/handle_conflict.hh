@@ -11,7 +11,7 @@ namespace detail {
 /*------------------------------------------------------------------------------------------------*/
 
 /// @internal
-/// @brief Action to perform when a file or folder is missing on the local filesystem.
+/// @brief Action to perform when a file is conflicting.
 class handle_conflict final
 {
 private:
