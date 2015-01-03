@@ -87,65 +87,72 @@ noexcept
 
   async_([=]
   {
-    // Create distant placeholder.
-    const auto file_id = [&]
+    try
     {
-      auto request = http::client::request{conf_.file_url()};
-      request << header("Connection", "close")
-              << header("Token", session_.token())
-              << header("Content-Type", "application/json");
-
-      const auto json = json_obj("name", f.name(), "parent_id", parent_id, "hash", f.md5());
-
-      const auto response = http::client{}.post(request, json);
-      if (status(response) != 201u)
+      // Create distant placeholder.
+      const auto file_id = [&]
       {
-        throw std::runtime_error( "Cannot create distant file " + f.name() + ": "
-                                + std::to_string(status(response)));
-      }
+        auto request = http::client::request{conf_.file_url()};
+        request << header("Connection", "close")
+                << header("Token", session_.token())
+                << header("Content-Type", "application/json");
 
-      auto file_id = 0ul;
-      auto d = rapidjson::Document{};
-      if (not d.Parse<0>(response.body().c_str()).HasParseError())
-      {
-        file_id = d["id"].GetUint();
-      }
-      else
-      {
-        throw std::runtime_error("Distant file " + f.name() + " creation: can't read response");
-      }
-      return file_id;
-    }();
+        const auto json = json_obj("name", f.name(), "parent_id", parent_id, "hash", f.md5());
 
-    // Effectively upload file.
+        const auto response = http::client{}.post(request, json);
+        if (status(response) != 201u)
+        {
+          throw std::runtime_error( "Cannot create distant file " + f.name() + "(status="
+                                  + std::to_string(status(response)) + ")");
+        }
+
+        auto file_id = 0ul;
+        auto d = rapidjson::Document{};
+        if (not d.Parse<0>(response.body().c_str()).HasParseError())
+        {
+          file_id = d["id"].GetUint();
+        }
+        else
+        {
+          throw std::runtime_error("Distant file " + f.name() + " creation: can't read response");
+        }
+        return file_id;
+      }();
+
+      // Effectively upload file.
+      {
+        auto parameters = uri::uri{conf_.file_url()};
+        parameters << uri::path("/")
+                   << uri::path(std::to_string(file_id))
+                   << uri::path("/upload");
+
+        auto request = http::client::request{parameters};
+        request << header("Connection", "close")
+                << header("Token", session_.token())
+                << header("Content-Length", std::to_string(f.size()));
+
+        const auto file_path = parent_path / fs::path{f.name()};
+        auto&& file = fs::ifstream{file_path, std::ios::binary};
+        if (not file.is_open())
+        {
+          throw std::runtime_error("Can't read file to be uploaded " + file_path.string());
+        }
+        auto str = std::string{};
+        str.reserve(f.size());
+        std::copy( std::istreambuf_iterator<char>{file}, std::istreambuf_iterator<char>{}
+                  , std::back_inserter(str));
+
+        const auto response = http::client{}.put(request, str);
+        if (status(response) != 200u)
+        {
+          throw std::runtime_error( "Cannot upload file " + file_path.string() + " status = "
+                                  + std::to_string(status(response)));
+        }
+      }
+    }
+    catch (const std::exception& e)
     {
-      auto parameters = uri::uri{conf_.file_url()};
-      parameters << uri::path("/")
-                 << uri::path(std::to_string(file_id))
-                 << uri::path("/upload");
-
-      auto request = http::client::request{parameters};
-      request << header("Connection", "close")
-              << header("Token", session_.token())
-              << header("Content-Length", std::to_string(f.size()));
-
-      const auto file_path = parent_path / fs::path{f.name()};
-      auto&& file = fs::ifstream{file_path, std::ios::binary};
-      if (not file.is_open())
-      {
-        throw std::runtime_error("Can't read file to be uploaded " + file_path.string());
-      }
-      auto str = std::string{};
-      str.reserve(f.size());
-      std::copy( std::istreambuf_iterator<char>{file}, std::istreambuf_iterator<char>{}
-               , std::back_inserter(str));
-
-      const auto response = http::client{}.put(request, str);
-      if (status(response) != 200u)
-      {
-        throw std::runtime_error( "Cannot upload file " + file_path.string() + " status = "
-                                + std::to_string(status(response)));
-      }
+      std::cerr << e.what() << '\n';
     }
   });
 }

@@ -1,5 +1,5 @@
 #include <fstream>
-#include <iosfwd>
+#include <iostream>
 #include <iterator>
 
 #include <boost/filesystem.hpp>
@@ -72,11 +72,11 @@ noexcept
     auto&& file = fs::ofstream{file_path, std::ios::binary};
     if (not file.is_open())
     {
-      throw std::runtime_error("Can't write to " + file_path.string());
+      std::cerr << "Can't write to " << file_path.string() << '\n';
+      return;
     }
     auto fstream = std::ostreambuf_iterator<char>{file};
 
-    /// @todo Erase file if any error happen.
     const auto response = http::client{}.get( request
                                             , [&](const auto& range, const auto& /*error*/)
                                               {
@@ -84,7 +84,8 @@ noexcept
                                               });
     if (status(response) != 200u)
     {
-      throw std::runtime_error("Can't download " + f.name());
+      std::cerr << "Can't download " << f.name() << '\n';
+      fs::remove(file_path);
     }
   });
 }
