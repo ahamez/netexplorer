@@ -11,10 +11,10 @@ namespace ntx {
 /*------------------------------------------------------------------------------------------------*/
 
 void
-synchronize( const configuration& conf, const session& s, const folder& distant_folder
-           , const folder& local_folder)
+synchronize( const configuration& conf, const session& s, const distant_folder& distant
+           , const local_folder& local)
 {
-  detail::synchronize( distant_folder, local_folder, conf.local_root()
+  detail::synchronize( distant, local, conf.local_root()
                      , detail::pull{conf, s}, detail::push{conf, s}
                      , detail::conflict{}, detail::handle_conflict{conf, s});
 }

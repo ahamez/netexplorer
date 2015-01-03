@@ -1,20 +1,15 @@
 #pragma once
 
 #include "ntx/configuration.hh"
-#include "ntx/distant_filesystem.hh"
-#include "ntx/session.hh"
+#include "ntx/local_filesystem.hh"
 
 namespace ntx {
-namespace detail {
 
 /*------------------------------------------------------------------------------------------------*/
 
-/// @internal
-/// @brief Create a filesystem from a distant NetExplorer storage.
-distant_folder
-mk_distant_folder(const configuration&, const session&, id_type);
+local_folder
+make_local_filesystem(const configuration&);
 
 /*------------------------------------------------------------------------------------------------*/
 
-} // namespace detail
 } // namespace ntx

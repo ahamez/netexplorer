@@ -10,7 +10,7 @@ namespace detail {
 /*------------------------------------------------------------------------------------------------*/
 
 bool
-conflict::operator()(const ntx::file& lhs, const ntx::file& rhs)
+conflict::operator()(const ntx::distant_file& lhs, const ntx::local_file& rhs)
 const noexcept
 {
   return lhs.size() != rhs.size() or lhs.md5() != rhs.md5();

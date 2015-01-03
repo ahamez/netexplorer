@@ -2,7 +2,7 @@
 
 #include "ntx/configuration.hh"
 #include "ntx/session.hh"
-#include "ntx/fs.hh"
+#include "ntx/distant_filesystem.hh"
 #include "ntx/detail/async.hh"
 
 namespace ntx {
@@ -23,8 +23,8 @@ public:
 
   pull(const configuration&, const session&);
 
-  void operator()(id_type, const folder&, const boost::filesystem::path&);
-  void operator()(id_type, const file&, const boost::filesystem::path&);
+  void operator()(id_type, const distant_folder&, const boost::filesystem::path&);
+  void operator()(id_type, const distant_file&, const boost::filesystem::path&);
 };
 
 /*------------------------------------------------------------------------------------------------*/

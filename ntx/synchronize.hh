@@ -1,6 +1,7 @@
 #pragma once
 
-#include "ntx/fs.hh"
+#include "ntx/distant_filesystem.hh"
+#include "ntx/local_filesystem.hh"
 
 namespace ntx {
 
@@ -8,8 +9,7 @@ namespace ntx {
 
 /// @brief Synchronize a distant and a local filesystem.
 void
-synchronize( const configuration& conf, const session& s, const folder& distant_folder
-           , const folder& local_folder);
+synchronize(const configuration&, const session&, const distant_folder&, const local_folder&);
 
 /*------------------------------------------------------------------------------------------------*/
 

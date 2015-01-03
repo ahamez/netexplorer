@@ -5,7 +5,8 @@
 #include <boost/filesystem.hpp>
 #include <boost/filesystem/fstream.hpp>
 
-#include "ntx/fs.hh"
+#include "ntx/distant_filesystem.hh"
+#include "ntx/local_filesystem.hh"
 
 namespace ntx {
 namespace detail {
@@ -25,17 +26,18 @@ namespace fs = boost::filesystem;
 /// contents.
 template <typename Pull, typename Push, typename Conflict, typename HandleConflict>
 void
-synchronize( const folder& distant_folder, const folder& local_folder, const fs::path& local_path
-           , Pull&& pull, Push&& push, Conflict&& conflict, HandleConflict&& handle_conflict)
+synchronize( const distant_folder& distant_f, const local_folder& local_f
+           , const fs::path& local_path, Pull&& pull, Push&& push, Conflict&& conflict
+           , HandleConflict&& handle_conflict)
 {
   // Files.
   {
     // Nested files are sorted by name, we can thus iterate on both sides comparing names
     // to detect different and similar files.
-    auto distant_cit = begin(distant_folder.files());
-    auto local_cit   = begin(local_folder.files());
+    auto distant_cit = begin(distant_f.files());
+    auto local_cit   = begin(local_f.files());
 
-    while (distant_cit != end(distant_folder.files()) and local_cit != end(local_folder.files()))
+    while (distant_cit != end(distant_f.files()) and local_cit != end(local_f.files()))
     {
       const auto& distant = *distant_cit;
       const auto& local   = *local_cit;
@@ -44,30 +46,30 @@ synchronize( const folder& distant_folder, const folder& local_folder, const fs:
       {
         if (conflict(distant, local))
         {
-          handle_conflict(*distant_folder.id(), distant, local_path);
+          handle_conflict(distant_f.id(), distant, local_path);
         }
         ++distant_cit;
         ++local_cit;
       }
       if (distant.name() < local.name())
       {
-        pull(*distant_folder.id(), distant, local_path);
+        pull(distant_f.id(), distant, local_path);
         ++distant_cit;
       }
       else if (distant.name() > local.name())
       {
-        push(*distant_folder.id(), local, local_path);
+        push(distant_f.id(), local, local_path);
         ++local_cit;
       }
     }
-    while (distant_cit != end(distant_folder.files()))
+    while (distant_cit != end(distant_f.files()))
     {
-      pull(*distant_folder.id(), *distant_cit, local_path);
+      pull(distant_f.id(), *distant_cit, local_path);
       ++distant_cit;
     }
-    while (local_cit != end(local_folder.files()))
+    while (local_cit != end(local_f.files()))
     {
-      push(*distant_folder.id(), *local_cit, local_path);
+      push(distant_f.id(), *local_cit, local_path);
       ++local_cit;
     }
   }
@@ -76,10 +78,10 @@ synchronize( const folder& distant_folder, const folder& local_folder, const fs:
   {
     // Nested folders are sorted by name, we can thus iterate on both sides comparing names
     // to detect different and similar folders.
-    auto distant_cit = begin(distant_folder.folders());
-    auto local_cit   = begin(local_folder.folders());
+    auto distant_cit = begin(distant_f.folders());
+    auto local_cit   = begin(local_f.folders());
 
-    while (distant_cit != end(distant_folder.folders()) and local_cit != end(local_folder.folders()))
+    while (distant_cit != end(distant_f.folders()) and local_cit != end(local_f.folders()))
     {
       const auto& distant = *distant_cit;
       const auto& local   = *local_cit;
@@ -94,23 +96,23 @@ synchronize( const folder& distant_folder, const folder& local_folder, const fs:
       }
       else if (distant.name() < local.name())
       {
-        pull(*distant_folder.id(), distant, local_path);
+        pull(distant_f.id(), distant, local_path);
         ++distant_cit;
       }
       else // (distant.name() > local.name())
       {
-        push(*distant_folder.id(), local, local_path);
+        push(distant_f.id(), local, local_path);
         ++local_cit;
       }
     }
-    while (distant_cit != end(distant_folder.folders()))
+    while (distant_cit != end(distant_f.folders()))
     {
-      pull(*distant_folder.id(), *distant_cit, local_path);
+      pull(distant_f.id(), *distant_cit, local_path);
       ++distant_cit;
     }
-    while (local_cit != end(local_folder.folders()))
+    while (local_cit != end(local_f.folders()))
     {
-      push(*distant_folder.id(), *local_cit, local_path);
+      push(distant_f.id(), *local_cit, local_path);
       ++local_cit;
     }
   }

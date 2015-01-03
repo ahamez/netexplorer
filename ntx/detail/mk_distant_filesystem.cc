@@ -16,7 +16,7 @@ namespace /*anonymous*/ {
 
 /*------------------------------------------------------------------------------------------------*/
 
-file
+distant_file
 mk_file(const rapidjson::Value& v)
 {
   assert(v.IsObject());
@@ -30,15 +30,15 @@ mk_file(const rapidjson::Value& v)
     throw std::runtime_error("Invalid hash on server");
   }
 
-  return file{ std::string{v["name"].GetString(), v["name"].GetStringLength()}
-             , v["id"].GetUint64()
-             , v["size"].GetUint64()
-             , std::string{v["hash"].GetString(), v["hash"].GetStringLength()}};
+  return { std::string{v["name"].GetString(), v["name"].GetStringLength()}
+         , v["size"].GetUint64()
+         , std::string{v["hash"].GetString(), v["hash"].GetStringLength()}
+         , v["id"].GetUint64()};
 }
 
 /*------------------------------------------------------------------------------------------------*/
 
-folder
+distant_folder
 mk_folder(const rapidjson::Value& v)
 {
   assert(v.IsObject());
@@ -49,7 +49,7 @@ mk_folder(const rapidjson::Value& v)
   assert(contents.HasMember("files"));
   assert(contents.HasMember("folders"));
 
-  auto res = folder{v["name"].GetString(), v["id"].GetUint64()};
+  auto res = distant_folder{v["name"].GetString(), v["id"].GetUint64()};
 
   const auto& files = contents["files"];
   assert(files.IsArray());
@@ -74,7 +74,7 @@ mk_folder(const rapidjson::Value& v)
 
 /*------------------------------------------------------------------------------------------------*/
 
-folder
+distant_folder
 mk_distant_folder(const configuration& conf, const session& s, id_type id)
 {
   using namespace boost::network;

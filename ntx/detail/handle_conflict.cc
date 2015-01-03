@@ -27,7 +27,7 @@ handle_conflict::handle_conflict(const configuration& conf, const session& s)
 /*------------------------------------------------------------------------------------------------*/
 
 void
-handle_conflict::operator()(id_type parent_id, const file& f, const fs::path& parent_path)
+handle_conflict::operator()(id_type parent_id, const distant_file& f, const fs::path& parent_path)
 {
   std::cout << "[conflict] file " << f.name() << " @ " << parent_path.string() << '\n';
 
@@ -36,7 +36,7 @@ handle_conflict::operator()(id_type parent_id, const file& f, const fs::path& pa
     auto parameters = uri::uri{};
     parameters << uri::path(conf_.file_url())
                << uri::path("/")
-               << uri::path(std::to_string(*f.id()))
+               << uri::path(std::to_string(f.id()))
                << uri::path("/download");
 
     auto request = http::client::request{parameters};

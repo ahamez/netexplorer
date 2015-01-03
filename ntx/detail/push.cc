@@ -30,7 +30,7 @@ push::push(const configuration& conf, const session& s)
 /*------------------------------------------------------------------------------------------------*/
 
 void
-push::operator()(id_type parent_id, const folder& f, const fs::path& parent_path)
+push::operator()(id_type parent_id, const local_folder& f, const fs::path& parent_path)
 {
   std::cout << "[push] folder " << f.name() << " from " << parent_path.string() << '\n';
 
@@ -76,7 +76,7 @@ push::operator()(id_type parent_id, const folder& f, const fs::path& parent_path
 /*------------------------------------------------------------------------------------------------*/
 
 void
-push::operator()(id_type parent_id, const file& f, const fs::path& parent_path)
+push::operator()(id_type parent_id, const local_file& f, const fs::path& parent_path)
 {
   std::cout << "[push] file " << f.name() << " from " << parent_path.string() << '\n';
 

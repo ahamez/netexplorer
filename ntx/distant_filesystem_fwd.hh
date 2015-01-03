@@ -5,8 +5,8 @@ namespace ntx {
 /*------------------------------------------------------------------------------------------------*/
 
 // Forward declarations for recursive data structures.
-class file;
-class folder;
+class distant_file;
+class distant_folder;
 
 /*------------------------------------------------------------------------------------------------*/
 

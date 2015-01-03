@@ -1,8 +1,8 @@
 set(
   NTX_SOURCES
   automatic_session.cc
-  distant_filesystem.cc
-  local_filesystem.cc
+  make_distant_filesystem.cc
+  make_local_filesystem.cc
   session.cc
   synchronize.cc
   detail/async.cc

@@ -10,7 +10,7 @@ namespace fs = boost::filesystem;
 
 namespace /* anonymous */ {
 
-file
+local_file
 mk_local_file(const fs::path& p)
 {
   return {p.filename().string(), file_size(p), md5(p)};
@@ -20,10 +20,10 @@ mk_local_file(const fs::path& p)
 
 /*------------------------------------------------------------------------------------------------*/
 
-folder
+local_folder
 mk_local_folder(const fs::path& p)
 {
-  auto res = folder{p.filename().string()};
+  auto res = local_folder{p.filename().string()};
   for (auto cit = fs::directory_iterator{p}; cit != fs::directory_iterator{}; ++cit)
   {
     if (is_regular_file(*cit))

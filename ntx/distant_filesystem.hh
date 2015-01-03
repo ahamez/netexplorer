@@ -1,16 +1,91 @@
 #pragma once
 
-#include "ntx/configuration.hh"
-#include "ntx/fs.hh"
-#include "ntx/session.hh"
+#include <memory>  // shared_ptr
+#include <string>
+#include <utility> // forward
+
 #include "ntx/types.hh"
+#include "ntx/detail/distant_fs.hh"
 
 namespace ntx {
 
 /*------------------------------------------------------------------------------------------------*/
 
-folder
-get_distant_filesystem(const configuration&, const session&, id_type root);
+/// @brief Describe a distant file.
+class distant_file final
+{
+private:
+
+  std::shared_ptr<detail::distant_file_impl> ptr_;
+
+public:
+
+  distant_file(const std::string& name, std::size_t size, const md5_digest_type& md5, id_type id)
+    : ptr_{std::make_shared<detail::distant_file_impl>(name, size, md5, id)}
+  {}
+
+  const auto& name() const noexcept {return ptr_->name();}
+        auto  id()   const noexcept {return ptr_->id();}
+        auto  size() const noexcept {return ptr_->size();}
+  const auto& md5()  const noexcept {return ptr_->md5();}
+
+  friend
+  bool
+  operator<(const distant_file& lhs, const distant_file& rhs)
+  noexcept
+  {
+    return lhs.name() < rhs.name();
+  }
+};
+
+/*------------------------------------------------------------------------------------------------*/
+
+/// @brief Describe a distant folder.
+class distant_folder final
+{
+private:
+
+  std::shared_ptr<detail::distant_folder_impl> ptr_;
+
+public:
+
+  distant_folder(const std::string& name, id_type id)
+    : ptr_{std::make_shared<detail::distant_folder_impl>(name, id)}
+  {}
+
+  const auto& name()    const noexcept {return ptr_->name();}
+        auto  id()      const noexcept {return ptr_->id();}
+  const auto& files()   const noexcept {return ptr_->files();}
+  const auto& folders() const noexcept {return ptr_->folders();}
+
+  /// @brief Add one or more files to this folder.
+  ///
+  /// Unicity of added files is ensured (using name).
+  template <typename... Fs>
+  void
+  add_file(Fs&&... fs)
+  {
+    ptr_->add_file(std::forward<Fs>(fs)...);
+  }
+
+  /// @brief Add one or more folders to this folder.
+  ///
+  /// Unicity of added folders is ensured (using name).
+  template <typename... Fs>
+  void
+  add_folder(Fs&&... fs)
+  {
+    ptr_->add_folder(std::forward<Fs>(fs)...);
+  }
+
+  friend
+  bool
+  operator<(const distant_folder& lhs, const distant_folder& rhs)
+  noexcept
+  {
+    return lhs.name() < rhs.name();
+  }
+};
 
 /*------------------------------------------------------------------------------------------------*/
 

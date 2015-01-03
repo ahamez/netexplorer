@@ -1,20 +1,16 @@
-#pragma once
-
-#include <boost/filesystem.hpp>
-
-#include "ntx/local_filesystem.hh"
+#include "ntx/make_local_filesystem.hh"
+#include "ntx/detail/mk_local_filesystem.hh"
 
 namespace ntx {
-namespace detail {
 
 /*------------------------------------------------------------------------------------------------*/
 
-/// @internal
-/// @brief Create a filesystem from a local path.
 local_folder
-mk_local_folder(const boost::filesystem::path&);
+make_local_filesystem(const configuration& conf)
+{
+  return detail::mk_local_folder(conf.local_root());
+}
 
 /*------------------------------------------------------------------------------------------------*/
 
-} // namespace detail
 } // namespace ntx

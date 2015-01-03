@@ -27,7 +27,7 @@ pull::pull(const configuration& conf, const session& s)
 /*------------------------------------------------------------------------------------------------*/
 
 void
-pull::operator()(ntx::id_type parent_id, const ntx::folder& f, const fs::path& parent_path)
+pull::operator()(id_type parent_id, const distant_folder& f, const fs::path& parent_path)
 {
   std::cout << "[pull] folder " << f.name() << " to " << parent_path.string() << '\n';
 
@@ -36,19 +36,19 @@ pull::operator()(ntx::id_type parent_id, const ntx::folder& f, const fs::path& p
 
   for (const auto& sub_file : f.files())
   {
-    (*this)(*f.id(), sub_file, parent_path / fs::path{f.name()});
+    (*this)(f.id(), sub_file, parent_path / fs::path{f.name()});
   }
 
   for (const auto& sub_folder : f.folders())
   {
-    (*this)(*f.id(), sub_folder, parent_path / fs::path{f.name()});
+    (*this)(f.id(), sub_folder, parent_path / fs::path{f.name()});
   }
 }
 
 /*------------------------------------------------------------------------------------------------*/
 
 void
-pull::operator()(id_type parent_id, const file& f, const fs::path& parent_path)
+pull::operator()(id_type parent_id, const distant_file& f, const fs::path& parent_path)
 {
   std::cout << "[pull] file " << f.name() << " to " << parent_path.string() << '\n';
 
@@ -59,7 +59,7 @@ pull::operator()(id_type parent_id, const file& f, const fs::path& parent_path)
       auto parameters = uri::uri{};
       parameters << uri::path(conf_.file_url())
                  << uri::path("/")
-                 << uri::path(std::to_string(*f.id()))
+                 << uri::path(std::to_string(f.id()))
                  << uri::path("/download");
 
       auto request = http::client::request{parameters};

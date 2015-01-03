@@ -1,15 +1,16 @@
-#include "ntx/local_filesystem.hh"
-#include "ntx/detail/mk_local_filesystem.hh"
+#pragma once
+
+#include "ntx/configuration.hh"
+#include "ntx/distant_filesystem.hh"
+#include "ntx/session.hh"
+#include "ntx/types.hh"
 
 namespace ntx {
 
 /*------------------------------------------------------------------------------------------------*/
 
-folder
-get_local_filesystem(const configuration& conf)
-{
-  return detail::mk_local_folder(conf.local_root());
-}
+distant_folder
+make_distant_filesystem(const configuration&, const session&, id_type root);
 
 /*------------------------------------------------------------------------------------------------*/
 

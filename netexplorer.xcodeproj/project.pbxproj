@@ -15,8 +15,8 @@
 		2B4001EF1A57C4E2002261CC /* mk_distant_filesystem.cc in Sources */ = {isa = PBXBuildFile; fileRef = 2B4001A51A573BB7002261CC /* mk_distant_filesystem.cc */; };
 		2B4001F01A57C4E2002261CC /* pull.cc in Sources */ = {isa = PBXBuildFile; fileRef = 2B4001D21A5760CC002261CC /* pull.cc */; };
 		2B4001F11A57C4E2002261CC /* push.cc in Sources */ = {isa = PBXBuildFile; fileRef = 2B4001D41A5760CC002261CC /* push.cc */; };
-		2B4001F21A57C4E2002261CC /* distant_filesystem.cc in Sources */ = {isa = PBXBuildFile; fileRef = 2B40018B1A57350D002261CC /* distant_filesystem.cc */; };
-		2B4001F31A57C4E2002261CC /* local_filesystem.cc in Sources */ = {isa = PBXBuildFile; fileRef = 2B40018F1A57350D002261CC /* local_filesystem.cc */; };
+		2B4001F21A57C4E2002261CC /* make_distant_filesystem.cc in Sources */ = {isa = PBXBuildFile; fileRef = 2B40018B1A57350D002261CC /* make_distant_filesystem.cc */; };
+		2B4001F31A57C4E2002261CC /* make_local_filesystem.cc in Sources */ = {isa = PBXBuildFile; fileRef = 2B40018F1A57350D002261CC /* make_local_filesystem.cc */; };
 		2B4001F41A57C4E2002261CC /* session.cc in Sources */ = {isa = PBXBuildFile; fileRef = 2B4001961A57350D002261CC /* session.cc */; };
 		2B4001F51A57C4E2002261CC /* synchronize.cc in Sources */ = {isa = PBXBuildFile; fileRef = 2B4001D01A575F54002261CC /* synchronize.cc */; };
 		2B4001FD1A57C541002261CC /* main.cc in Sources */ = {isa = PBXBuildFile; fileRef = 2B4001FC1A57C541002261CC /* main.cc */; };
@@ -54,11 +54,11 @@
 		2B4001841A57350D002261CC /* CMakeLists.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CMakeLists.txt; sourceTree = "<group>"; };
 		2B4001851A57350D002261CC /* configuration.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = configuration.hh; sourceTree = "<group>"; };
 		2B40018A1A57350D002261CC /* async.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = async.hh; sourceTree = "<group>"; };
-		2B40018B1A57350D002261CC /* distant_filesystem.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = distant_filesystem.cc; sourceTree = "<group>"; };
-		2B40018C1A57350D002261CC /* distant_filesystem.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = distant_filesystem.hh; sourceTree = "<group>"; };
-		2B40018D1A57350D002261CC /* fs.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = fs.hh; sourceTree = "<group>"; };
-		2B40018F1A57350D002261CC /* local_filesystem.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = local_filesystem.cc; sourceTree = "<group>"; };
-		2B4001901A57350D002261CC /* local_filesystem.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = local_filesystem.hh; sourceTree = "<group>"; };
+		2B40018B1A57350D002261CC /* make_distant_filesystem.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = make_distant_filesystem.cc; sourceTree = "<group>"; };
+		2B40018C1A57350D002261CC /* make_distant_filesystem.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = make_distant_filesystem.hh; sourceTree = "<group>"; };
+		2B40018D1A57350D002261CC /* distant_filesystem.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = distant_filesystem.hh; sourceTree = "<group>"; };
+		2B40018F1A57350D002261CC /* make_local_filesystem.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = make_local_filesystem.cc; sourceTree = "<group>"; };
+		2B4001901A57350D002261CC /* make_local_filesystem.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = make_local_filesystem.hh; sourceTree = "<group>"; };
 		2B4001961A57350D002261CC /* session.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = session.cc; sourceTree = "<group>"; };
 		2B4001971A57350D002261CC /* session.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = session.hh; sourceTree = "<group>"; };
 		2B4001981A57350D002261CC /* synchronize.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = synchronize.hh; sourceTree = "<group>"; };
@@ -67,8 +67,8 @@
 		2B4001A31A5739F2002261CC /* mk_local_filesystem.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = mk_local_filesystem.hh; sourceTree = "<group>"; };
 		2B4001A51A573BB7002261CC /* mk_distant_filesystem.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = mk_distant_filesystem.cc; sourceTree = "<group>"; };
 		2B4001A61A573BB7002261CC /* mk_distant_filesystem.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = mk_distant_filesystem.hh; sourceTree = "<group>"; };
-		2B4001A81A573E19002261CC /* fs.hh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = fs.hh; sourceTree = "<group>"; };
-		2B4001A91A573E5E002261CC /* fs_fwd.hh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = fs_fwd.hh; sourceTree = "<group>"; };
+		2B4001A81A573E19002261CC /* distant_fs.hh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = distant_fs.hh; sourceTree = "<group>"; };
+		2B4001A91A573E5E002261CC /* distant_filesystem_fwd.hh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = distant_filesystem_fwd.hh; sourceTree = "<group>"; };
 		2B4001AA1A573EE1002261CC /* types.hh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = types.hh; sourceTree = "<group>"; };
 		2B4001AD1A5749C9002261CC /* allocators.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = allocators.h; sourceTree = "<group>"; };
 		2B4001AE1A5749C9002261CC /* document.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = document.h; sourceTree = "<group>"; };
@@ -118,6 +118,10 @@
 		2B4002061A57E6A3002261CC /* md5.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = md5.hh; sourceTree = "<group>"; };
 		2B4002091A57F315002261CC /* configure.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = configure.cc; sourceTree = "<group>"; };
 		2B40020A1A57F315002261CC /* configure.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = configure.hh; sourceTree = "<group>"; };
+		2B40020C1A581B0D002261CC /* local_filesystem.hh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = local_filesystem.hh; sourceTree = "<group>"; };
+		2B40020D1A581B3E002261CC /* local_filesystem_fwd.hh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = local_filesystem_fwd.hh; sourceTree = "<group>"; };
+		2B40020E1A581C26002261CC /* local_fs.hh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = local_fs.hh; sourceTree = "<group>"; };
+		2B40020F1A581C64002261CC /* any_fs.hh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = any_fs.hh; sourceTree = "<group>"; };
 		2B9600961A51E3980080E3E3 /* CMakeLists.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CMakeLists.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -143,17 +147,19 @@
 		2B4001811A57350D002261CC /* ntx */ = {
 			isa = PBXGroup;
 			children = (
+				2B4001891A57350D002261CC /* detail */,
 				2B4001841A57350D002261CC /* CMakeLists.txt */,
 				2B4001831A57350D002261CC /* automatic_session.hh */,
 				2B4001821A57350D002261CC /* automatic_session.cc */,
 				2B4001851A57350D002261CC /* configuration.hh */,
-				2B4001891A57350D002261CC /* detail */,
-				2B40018C1A57350D002261CC /* distant_filesystem.hh */,
-				2B40018B1A57350D002261CC /* distant_filesystem.cc */,
-				2B4001A91A573E5E002261CC /* fs_fwd.hh */,
-				2B40018D1A57350D002261CC /* fs.hh */,
-				2B4001901A57350D002261CC /* local_filesystem.hh */,
-				2B40018F1A57350D002261CC /* local_filesystem.cc */,
+				2B4001A91A573E5E002261CC /* distant_filesystem_fwd.hh */,
+				2B40018D1A57350D002261CC /* distant_filesystem.hh */,
+				2B40020D1A581B3E002261CC /* local_filesystem_fwd.hh */,
+				2B40020C1A581B0D002261CC /* local_filesystem.hh */,
+				2B40018C1A57350D002261CC /* make_distant_filesystem.hh */,
+				2B40018B1A57350D002261CC /* make_distant_filesystem.cc */,
+				2B4001901A57350D002261CC /* make_local_filesystem.hh */,
+				2B40018F1A57350D002261CC /* make_local_filesystem.cc */,
 				2B4001971A57350D002261CC /* session.hh */,
 				2B4001961A57350D002261CC /* session.cc */,
 				2B4001981A57350D002261CC /* synchronize.hh */,
@@ -166,15 +172,17 @@
 		2B4001891A57350D002261CC /* detail */ = {
 			isa = PBXGroup;
 			children = (
+				2B40020F1A581C64002261CC /* any_fs.hh */,
 				2B40018A1A57350D002261CC /* async.hh */,
 				2B4001DE1A5771F7002261CC /* async.cc */,
 				2B4001D91A576148002261CC /* conflict.hh */,
 				2B4001D81A576148002261CC /* conflict.cc */,
-				2B4001A81A573E19002261CC /* fs.hh */,
+				2B4001A81A573E19002261CC /* distant_fs.hh */,
 				2B4001DB1A576148002261CC /* handle_conflict.hh */,
 				2B4001DA1A576148002261CC /* handle_conflict.cc */,
 				2B4001E01A57B327002261CC /* json.hh */,
 				2B4001A11A5735C9002261CC /* len.hh */,
+				2B40020E1A581C26002261CC /* local_fs.hh */,
 				2B4002061A57E6A3002261CC /* md5.hh */,
 				2B4002051A57E6A3002261CC /* md5.cc */,
 				2B4001A31A5739F2002261CC /* mk_local_filesystem.hh */,
@@ -385,8 +393,8 @@
 				2B4001EF1A57C4E2002261CC /* mk_distant_filesystem.cc in Sources */,
 				2B4001F01A57C4E2002261CC /* pull.cc in Sources */,
 				2B4001F11A57C4E2002261CC /* push.cc in Sources */,
-				2B4001F21A57C4E2002261CC /* distant_filesystem.cc in Sources */,
-				2B4001F31A57C4E2002261CC /* local_filesystem.cc in Sources */,
+				2B4001F21A57C4E2002261CC /* make_distant_filesystem.cc in Sources */,
+				2B4001F31A57C4E2002261CC /* make_local_filesystem.cc in Sources */,
 				2B4001F41A57C4E2002261CC /* session.cc in Sources */,
 				2B4001F51A57C4E2002261CC /* synchronize.cc in Sources */,
 			);

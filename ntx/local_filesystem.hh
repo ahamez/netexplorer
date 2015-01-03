@@ -1,14 +1,89 @@
 #pragma once
 
-#include "ntx/configuration.hh"
-#include "ntx/fs.hh"
+#include <memory>  // shared_ptr
+#include <string>
+#include <utility> // forward
+
+#include "ntx/types.hh"
+#include "ntx/detail/local_fs.hh"
 
 namespace ntx {
 
 /*------------------------------------------------------------------------------------------------*/
 
-folder
-get_local_filesystem(const configuration&);
+/// @brief Describe a local file.
+class local_file final
+{
+private:
+
+  std::shared_ptr<detail::local_file_impl> ptr_;
+
+public:
+
+  local_file(const std::string& name, std::size_t size, const md5_digest_type& md5)
+    : ptr_{std::make_shared<detail::local_file_impl>(name, size, md5)}
+  {}
+
+  const auto& name() const noexcept {return ptr_->name();}
+        auto  size() const noexcept {return ptr_->size();}
+  const auto& md5()  const noexcept {return ptr_->md5();}
+
+  friend
+  bool
+  operator<(const local_file& lhs, const local_file& rhs)
+  noexcept
+  {
+    return lhs.name() < rhs.name();
+  }
+};
+
+/*------------------------------------------------------------------------------------------------*/
+
+/// @brief Describe a local folder.
+class local_folder final
+{
+private:
+
+  std::shared_ptr<detail::local_folder_impl> ptr_;
+
+public:
+
+  local_folder(const std::string& name)
+    : ptr_{std::make_shared<detail::local_folder_impl>(name)}
+  {}
+
+  const auto& name()    const noexcept {return ptr_->name();}
+  const auto& files()   const noexcept {return ptr_->files();}
+  const auto& folders() const noexcept {return ptr_->folders();}
+
+  /// @brief Add one or more files to this folder.
+  ///
+  /// Unicity of added files is ensured (using name).
+  template <typename... Fs>
+  void
+  add_file(Fs&&... fs)
+  {
+    ptr_->add_file(std::forward<Fs>(fs)...);
+  }
+
+  /// @brief Add one or more folders to this folder.
+  ///
+  /// Unicity of added folders is ensured (using name).
+  template <typename... Fs>
+  void
+  add_folder(Fs&&... fs)
+  {
+    ptr_->add_folder(std::forward<Fs>(fs)...);
+  }
+
+  friend
+  bool
+  operator<(const local_folder& lhs, const local_folder& rhs)
+  noexcept
+  {
+    return lhs.name() < rhs.name();
+  }
+};
 
 /*------------------------------------------------------------------------------------------------*/
 

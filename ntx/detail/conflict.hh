@@ -1,6 +1,7 @@
 #pragma once
 
-#include "ntx/fs.hh"
+#include "ntx/distant_filesystem.hh"
+#include "ntx/local_filesystem.hh"
 
 namespace ntx {
 namespace detail {
@@ -12,7 +13,7 @@ namespace detail {
 struct conflict final
 {
   bool
-  operator()(const ntx::file&, const ntx::file&) const noexcept;
+  operator()(const ntx::distant_file&, const ntx::local_file&) const noexcept;
 };
 
 /*------------------------------------------------------------------------------------------------*/
