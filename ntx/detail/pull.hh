@@ -17,7 +17,7 @@ private:
 
   const configuration& conf_;
   const session& session_;
-  detail::async async_;
+  async async_;
 
 public:
 

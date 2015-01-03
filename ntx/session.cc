@@ -6,6 +6,7 @@
 #include <rapidjson/document.h>
 
 #include "ntx/session.hh"
+#include "ntx/detail/json.hh"
 #include "ntx/detail/len.hh"
 
 namespace ntx {
@@ -73,8 +74,7 @@ connect(const configuration& conf, const credentials& creds)
   request << header("Connection", "close")
           << header("Content-Type", "application/json");
 
-  const auto json
-    = "{\"user\":\"" + creds.login() + "\",\"password\":\"" + creds.password() + "\"}";
+  const auto json = detail::json_obj("user", creds.login(), "password", creds.password());
   const auto response = http::client{}.post(request, json);
 
   if (status(response) != 200u)
@@ -100,7 +100,6 @@ disconnect(const configuration& conf, const session& s)
 {
   auto request = http::client::request{conf.auth_url()};
   request << header("Connection", "close") << header("Token", s.token());
-
   http::client{}.delete_(request);
 }
 

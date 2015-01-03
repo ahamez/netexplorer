@@ -6,6 +6,7 @@ set(
   local_filesystem.cc
   session.cc
   synchronize.cc
+  detail/async.cc
   detail/conflict.cc
   detail/handle_conflict.cc
   detail/pull.cc

@@ -10,6 +10,7 @@
 
 #include <rapidjson/document.h>
 
+#include "ntx/detail/json.hh"
 #include "ntx/detail/push.hh"
 
 namespace ntx {
@@ -94,9 +95,7 @@ noexcept
               << header("Token", session_.token())
               << header("Content-Type", "application/json");
 
-      const auto json
-        = "{\"name\":\"" + f.name() + "\",\"parent_id\":\"" + std::to_string(parent_id)
-        + "\",\"hash\":\"" + f.md5() + "\"}";
+      const auto json = json_obj("name", f.name(), "parent_id", parent_id, "hash", f.md5());
 
       const auto response = http::client{}.post(request, json);
       if (status(response) != 201u)

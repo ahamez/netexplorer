@@ -19,6 +19,7 @@
 		2B4001D71A5760CC002261CC /* push.cc in Sources */ = {isa = PBXBuildFile; fileRef = 2B4001D41A5760CC002261CC /* push.cc */; };
 		2B4001DC1A576148002261CC /* conflict.cc in Sources */ = {isa = PBXBuildFile; fileRef = 2B4001D81A576148002261CC /* conflict.cc */; };
 		2B4001DD1A576148002261CC /* handle_conflict.cc in Sources */ = {isa = PBXBuildFile; fileRef = 2B4001DA1A576148002261CC /* handle_conflict.cc */; };
+		2B4001DF1A5771F7002261CC /* async.cc in Sources */ = {isa = PBXBuildFile; fileRef = 2B4001DE1A5771F7002261CC /* async.cc */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -95,6 +96,8 @@
 		2B4001D91A576148002261CC /* conflict.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = conflict.hh; sourceTree = "<group>"; };
 		2B4001DA1A576148002261CC /* handle_conflict.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = handle_conflict.cc; sourceTree = "<group>"; };
 		2B4001DB1A576148002261CC /* handle_conflict.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = handle_conflict.hh; sourceTree = "<group>"; };
+		2B4001DE1A5771F7002261CC /* async.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = async.cc; sourceTree = "<group>"; };
+		2B4001E01A57B327002261CC /* json.hh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = json.hh; sourceTree = "<group>"; };
 		2B67A0DE1A51D07300DB958A /* netexplorer */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = netexplorer; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B9600961A51E3980080E3E3 /* CMakeLists.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CMakeLists.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -139,11 +142,13 @@
 			isa = PBXGroup;
 			children = (
 				2B40018A1A57350D002261CC /* async.hh */,
+				2B4001DE1A5771F7002261CC /* async.cc */,
 				2B4001D91A576148002261CC /* conflict.hh */,
 				2B4001D81A576148002261CC /* conflict.cc */,
 				2B4001A81A573E19002261CC /* fs.hh */,
 				2B4001DB1A576148002261CC /* handle_conflict.hh */,
 				2B4001DA1A576148002261CC /* handle_conflict.cc */,
+				2B4001E01A57B327002261CC /* json.hh */,
 				2B4001A11A5735C9002261CC /* len.hh */,
 				2B4001A31A5739F2002261CC /* mk_local_filesystem.hh */,
 				2B4001A21A5739F2002261CC /* mk_local_filesystem.cc */,
@@ -305,6 +310,7 @@
 				2B4001D71A5760CC002261CC /* push.cc in Sources */,
 				2B4001A01A57350D002261CC /* session.cc in Sources */,
 				2B40019B1A57350D002261CC /* distant_filesystem.cc in Sources */,
+				2B4001DF1A5771F7002261CC /* async.cc in Sources */,
 				2B40019C1A57350D002261CC /* local_filesystem.cc in Sources */,
 				2B40019D1A57350D002261CC /* main.cc in Sources */,
 				2B4001DC1A576148002261CC /* conflict.cc in Sources */,
