@@ -20,8 +20,8 @@ private:
 
 public:
 
-  distant_file(const std::string& name, std::size_t size, const md5_digest_type& md5, id_type id)
-    : ptr_{std::make_shared<detail::distant_file_impl>(name, size, md5, id)}
+  distant_file(id_type id, const std::string& name, std::size_t size, const md5_digest_type& md5)
+    : ptr_{std::make_shared<detail::distant_file_impl>(id, name, size, md5)}
   {}
 
   const auto& name() const noexcept {return ptr_->name();}
@@ -49,8 +49,8 @@ private:
 
 public:
 
-  distant_folder(const std::string& name, id_type id)
-    : ptr_{std::make_shared<detail::distant_folder_impl>(name, id)}
+  distant_folder(id_type id, const std::string& name)
+    : ptr_{std::make_shared<detail::distant_folder_impl>(id, name)}
   {}
 
   const auto& name()    const noexcept {return ptr_->name();}

@@ -30,10 +30,10 @@ mk_file(const rapidjson::Value& v)
     throw std::runtime_error("Invalid hash on server");
   }
 
-  return { std::string{v["name"].GetString(), v["name"].GetStringLength()}
+  return { v["id"].GetUint64()
+         , std::string{v["name"].GetString(), v["name"].GetStringLength()}
          , v["size"].GetUint64()
-         , std::string{v["hash"].GetString(), v["hash"].GetStringLength()}
-         , v["id"].GetUint64()};
+         , std::string{v["hash"].GetString(), v["hash"].GetStringLength()}};
 }
 
 /*------------------------------------------------------------------------------------------------*/
@@ -49,7 +49,7 @@ mk_folder(const rapidjson::Value& v)
   assert(contents.HasMember("files"));
   assert(contents.HasMember("folders"));
 
-  auto res = distant_folder{v["name"].GetString(), v["id"].GetUint64()};
+  auto res = distant_folder{v["id"].GetUint64(), v["name"].GetString()};
 
   const auto& files = contents["files"];
   assert(files.IsArray());

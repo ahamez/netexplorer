@@ -10,7 +10,8 @@ namespace detail {
 /*------------------------------------------------------------------------------------------------*/
 
 /// @internal
-class distant_file_impl_specific
+class distant_file_impl_specific final
+  : public any_file_impl
 {
 private:
 
@@ -18,8 +19,10 @@ private:
 
 public:
 
-  distant_file_impl_specific(id_type id)
-    : id_{id}
+  template <typename... Args>
+  distant_file_impl_specific(id_type id, Args&&... args)
+    : any_file_impl(std::forward<Args>(args)...)
+    , id_{id}
   {}
 
   id_type id() const noexcept {return id_;}
@@ -28,7 +31,9 @@ public:
 /*------------------------------------------------------------------------------------------------*/
 
 /// @internal
-class distant_folder_impl_specific
+template <typename Folder, typename File>
+class distant_folder_impl_specific final
+  : public any_folder_impl<Folder, File>
 {
 private:
 
@@ -36,8 +41,10 @@ private:
 
 public:
 
-  distant_folder_impl_specific(id_type id)
-    : id_{id}
+  template <typename... Args>
+  distant_folder_impl_specific(id_type id, Args&&... args)
+    : any_folder_impl<Folder, File>(std::forward<Args>(args)...)
+    , id_{id}
   {}
 
   id_type id() const noexcept {return id_;}
@@ -45,9 +52,8 @@ public:
 
 /*------------------------------------------------------------------------------------------------*/
 
-using distant_file_impl = any_file_impl<distant_file_impl_specific>;
-using distant_folder_impl
-  = any_folder_impl<distant_folder_impl_specific, distant_folder, distant_file>;
+using distant_file_impl = distant_file_impl_specific;
+using distant_folder_impl = distant_folder_impl_specific<distant_folder, distant_file>;
 
 /*------------------------------------------------------------------------------------------------*/
 

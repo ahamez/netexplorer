@@ -3,7 +3,7 @@
 #include <sstream>
 #include <string>
 #include <type_traits> // enable_if, is_integral
-#include <utility>     //forward
+#include <utility>     // forward
 
 namespace ntx {
 namespace detail {
@@ -54,7 +54,7 @@ std::string
 json_obj(Args&&... args)
 {
   static_assert(sizeof...(Args) % 2 == 0, "Invalid number of arguments");
-  auto ss = std::stringstream{};
+  auto&& ss = std::stringstream{};
   ss << "{";
   json_obj_impl(ss, std::forward<Args>(args)...);
   ss << "}";

@@ -13,9 +13,7 @@ namespace detail {
 /*------------------------------------------------------------------------------------------------*/
 
 /// @internal
-template <typename Specific>
-class any_file_impl final
-  : public Specific
+class any_file_impl
 {
 private:
 
@@ -25,11 +23,8 @@ private:
 
 public:
 
-  template <typename... Args>
-  any_file_impl( const std::string& name, std::size_t size, const md5_digest_type& md5
-               , Args&&... args)
-    : Specific(std::forward<Args>(args)...)
-    , name_{name}, size_{size}, md5_(md5)
+  any_file_impl(const std::string& name, std::size_t size, const md5_digest_type& md5)
+    : name_{name}, size_{size}, md5_(md5)
   {}
 
   const auto& name() const noexcept {return name_;}
@@ -40,9 +35,8 @@ public:
 /*------------------------------------------------------------------------------------------------*/
 
 /// @internal
-template <typename Specific, typename Folder, typename File>
-class any_folder_impl final
-  : public Specific
+template <typename Folder, typename File>
+class any_folder_impl
 {
 private:
 
@@ -52,10 +46,8 @@ private:
 
 public:
 
-  template <typename... Args>
-  any_folder_impl(const std::string& name, Args&&... args)
-    : Specific(std::forward<Args>(args)...)
-    , name_{name}, files_{}, folders_{}
+  any_folder_impl(const std::string& name)
+    : name_{name}, files_{}, folders_{}
   {}
 
   const auto& name()    const noexcept {return name_;}
