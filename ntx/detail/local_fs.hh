@@ -1,7 +1,7 @@
 #pragma once
 
 #include "ntx/local_filesystem_fwd.hh"
-#include "ntx/detail/any_fs.hh"
+#include "ntx/detail/any_fs_impl.hh"
 
 namespace ntx {
 namespace detail {

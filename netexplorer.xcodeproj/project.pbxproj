@@ -121,7 +121,7 @@
 		2B40020C1A581B0D002261CC /* local_filesystem.hh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = local_filesystem.hh; sourceTree = "<group>"; };
 		2B40020D1A581B3E002261CC /* local_filesystem_fwd.hh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = local_filesystem_fwd.hh; sourceTree = "<group>"; };
 		2B40020E1A581C26002261CC /* local_fs.hh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = local_fs.hh; sourceTree = "<group>"; };
-		2B40020F1A581C64002261CC /* any_fs.hh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = any_fs.hh; sourceTree = "<group>"; };
+		2B40020F1A581C64002261CC /* any_fs_impl.hh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = any_fs_impl.hh; sourceTree = "<group>"; };
 		2B9600961A51E3980080E3E3 /* CMakeLists.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CMakeLists.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -172,7 +172,7 @@
 		2B4001891A57350D002261CC /* detail */ = {
 			isa = PBXGroup;
 			children = (
-				2B40020F1A581C64002261CC /* any_fs.hh */,
+				2B40020F1A581C64002261CC /* any_fs_impl.hh */,
 				2B40018A1A57350D002261CC /* async.hh */,
 				2B4001DE1A5771F7002261CC /* async.cc */,
 				2B4001D91A576148002261CC /* conflict.hh */,
@@ -592,6 +592,7 @@
 				2B4001E81A57C4C8002261CC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		2B4001FE1A57C541002261CC /* Build configuration list for PBXNativeTarget "sync" */ = {
 			isa = XCConfigurationList;
@@ -600,6 +601,7 @@
 				2B4002001A57C541002261CC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		2B67A0D91A51D07300DB958A /* Build configuration list for PBXProject "netexplorer" */ = {
 			isa = XCConfigurationList;
