@@ -30,7 +30,7 @@ main()
 
     ntx::synchronize(conf, session, distant_fs, local_fs);
   }
-  catch (std::exception& e)
+  catch (const std::exception& e)
   {
     std::cerr << e.what() << '\n';
     return 1;

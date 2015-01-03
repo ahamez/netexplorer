@@ -56,34 +56,41 @@ noexcept
 
   async_([=]
   {
-    auto parameters = uri::uri{};
-    parameters << uri::path(conf_.file_url())
-               << uri::path("/")
-               << uri::path(std::to_string(*f.id()))
-               << uri::path("/download");
-
-    auto request = http::client::request{parameters};
-    request << header("Connection", "close")
-            << header("Token", session_.token());
-
-    const auto file_path = parent_path / fs::path{f.name()};
-    auto&& file = fs::ofstream{file_path, std::ios::binary};
-    if (not file.is_open())
+    try
     {
-      std::cerr << "Can't write to " << file_path.string() << '\n';
-      return;
+      auto parameters = uri::uri{};
+      parameters << uri::path(conf_.file_url())
+                 << uri::path("/")
+                 << uri::path(std::to_string(*f.id()))
+                 << uri::path("/download");
+
+      auto request = http::client::request{parameters};
+      request << header("Connection", "close")
+      << header("Token", session_.token());
+
+      const auto file_path = parent_path / fs::path{f.name()};
+      auto&& file = fs::ofstream{file_path, std::ios::binary};
+      if (not file.is_open())
+      {
+        std::cerr << "Can't write to " << file_path.string() << '\n';
+        return;
+      }
+      auto fstream = std::ostreambuf_iterator<char>{file};
+
+      const auto response = http::client{}.get( request
+                                              , [&](const auto& range, const auto& /*error*/)
+                                                {
+                                                  boost::copy(range, fstream);
+                                                });
+      if (status(response) != 200u)
+      {
+        std::cerr << "Can't download " << f.name() << '\n';
+        fs::remove(file_path);
+      }
     }
-    auto fstream = std::ostreambuf_iterator<char>{file};
-
-    const auto response = http::client{}.get( request
-                                            , [&](const auto& range, const auto& /*error*/)
-                                              {
-                                                boost::copy(range, fstream);
-                                              });
-    if (status(response) != 200u)
+    catch (const std::exception& e)
     {
-      std::cerr << "Can't download " << f.name() << '\n';
-      fs::remove(file_path);
+      std::cerr << e.what() << '\n';
     }
   });
 }
