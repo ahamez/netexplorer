@@ -29,7 +29,7 @@ void
 async::operator()(const std::function<void (void)>& t)
 {
   std::lock_guard<std::mutex> lock{mutex_};
-  while (futures_.size() >= max_tasks_)
+  if (futures_.size() >= max_tasks_)
   {
     // Remove all finished tasks.
     for (auto it = begin(futures_); it != end(futures_); ++it)
