@@ -10,7 +10,7 @@
 #include <boost/locale.hpp>
 
 #include "ntx/types.hh"
-#include "ntx/detail/local_fs.hh"
+#include "ntx/detail/local_fs_impl.hh"
 
 namespace ntx {
 

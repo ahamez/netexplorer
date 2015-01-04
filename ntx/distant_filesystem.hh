@@ -5,7 +5,7 @@
 #include <utility> // forward
 
 #include "ntx/types.hh"
-#include "ntx/detail/distant_fs.hh"
+#include "ntx/detail/distant_fs_impl.hh"
 
 namespace ntx {
 
