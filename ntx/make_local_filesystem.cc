@@ -8,7 +8,7 @@ namespace ntx {
 local_folder
 make_local_filesystem(const configuration& conf)
 {
-  return detail::mk_local_folder(conf.local_root());
+  return detail::mk_local_folder(conf.local_path());
 }
 
 /*------------------------------------------------------------------------------------------------*/

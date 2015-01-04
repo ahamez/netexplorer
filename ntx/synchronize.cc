@@ -16,7 +16,7 @@ synchronize( const configuration& conf, const session& s, const distant_folder& 
 {
   // Pull, push, etc. share the same task manager.
   auto&& async = detail::async{conf.max_tasks()};
-  detail::synchronize( distant, local, conf.local_root()
+  detail::synchronize( distant, local, conf.local_path()
                      , detail::pull{conf, s, async}, detail::push{conf, s, async}
                      , detail::conflict{}, detail::handle_conflict{conf, s, async});
 }
