@@ -31,13 +31,14 @@ async::operator()(const std::function<void (void)>& t)
   std::lock_guard<std::mutex> lock{mutex_};
   while (futures_.size() >= max_tasks_)
   {
+    // Remove all finished tasks.
     for (auto it = begin(futures_); it != end(futures_); ++it)
     {
       if (it->wait_for(std::chrono::nanoseconds{0}) == std::future_status::ready)
       {
         it->get();
-        futures_.erase(it);
-        break;
+        const auto to_erase = it++;
+        futures_.erase(to_erase);
       }
     }
     std::this_thread::sleep_for(std::chrono::milliseconds{50});

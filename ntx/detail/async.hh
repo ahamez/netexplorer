@@ -3,7 +3,7 @@
 #include <future>
 #include <functional> // function
 #include <mutex>
-#include <vector>
+#include <list>
 
 namespace ntx {
 namespace detail {
@@ -16,7 +16,7 @@ class async final
 {
 private:
 
-  std::vector<std::future<void>> futures_;
+  std::list<std::future<void>> futures_;
   std::mutex mutex_;
   std::size_t max_tasks_;
 
