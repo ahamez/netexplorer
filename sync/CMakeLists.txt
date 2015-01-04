@@ -6,6 +6,9 @@ set(
 
 add_executable(sync ${SYNC_SOURCES})
 add_dependencies(sync ntx)
+if(UNIX AND NOT APPLE)
+  target_link_libraries(sync rt)
+endif()
 
 target_link_libraries(
   sync
