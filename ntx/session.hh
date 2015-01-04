@@ -40,11 +40,13 @@ public:
 
 /*------------------------------------------------------------------------------------------------*/
 
+/// @brief Connect to the NetExplorer platform.
 session
 connect(const configuration&);
 
 /*------------------------------------------------------------------------------------------------*/
 
+/// @brief Disconnect from the NetExplorer platform.
 void
 disconnect(const configuration&, const session&);
 

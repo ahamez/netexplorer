@@ -19,11 +19,11 @@ namespace fs = boost::filesystem;
 
 /// @internal
 /// @brief Synchronize a distant and a local filesystem.
-/// @arg pull Function object called when a file is missing in the local filesystem. 
-/// @arg push Function object called when a file is missing in the distant filesystem.
-/// @arg conflict Function object called to check if two files conflict.
-/// @arg handle_conflict Function object called when a file exists on both filesystem with different
-/// contents.
+/// @param pull Function object called when a file is missing in the local filesystem.
+/// @param push Function object called when a file is missing in the distant filesystem.
+/// @param conflict Function object called to check if two files conflict.
+/// @param handle_conflict Function object called when a file exists on both filesystem with
+/// different contents.
 template <typename Pull, typename Push, typename Conflict, typename HandleConflict>
 void
 synchronize( const distant_folder& distant_f, const local_folder& local_f
