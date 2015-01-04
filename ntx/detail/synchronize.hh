@@ -62,15 +62,13 @@ synchronize( const distant_folder& distant_f, const local_folder& local_f
         ++local_cit;
       }
     }
-    while (distant_cit != end(distant_f.files()))
+    for (; distant_cit != end(distant_f.files()); ++distant_cit)
     {
       pull(distant_f.id(), *distant_cit, local_path);
-      ++distant_cit;
     }
-    while (local_cit != end(local_f.files()))
+    for (; local_cit != end(local_f.files()); ++local_cit)
     {
       push(distant_f.id(), *local_cit, local_path);
-      ++local_cit;
     }
   }
 
@@ -85,6 +83,7 @@ synchronize( const distant_folder& distant_f, const local_folder& local_f
     {
       const auto& distant = *distant_cit;
       const auto& local   = *local_cit;
+
       if (distant.name() == local.name())
       {
         synchronize( distant, local, local_path / fs::path{local.name()}
@@ -105,15 +104,13 @@ synchronize( const distant_folder& distant_f, const local_folder& local_f
         ++local_cit;
       }
     }
-    while (distant_cit != end(distant_f.folders()))
+    for (; distant_cit != end(distant_f.folders()); ++distant_cit)
     {
       pull(distant_f.id(), *distant_cit, local_path);
-      ++distant_cit;
     }
-    while (local_cit != end(local_f.folders()))
+    for (; local_cit != end(local_f.folders()); ++local_cit)
     {
       push(distant_f.id(), *local_cit, local_path);
-      ++local_cit;
     }
   }
 }
