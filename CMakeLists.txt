@@ -82,6 +82,7 @@ include_directories("${Boost_INCLUDE_DIRS}")
 
 include_directories(${CMAKE_BINARY_DIR}/ext/include)
 link_directories(${CMAKE_BINARY_DIR}/ext/lib)
+link_directories(${CMAKE_BINARY_DIR}/ext/lib64)
 
 #--------------------------------------------------------------------------------------------------#
 
