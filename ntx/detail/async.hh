@@ -31,6 +31,7 @@ public:
   async(async&&) = default;
   async& operator= (async&&) = default;
 
+  /// @brief Add a task to be eventually performed.
   void
   operator()(const std::function<void (void)>&);
 };
