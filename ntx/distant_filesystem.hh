@@ -56,10 +56,10 @@ public:
   const std::string& name() const noexcept {return ptr_->name();}
         id_type      id()   const noexcept {return ptr_->id();}
 
-  /// @brief Return an iterable set of contained files.
+  /// @brief Return the iterable set of contained files.
   auto files() const noexcept -> decltype(ptr_->files()) {return ptr_->files();}
 
-  /// @brief Return an iterable set of contained folders.
+  /// @brief Return the iterable set of contained folders.
   auto folders() const noexcept -> decltype(ptr_->folders()) {return ptr_->folders();}
 
   /// @brief Add one or more files to this folder.
