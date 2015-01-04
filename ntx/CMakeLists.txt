@@ -4,6 +4,7 @@ set(
   make_distant_filesystem.cc
   make_local_filesystem.cc
   session.cc
+  sub_distant_folder.cc
   synchronize.cc
   detail/async.cc
   detail/conflict.cc
