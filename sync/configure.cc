@@ -19,6 +19,7 @@ configure(int argc, const char** argv)
   general_options.add_options()
     ("help"    , "Show this help")
     ("conflict", po::value<std::string>(), "Where to store distant conflicting files")
+    ("tasks"   , po::value<std::size_t>()->default_value(24), "Maximum number of concurrent tasks")
   ;
 
   po::options_description hidden_options("Hidden input options");
@@ -91,7 +92,8 @@ configure(int argc, const char** argv)
                            , vm.count("conflict") ? vm["conflict"].as<std::string>()
                                                   : boost::filesystem::current_path()
                            , vm["user"].as<std::string>()
-                           , vm["password"].as<std::string>()};
+                           , vm["password"].as<std::string>()
+                           , vm["tasks"].as<std::size_t>()};
 }
 
 /*------------------------------------------------------------------------------------------------*/

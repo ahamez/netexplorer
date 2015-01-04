@@ -20,8 +20,8 @@ using namespace boost::network;
 
 /*------------------------------------------------------------------------------------------------*/
 
-pull::pull(const configuration& conf, const session& s)
-  : conf_{conf}, session_{s}, async_{}
+pull::pull(const configuration& conf, const session& s, async& a)
+  : conf_{conf}, session_{s}, async_{a}
 {}
 
 /*------------------------------------------------------------------------------------------------*/

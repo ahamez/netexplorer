@@ -20,8 +20,8 @@ using namespace boost::network;
 
 /*------------------------------------------------------------------------------------------------*/
 
-handle_conflict::handle_conflict(const configuration& conf, const session& s)
-  : conf_{conf}, session_{s}, async_{}
+handle_conflict::handle_conflict(const configuration& conf, const session& s, async& a)
+  : conf_{conf}, session_{s}, async_{a}
 {}
 
 /*------------------------------------------------------------------------------------------------*/
@@ -44,7 +44,7 @@ handle_conflict::operator()( id_type parent_id, const distant_file& f, const loc
     request << header("Connection", "close")
             << header("Token", session_.token());
 
-    const auto conflict_folder = conf_.conflict_folder() / parent_path;
+    const auto conflict_folder = conf_.conflict_dir() / parent_path;
     const auto file_path = conflict_folder / fs::path{f.name()};
     if (not exists(conflict_folder))
     {

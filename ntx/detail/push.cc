@@ -23,8 +23,8 @@ using namespace boost::network;
 
 /*------------------------------------------------------------------------------------------------*/
 
-push::push(const configuration& conf, const session& s)
-  : conf_{conf}, session_{s}, async_{}
+push::push(const configuration& conf, const session& s, async& a)
+  : conf_{conf}, session_{s}, async_{a}
 {}
 
 /*------------------------------------------------------------------------------------------------*/

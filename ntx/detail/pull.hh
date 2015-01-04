@@ -17,11 +17,11 @@ private:
 
   const configuration& conf_;
   const session& session_;
-  async async_;
+  async& async_;
 
 public:
 
-  pull(const configuration&, const session&);
+  pull(const configuration&, const session&, async&);
 
   void operator()(id_type, const distant_folder&, const boost::filesystem::path&);
   void operator()(id_type, const distant_file&, const boost::filesystem::path&);

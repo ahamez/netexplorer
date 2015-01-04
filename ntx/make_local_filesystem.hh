@@ -7,6 +7,7 @@ namespace ntx {
 
 /*------------------------------------------------------------------------------------------------*/
 
+/// @brief Return the local filesystem.
 local_folder
 make_local_filesystem(const configuration&);
 

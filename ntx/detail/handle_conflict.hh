@@ -19,11 +19,11 @@ private:
 
   const configuration& conf_;
   const session& session_;
-  async async_;
+  async& async_;
 
 public:
 
-  handle_conflict(const configuration&, const session&);
+  handle_conflict(const configuration&, const session&, async&);
 
   void operator()(id_type, const distant_file&, const local_file&, const boost::filesystem::path&);
 };

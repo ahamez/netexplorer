@@ -1,8 +1,13 @@
 #pragma once
 
+#include <cstring>
+#include <iostream>
+
 #include <memory>  // shared_ptr
 #include <string>
 #include <utility> // forward
+
+#include <boost/locale.hpp>
 
 #include "ntx/types.hh"
 #include "ntx/detail/local_fs.hh"

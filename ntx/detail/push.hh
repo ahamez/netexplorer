@@ -18,11 +18,11 @@ private:
 
   const configuration& conf_;
   const session& session_;
-  async async_;
+  async& async_;
 
 public:
 
-  push(const configuration&, const session&);
+  push(const configuration&, const session&, async&);
 
   void operator()(id_type, const local_folder&, const boost::filesystem::path&);
   void operator()(id_type, const local_file&, const boost::filesystem::path&);

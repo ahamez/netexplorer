@@ -9,6 +9,12 @@ namespace detail {
 
 /*------------------------------------------------------------------------------------------------*/
 
+async::async(std::size_t max_tasks)
+  : max_tasks_{max_tasks}
+{}
+
+/*------------------------------------------------------------------------------------------------*/
+
 async::~async()
 {
   for (auto& t : futures_)
@@ -22,8 +28,8 @@ async::~async()
 void
 async::operator()(const std::function<void (void)>& t)
 {
-  /// @todo parametrize the maximum number of concurrent tasks.
-  while (futures_.size() >= 24)
+  std::lock_guard<std::mutex> lock{mutex_};
+  while (futures_.size() >= max_tasks_)
   {
     for (auto it = begin(futures_); it != end(futures_); ++it)
     {
@@ -37,7 +43,7 @@ async::operator()(const std::function<void (void)>& t)
     std::this_thread::sleep_for(std::chrono::milliseconds{50});
   }
   futures_.emplace_back(std::async(std::launch::async, t));
-}
+} // lock released
 
 /*------------------------------------------------------------------------------------------------*/
 

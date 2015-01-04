@@ -2,6 +2,7 @@
 
 #include <future>
 #include <functional> // function
+#include <mutex>
 #include <vector>
 
 namespace ntx {
@@ -16,11 +17,12 @@ class async final
 private:
 
   std::vector<std::future<void>> futures_;
+  std::mutex mutex_;
+  std::size_t max_tasks_;
 
 public:
 
-  async() = default;
-
+  async(std::size_t max_tasks);
   ~async();
 
   async(const async&) = delete;
