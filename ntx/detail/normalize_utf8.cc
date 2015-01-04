@@ -1,3 +1,5 @@
+#include <stdexcept>
+
 #include <utf8proc/utf8proc.h>
 
 #include "ntx/detail/normalize_utf8.hh"

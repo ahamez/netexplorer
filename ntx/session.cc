@@ -1,3 +1,4 @@
+#include <stdexcept>
 #include <unordered_set>
 
 #define BOOST_NETWORK_ENABLE_HTTPS

@@ -1,4 +1,5 @@
 #include <algorithm> // find_if
+#include <stdexcept>
 
 #include "ntx/sub_distant_folder.hh"
 #include "ntx/detail/normalize_utf8.hh"

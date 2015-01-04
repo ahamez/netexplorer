@@ -2,6 +2,7 @@
 #include <fstream>
 #include <iostream>
 #include <iterator>
+#include <stdexcept>
 
 #include <boost/filesystem.hpp>
 #include <boost/filesystem/fstream.hpp>

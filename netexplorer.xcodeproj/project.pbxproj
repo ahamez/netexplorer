@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2B0EF5971A5950900022E35E /* utf8proc.cc in Sources */ = {isa = PBXBuildFile; fileRef = 2B40021F1A5935C3002261CC /* utf8proc.cc */; };
+		2B0EF59A1A59560C0022E35E /* sub_distant_folder.cc in Sources */ = {isa = PBXBuildFile; fileRef = 2B0EF5981A59560C0022E35E /* sub_distant_folder.cc */; };
+		2B0EF59B1A59560C0022E35E /* sub_distant_folder.hh in Headers */ = {isa = PBXBuildFile; fileRef = 2B0EF5991A59560C0022E35E /* sub_distant_folder.hh */; };
 		2B4001EA1A57C4E2002261CC /* automatic_session.cc in Sources */ = {isa = PBXBuildFile; fileRef = 2B4001821A57350D002261CC /* automatic_session.cc */; };
 		2B4001EB1A57C4E2002261CC /* async.cc in Sources */ = {isa = PBXBuildFile; fileRef = 2B4001DE1A5771F7002261CC /* async.cc */; };
 		2B4001EC1A57C4E2002261CC /* conflict.cc in Sources */ = {isa = PBXBuildFile; fileRef = 2B4001D81A576148002261CC /* conflict.cc */; };
@@ -51,6 +54,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		2B0EF5981A59560C0022E35E /* sub_distant_folder.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = sub_distant_folder.cc; sourceTree = "<group>"; };
+		2B0EF5991A59560C0022E35E /* sub_distant_folder.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = sub_distant_folder.hh; sourceTree = "<group>"; };
 		2B4001821A57350D002261CC /* automatic_session.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = automatic_session.cc; sourceTree = "<group>"; };
 		2B4001831A57350D002261CC /* automatic_session.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = automatic_session.hh; sourceTree = "<group>"; };
 		2B4001841A57350D002261CC /* CMakeLists.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CMakeLists.txt; sourceTree = "<group>"; };
@@ -169,6 +174,8 @@
 				2B40018F1A57350D002261CC /* make_local_filesystem.cc */,
 				2B4001971A57350D002261CC /* session.hh */,
 				2B4001961A57350D002261CC /* session.cc */,
+				2B0EF5991A59560C0022E35E /* sub_distant_folder.hh */,
+				2B0EF5981A59560C0022E35E /* sub_distant_folder.cc */,
 				2B4001981A57350D002261CC /* synchronize.hh */,
 				2B4001D01A575F54002261CC /* synchronize.cc */,
 				2B4001AA1A573EE1002261CC /* types.hh */,
@@ -323,6 +330,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2B0EF59B1A59560C0022E35E /* sub_distant_folder.hh in Headers */,
 				2B4002081A57E6A3002261CC /* md5.hh in Headers */,
 				2B4002251A5935EF002261CC /* normalize_utf8.hh in Headers */,
 			);
@@ -405,9 +413,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2B0EF5971A5950900022E35E /* utf8proc.cc in Sources */,
 				2B4002071A57E6A3002261CC /* md5.cc in Sources */,
 				2B4001EA1A57C4E2002261CC /* automatic_session.cc in Sources */,
 				2B4001EB1A57C4E2002261CC /* async.cc in Sources */,
+				2B0EF59A1A59560C0022E35E /* sub_distant_folder.cc in Sources */,
 				2B4001EC1A57C4E2002261CC /* conflict.cc in Sources */,
 				2B4002241A5935EF002261CC /* normalize_utf8.cc in Sources */,
 				2B4001ED1A57C4E2002261CC /* handle_conflict.cc in Sources */,

@@ -59,7 +59,7 @@
       </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
-            argument = "~/Desktop/NetExplorer &apos;https://ahamez.netexplorer.pro/api&apos; alexandre.hamez qptt5zwn"
+            argument = "/Users/hal/Desktop/ntx &apos;https://ahamez.netexplorer.pro/api&apos; alexandre.hamez qptt5zwn"
             isEnabled = "YES">
          </CommandLineArgument>
       </CommandLineArguments>
