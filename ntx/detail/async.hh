@@ -16,7 +16,7 @@ class async final
 {
 private:
 
-  std::list<std::future<void>> futures_;
+  std::list<std::shared_future<void>> futures_;
   std::mutex mutex_;
   std::size_t max_tasks_;
 

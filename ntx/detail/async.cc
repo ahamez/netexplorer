@@ -43,7 +43,7 @@ async::operator()(const std::function<void (void)>& t)
     }
     std::this_thread::sleep_for(std::chrono::milliseconds{50});
   }
-  futures_.emplace_back(std::async(std::launch::async, t));
+  futures_.emplace_back(std::async(std::launch::async, t).share());
 } // lock released
 
 /*------------------------------------------------------------------------------------------------*/
