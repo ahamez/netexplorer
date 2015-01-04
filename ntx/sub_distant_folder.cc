@@ -1,17 +1,21 @@
 #include <algorithm> // find_if
 #include <stdexcept>
 
+#include <boost/filesystem.hpp>
+
 #include "ntx/sub_distant_folder.hh"
 #include "ntx/detail/normalize_utf8.hh"
 
 namespace ntx {
+
+namespace fs = boost::filesystem;
 
 /*------------------------------------------------------------------------------------------------*/
 
 namespace /* anonymous */ {
 
 distant_folder
-sub_folder_impl(const distant_folder& f, const boost::filesystem::path& path)
+sub_folder_impl(const distant_folder& f, const fs::path& path)
 {
   if (path.empty())
   {
@@ -38,7 +42,7 @@ sub_folder_impl(const distant_folder& f, const boost::filesystem::path& path)
     return *search;
   }
 
-  auto sub = boost::filesystem::path{};
+  auto sub = fs::path{};
   for (++cit; cit != path.end(); ++cit)
   {
     sub /= *cit;
@@ -51,8 +55,9 @@ sub_folder_impl(const distant_folder& f, const boost::filesystem::path& path)
 /*------------------------------------------------------------------------------------------------*/
 
 distant_folder
-sub_folder(const distant_folder& f, const boost::filesystem::path& path)
+sub_folder(const distant_folder& f, const std::string& path)
 {
+  const auto fs_path = fs::path{path};
   if (path.empty() or path == boost::filesystem::path{"/"})
   {
     return f;

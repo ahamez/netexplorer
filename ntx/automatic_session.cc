@@ -25,7 +25,6 @@ automatic_session::~automatic_session()
 
 /*------------------------------------------------------------------------------------------------*/
 
-/// @brief Usable as a session.
 automatic_session::operator const session& () const noexcept
 {
   return session_;

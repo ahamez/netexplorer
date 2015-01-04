@@ -7,7 +7,9 @@ namespace ntx {
 
 /*------------------------------------------------------------------------------------------------*/
 
-/// @brief Automatically connect and close a session.
+/// @brief RAII-style session.
+///
+/// Attempt to connect to the platform at construction, then disconnect at destruction.
 class automatic_session final
 {
 private:
@@ -23,7 +25,7 @@ public:
   /// @brief Disconnect a session.
   ~automatic_session();
 
-  /// @brief Usable as a session.
+  /// @brief Conversion to a session.
   operator const session& () const noexcept;
 
   // Cannot copy a automatic_session.

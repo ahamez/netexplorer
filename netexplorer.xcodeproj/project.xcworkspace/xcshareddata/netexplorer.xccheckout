@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>F41DBEDA-BE2F-48BA-9FC3-DFAEEF23FEB3</string>
+	<key>IDESourceControlProjectName</key>
+	<string>netexplorer</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>E41E845E6CCFB68BD951DD06B8A8726D6005341A</key>
+		<string>bitbucket.org:ahamez/netexplorer.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>netexplorer.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>E41E845E6CCFB68BD951DD06B8A8726D6005341A</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>bitbucket.org:ahamez/netexplorer.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>E41E845E6CCFB68BD951DD06B8A8726D6005341A</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>E41E845E6CCFB68BD951DD06B8A8726D6005341A</string>
+			<key>IDESourceControlWCCName</key>
+			<string>netexplorer</string>
+		</dict>
+	</array>
+</dict>
+</plist>
