@@ -1,5 +1,7 @@
+#include <cstdlib>
 #include <iostream>
 
+#include <boost/algorithm/string.hpp>
 #include <boost/algorithm/string/join.hpp>
 #include <boost/filesystem.hpp>
 #include <boost/program_options.hpp>
@@ -9,6 +11,19 @@
 /*------------------------------------------------------------------------------------------------*/
 
 namespace po = boost::program_options;
+
+/*------------------------------------------------------------------------------------------------*/
+
+boost::filesystem::path
+expand(std::string p)
+{
+  boost::algorithm::trim(p);
+  if (p.size() > 0 and p[0] == '~')
+  {
+    p.replace(0, 1, std::getenv("HOME"));
+  }
+  return boost::filesystem::absolute(boost::filesystem::path(p));
+}
 
 /*------------------------------------------------------------------------------------------------*/
 
@@ -88,8 +103,8 @@ configure(int argc, const char** argv)
   }
 
   return ntx::configuration{ vm["distant"].as<std::string>()
-                           , vm["local"].as<std::string>()
-                           , vm.count("conflict") ? vm["conflict"].as<std::string>()
+                           , expand(vm["local"].as<std::string>())
+                           , vm.count("conflict") ? expand(vm["conflict"].as<std::string>())
                                                   : boost::filesystem::current_path()
                            , vm["user"].as<std::string>()
                            , vm["password"].as<std::string>()
