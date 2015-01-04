@@ -6,6 +6,7 @@
 #include <boost/container/flat_set.hpp>
 
 #include "ntx/types.hh"
+#include "ntx/detail/normalize_utf8.hh"
 
 namespace ntx {
 namespace detail {
@@ -24,7 +25,7 @@ private:
 public:
 
   any_file_impl(const std::string& name, std::size_t size, const md5_digest_type& md5)
-    : name_{name}, size_{size}, md5_(md5)
+    : name_{normalize_utf8(name)}, size_{size}, md5_(md5)
   {}
 
   const auto& name() const noexcept {return name_;}
@@ -47,7 +48,7 @@ private:
 public:
 
   any_folder_impl(const std::string& name)
-    : name_{name}, files_{}, folders_{}
+    : name_{normalize_utf8(name)}, files_{}, folders_{}
   {}
 
   const auto& name()    const noexcept {return name_;}
