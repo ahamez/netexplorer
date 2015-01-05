@@ -25,8 +25,11 @@ private:
 
 public:
 
-  local_file(const std::string& name, std::size_t size, const md5_digest_type& md5)
-    : ptr_{std::make_shared<detail::local_file_impl>(name, size, md5)}
+
+  template <typename String, typename MD5>
+  local_file(String&& name, std::size_t size, MD5&& md5)
+    : ptr_{std::make_shared<detail::local_file_impl>( std::forward<String>(name), size
+                                                    , std::forward<MD5>(md5))}
   {}
 
   const std::string&     name() const noexcept {return ptr_->name();}
@@ -53,8 +56,9 @@ private:
 
 public:
 
-  local_folder(const std::string& name)
-    : ptr_{std::make_shared<detail::local_folder_impl>(name)}
+  template <typename String>
+  local_folder(String&& name)
+    : ptr_{std::make_shared<detail::local_folder_impl>(std::forward<String>(name))}
   {}
 
   const std::string& name() const noexcept {return ptr_->name();}

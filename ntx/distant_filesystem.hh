@@ -20,8 +20,10 @@ private:
 
 public:
 
-  distant_file(id_type id, const std::string& name, std::size_t size, const md5_digest_type& md5)
-    : ptr_{std::make_shared<detail::distant_file_impl>(id, name, size, md5)}
+  template <typename String, typename MD5>
+  distant_file(id_type id, String&& name, std::size_t size, MD5&& md5)
+    : ptr_{std::make_shared<detail::distant_file_impl>( id, std::forward<String>(name), size
+                                                      , std::forward<MD5>(md5))}
   {}
 
   const std::string&     name() const noexcept {return ptr_->name();}
@@ -49,8 +51,9 @@ private:
 
 public:
 
-  distant_folder(id_type id, const std::string& name)
-    : ptr_{std::make_shared<detail::distant_folder_impl>(id, name)}
+  template <typename String>
+  distant_folder(id_type id, String&& name)
+    : ptr_{std::make_shared<detail::distant_folder_impl>(id, std::forward<String>(name))}
   {}
 
   const std::string& name() const noexcept {return ptr_->name();}

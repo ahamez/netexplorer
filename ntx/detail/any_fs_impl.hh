@@ -24,8 +24,9 @@ private:
 
 public:
 
-  any_file_impl(const std::string& name, std::size_t size, const md5_digest_type& md5)
-    : name_{normalize_utf8(name)}, size_{size}, md5_(md5)
+  template <typename String, typename MD5>
+  any_file_impl(String&& name, std::size_t size, MD5&& md5)
+    : name_{normalize_utf8(std::forward<String>(name))}, size_{size}, md5_(std::forward<MD5>(md5))
   {}
 
   const auto& name() const noexcept {return name_;}
@@ -47,8 +48,9 @@ private:
 
 public:
 
-  any_folder_impl(const std::string& name)
-    : name_{normalize_utf8(name)}, files_{}, folders_{}
+  template <typename String>
+  any_folder_impl(String&& name)
+    : name_{normalize_utf8(std::forward<String>(name))}, files_{}, folders_{}
   {}
 
   const auto& name()    const noexcept {return name_;}

@@ -15,7 +15,8 @@ set(
   detail/mk_local_filesystem.cc
   detail/mk_distant_filesystem.cc
   detail/normalize_utf8.cc
-  ${PROJECT_SOURCE_DIR}/ext/utf8proc/utf8proc.cc
+  ${PROJECT_SOURCE_DIR}/ext/unilib/utf8.cpp
+  ${PROJECT_SOURCE_DIR}/ext/unilib/uninorms.cpp
 )
 
 add_library(ntx STATIC ${NTX_SOURCES})
