@@ -1,4 +1,3 @@
-#include <cassert>
 #include <stdexcept>
 
 #define BOOST_NETWORK_ENABLE_HTTPS
@@ -20,12 +19,6 @@ namespace /*anonymous*/ {
 distant_file
 mk_file(const rapidjson::Value& v)
 {
-  assert(v.IsObject());
-  assert(v.HasMember("name"));
-  assert(v.HasMember("id"));
-  assert(v.HasMember("size"));
-  assert(v.HasMember("hash"));
-
   if (v["hash"].GetStringLength() != 32)
   {
     throw std::runtime_error("Invalid hash on server");
@@ -42,25 +35,17 @@ mk_file(const rapidjson::Value& v)
 distant_folder
 mk_folder(const rapidjson::Value& v)
 {
-  assert(v.IsObject());
-  assert(v.HasMember("content"));
-
   const auto& contents = v["content"];
-  assert(contents.IsObject());
-  assert(contents.HasMember("files"));
-  assert(contents.HasMember("folders"));
 
   auto res = distant_folder{v["id"].GetUint64(), v["name"].GetString()};
 
   const auto& files = contents["files"];
-  assert(files.IsArray());
   for (auto cit = files.Begin(); cit != files.End(); ++cit)
   {
     res.add_file(mk_file(*cit));
   }
 
   const auto& folders = contents["folders"];
-  assert(folders.IsArray());
   for (auto cit = folders.Begin(); cit != folders.End(); ++cit)
   {
     res.add_folder(mk_folder(*cit));
@@ -93,10 +78,11 @@ mk_distant_folder(const configuration& conf, const session& s, id_type id)
     throw std::runtime_error("Can't get root folder");
   }
 
-  const auto json_response = static_cast<std::string>(body(response));
-
-  rapidjson::Document d;
-  d.Parse<0>(&json_response[0]);
+  auto d = rapidjson::Document{};
+  if (d.Parse<0>(response.body().c_str()).HasParseError())
+  {
+    throw std::runtime_error("mk_distant_folder: can't read response");
+  }
   return mk_folder(d);
 }
 

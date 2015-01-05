@@ -7,51 +7,13 @@
 #include <rapidjson/document.h>
 
 #include "ntx/session.hh"
-#include "ntx/detail/json.hh"
-#include "ntx/detail/len.hh"
+#include "ntx/detail/json_object.hh"
 
 namespace ntx {
 
 /*------------------------------------------------------------------------------------------------*/
 
 using namespace boost::network;
-
-/*------------------------------------------------------------------------------------------------*/
-
-/// JSON parser ("à la SAX") to get the authentication token.
-struct token_parser
-  : public rapidjson::BaseReaderHandler<rapidjson::UTF8<>, token_parser>
-{
-  bool token_found;
-  std::string& token;
-
-  token_parser(std::string& tk)
-  noexcept
-     : token_found{false}, token{tk}
-  {}
-
-  bool
-  Key(const char* str, rapidjson::SizeType length, bool)
-  noexcept
-  {
-    static constexpr auto token_str = "token";
-    token_found = length == detail::len(token_str)
-                  and std::equal(token_str, token_str + length, str);
-    return true;
-  }
-
-  bool
-  String(const char* str, rapidjson::SizeType length, bool)
-  noexcept
-  {
-    if (token_found)
-    {
-      token.assign(str, length);
-      return false; // stop parsing
-    }
-    return true;
-  }
-};
 
 /*------------------------------------------------------------------------------------------------*/
 
@@ -75,7 +37,7 @@ connect(const configuration& conf)
   request << header("Connection", "close")
           << header("Content-Type", "application/json");
 
-  const auto json = detail::json_obj("user", conf.user(), "password", conf.password());
+  const auto json = detail::json_object("user", conf.user(), "password", conf.password());
   const auto response = http::client{}.post(request, json);
 
   if (status(response) != 200u)
@@ -83,14 +45,12 @@ connect(const configuration& conf)
     throw std::runtime_error("Cannot authenticate");
   }
 
-  auto token = std::string{};
-
-  const auto json_response = static_cast<std::string>(body(response));
-  auto ss = rapidjson::StringStream{response.body().c_str()};
-  auto h  = token_parser{token};
-  rapidjson::Reader{}.Parse(ss, h);
-
-  return {token};
+  auto d = rapidjson::Document{};
+  if (d.Parse<0>(response.body().c_str()).HasParseError())
+  {
+    throw std::runtime_error("Connecting session: can't read response");
+  }
+  return {std::string{d["token"].GetString()}};
 }
 
 /*------------------------------------------------------------------------------------------------*/

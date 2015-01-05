@@ -78,7 +78,6 @@
 		2B4001961A57350D002261CC /* session.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = session.cc; sourceTree = "<group>"; };
 		2B4001971A57350D002261CC /* session.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = session.hh; sourceTree = "<group>"; };
 		2B4001981A57350D002261CC /* synchronize.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = synchronize.hh; sourceTree = "<group>"; };
-		2B4001A11A5735C9002261CC /* len.hh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = len.hh; sourceTree = "<group>"; };
 		2B4001A21A5739F2002261CC /* mk_local_filesystem.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = mk_local_filesystem.cc; sourceTree = "<group>"; };
 		2B4001A31A5739F2002261CC /* mk_local_filesystem.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = mk_local_filesystem.hh; sourceTree = "<group>"; };
 		2B4001A51A573BB7002261CC /* mk_distant_filesystem.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = mk_distant_filesystem.cc; sourceTree = "<group>"; };
@@ -125,7 +124,7 @@
 		2B4001DA1A576148002261CC /* handle_conflict.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = handle_conflict.cc; sourceTree = "<group>"; };
 		2B4001DB1A576148002261CC /* handle_conflict.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = handle_conflict.hh; sourceTree = "<group>"; };
 		2B4001DE1A5771F7002261CC /* async.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = async.cc; sourceTree = "<group>"; };
-		2B4001E01A57B327002261CC /* json.hh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = json.hh; sourceTree = "<group>"; };
+		2B4001E01A57B327002261CC /* json_object.hh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = json_object.hh; sourceTree = "<group>"; };
 		2B4001E61A57C4C8002261CC /* liblibntx.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = liblibntx.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B4001FA1A57C541002261CC /* sync */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = sync; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B4001FC1A57C541002261CC /* main.cc */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cc; sourceTree = "<group>"; };
@@ -210,8 +209,7 @@
 				2B4001A81A573E19002261CC /* distant_fs_impl.hh */,
 				2B4001DB1A576148002261CC /* handle_conflict.hh */,
 				2B4001DA1A576148002261CC /* handle_conflict.cc */,
-				2B4001E01A57B327002261CC /* json.hh */,
-				2B4001A11A5735C9002261CC /* len.hh */,
+				2B4001E01A57B327002261CC /* json_object.hh */,
 				2B40020E1A581C26002261CC /* local_fs_impl.hh */,
 				2B4002061A57E6A3002261CC /* md5.hh */,
 				2B4002051A57E6A3002261CC /* md5.cc */,

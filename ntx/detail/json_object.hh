@@ -51,7 +51,7 @@ json_obj_impl(std::stringstream& ss, Key&& key, Value&& value, Args&&... args)
 /// @brief Create a JSON representation of a sequence of key-values.
 template <typename... Args>
 std::string
-json_obj(Args&&... args)
+json_object(Args&&... args)
 {
   static_assert(sizeof...(Args) % 2 == 0, "Invalid number of arguments");
   auto&& ss = std::stringstream{};

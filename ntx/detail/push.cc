@@ -11,7 +11,7 @@
 
 #include <rapidjson/document.h>
 
-#include "ntx/detail/json.hh"
+#include "ntx/detail/json_object.hh"
 #include "ntx/detail/push.hh"
 
 namespace ntx {
@@ -40,7 +40,7 @@ push::operator()(id_type parent_id, const local_folder& f, const fs::path& paren
           << header("Token", session_.token())
           << header("Content-Type", "application/json");
 
-  const auto json = json_obj("name", f.name(), "parent_id", parent_id);
+  const auto json = json_object("name", f.name(), "parent_id", parent_id);
 
   const auto response = http::client{}.post(request, json);
   if (status(response) != 201u)
@@ -50,17 +50,12 @@ push::operator()(id_type parent_id, const local_folder& f, const fs::path& paren
 
   const auto new_id = [&]
   {
-    auto new_id = 0ul;
     auto d = rapidjson::Document{};
-    if (not d.Parse<0>(response.body().c_str()).HasParseError())
-    {
-      new_id = d["id"].GetUint();
-    }
-    else
+    if (d.Parse<0>(response.body().c_str()).HasParseError())
     {
       throw std::runtime_error("Distant folder " + f.name() + " creation: can't read response");
     }
-    return new_id;
+    return d["id"].GetUint64();
   }();
 
   for (const auto& sub_file : f.files())
@@ -68,7 +63,7 @@ push::operator()(id_type parent_id, const local_folder& f, const fs::path& paren
     (*this)(new_id, sub_file, parent_path / fs::path{f.name()});
   }
 
-  for (const auto& sub_folder : f.folders())
+  for (const auto& sub_folder : f.folders()) // recurse in sub folders
   {
     (*this)(new_id, sub_folder, parent_path / fs::path{f.name()});
   }
@@ -93,7 +88,7 @@ push::operator()(id_type parent_id, const local_file& f, const fs::path& parent_
                 << header("Token", session_.token())
                 << header("Content-Type", "application/json");
 
-        const auto json = json_obj("name", f.name(), "parent_id", parent_id, "hash", f.md5());
+        const auto json = json_object("name", f.name(), "parent_id", parent_id, "hash", f.md5());
 
         const auto response = http::client{}.post(request, json);
         if (status(response) != 201u)
@@ -102,17 +97,12 @@ push::operator()(id_type parent_id, const local_file& f, const fs::path& parent_
                                   + std::to_string(status(response)) + ")");
         }
 
-        auto file_id = 0ul;
         auto d = rapidjson::Document{};
-        if (not d.Parse<0>(response.body().c_str()).HasParseError())
-        {
-          file_id = d["id"].GetUint();
-        }
-        else
+        if (d.Parse<0>(response.body().c_str()).HasParseError())
         {
           throw std::runtime_error("Distant file " + f.name() + " creation: can't read response");
         }
-        return file_id;
+        return d["id"].GetUint64();
       }();
 
       // Effectively upload file.
