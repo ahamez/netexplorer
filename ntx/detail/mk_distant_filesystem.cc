@@ -19,15 +19,7 @@ namespace /*anonymous*/ {
 distant_file
 mk_file(const rapidjson::Value& v)
 {
-  if (v["hash"].GetStringLength() != 32)
-  {
-    throw std::runtime_error("Invalid hash on server");
-  }
-
-  return { v["id"].GetUint64()
-         , std::string{v["name"].GetString(), v["name"].GetStringLength()}
-         , v["size"].GetUint64()
-         , std::string{v["hash"].GetString(), v["hash"].GetStringLength()}};
+  return {v["id"].GetUint64(), v["name"].GetString(), v["size"].GetUint64(), v["hash"].GetString()};
 }
 
 /*------------------------------------------------------------------------------------------------*/
