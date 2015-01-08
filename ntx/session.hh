@@ -1,7 +1,6 @@
 #pragma once
 
 #include <string>
-#include <unordered_set>
 
 #include "ntx/configuration.hh"
 
@@ -32,9 +31,8 @@ public:
   session& operator=(session&&) noexcept = default;
 
   /// @internal
-  const std::string& token() const noexcept {return token_;}
+  const std::string& token() const noexcept;
 
-  /// @internal
   friend session connect(const configuration&);
 };
 

@@ -28,11 +28,11 @@ mk_local_folder(const fs::path& p)
   {
     if (is_regular_file(*cit))
     {
-      res.add_file(mk_local_file(*cit));
+      res.add(mk_local_file(*cit));
     }
     else if (is_directory(*cit))
     {
-      res.add_folder(mk_local_folder(*cit));
+      res.add(mk_local_folder(*cit));
     }
   }
   return res;

@@ -63,7 +63,7 @@ const noexcept
 /*------------------------------------------------------------------------------------------------*/
 
 template <typename Folder, typename File>
-const auto&
+const typename any_folder_impl<Folder, File>::files_set&
 any_folder_impl<Folder, File>::files()
 const noexcept
 {
@@ -73,7 +73,7 @@ const noexcept
 /*------------------------------------------------------------------------------------------------*/
 
 template <typename Folder, typename File>
-const auto&
+const typename any_folder_impl<Folder, File>::folders_set&
 any_folder_impl<Folder, File>::folders()
 const noexcept
 {

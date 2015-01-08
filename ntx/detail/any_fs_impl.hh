@@ -27,9 +27,9 @@ public:
   template <typename String, typename MD5>
   any_file_impl(String&& name, std::size_t size, MD5&& md5);
 
-  inline const std::string& name()    const noexcept;
-  inline       std::size_t  size()    const noexcept;
-  inline const md5_digest_type& md5() const noexcept;
+  inline const std::string&     name() const noexcept;
+  inline       std::size_t      size() const noexcept;
+  inline const md5_digest_type& md5()  const noexcept;
 };
 
 /*------------------------------------------------------------------------------------------------*/
@@ -38,20 +38,25 @@ public:
 template <typename Folder, typename File>
 class any_folder_impl
 {
+public:
+
+  using files_set = boost::container::flat_set<File>;
+  using folders_set = boost::container::flat_set<Folder>;
+
 private:
 
   std::string name_;
-  boost::container::flat_set<File> files_;
-  boost::container::flat_set<Folder> folders_;
+  files_set files_;
+  folders_set folders_;
 
 public:
 
   template <typename String>
   any_folder_impl(String&& name);
 
-  inline const std::string&   name()    const noexcept;
-  inline const auto&          files()   const noexcept;
-  inline const auto&          folders() const noexcept;
+  inline const std::string& name()    const noexcept;
+  inline const files_set&   files()   const noexcept;
+  inline const folders_set& folders() const noexcept;
 
   template <typename F>
   void
