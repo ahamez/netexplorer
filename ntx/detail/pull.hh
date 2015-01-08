@@ -24,7 +24,10 @@ public:
 
   pull(const configuration&, const session&, async&);
 
+  /// @brief Download (recursively) a folder.
   void operator()(id_type, const distant_folder&, const boost::filesystem::path&);
+
+  /// @brief Download a file.
   void operator()(id_type, const distant_file&, const boost::filesystem::path&);
 };
 

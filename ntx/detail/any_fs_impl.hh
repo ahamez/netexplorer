@@ -25,13 +25,11 @@ private:
 public:
 
   template <typename String, typename MD5>
-  any_file_impl(String&& name, std::size_t size, MD5&& md5)
-    : name_{normalize_utf8(std::forward<String>(name))}, size_{size}, md5_(std::forward<MD5>(md5))
-  {}
+  any_file_impl(String&& name, std::size_t size, MD5&& md5);
 
-  const auto& name() const noexcept {return name_;}
-        auto  size() const noexcept {return size_;}
-  const auto& md5()  const noexcept {return md5_;}
+  inline const std::string& name()    const noexcept;
+  inline       std::size_t  size()    const noexcept;
+  inline const md5_digest_type& md5() const noexcept;
 };
 
 /*------------------------------------------------------------------------------------------------*/
@@ -49,46 +47,32 @@ private:
 public:
 
   template <typename String>
-  any_folder_impl(String&& name)
-    : name_{normalize_utf8(std::forward<String>(name))}, files_{}, folders_{}
-  {}
+  any_folder_impl(String&& name);
 
-  const auto& name()    const noexcept {return name_;}
-  const auto& files()   const noexcept {return files_;}
-  const auto& folders() const noexcept {return folders_;}
+  inline const std::string&   name()    const noexcept;
+  inline const auto&          files()   const noexcept;
+  inline const auto&          folders() const noexcept;
 
   template <typename F>
   void
-  add_file(F&& f)
-  {
-    files_.emplace(std::forward<F>(f));
-  }
+  add_file(F&& f);
 
   template <typename F, typename... Fs>
   void
-  add_file(F&& f, Fs&&... fs)
-  {
-    files_.emplace(std::forward<F>(f));
-    add_file(std::forward<Fs>(fs)...);
-  }
+  add_file(F&& f, Fs&&... fs);
 
   template <typename F>
   void
-  add_folder(F&& f)
-  {
-    folders_.emplace(std::forward<F>(f));
-  }
+  add_folder(F&& f);
 
   template <typename F, typename... Fs>
   void
-  add_folder(F&& f, Fs&&... fs)
-  {
-    folders_.emplace(std::forward<F>(f));
-    add_folder(std::forward<Fs>(fs)...);
-  }
+  add_folder(F&& f, Fs&&... fs);
 };
 
 /*------------------------------------------------------------------------------------------------*/
 
 } // namespace detail
 } // namespace ntx
+
+#include "ntx/detail/any_fs_impl.tcc"

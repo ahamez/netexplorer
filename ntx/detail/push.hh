@@ -24,7 +24,10 @@ public:
 
   push(const configuration&, const session&, async&);
 
+  /// @brief Upload (recursively) a folder.
   void operator()(id_type, const local_folder&, const boost::filesystem::path&);
+
+  /// @brief Upload a filer.
   void operator()(id_type, const local_file&, const boost::filesystem::path&);
 };
 

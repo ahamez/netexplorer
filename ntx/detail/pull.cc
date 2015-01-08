@@ -47,6 +47,7 @@ pull::operator()(id_type parent_id, const distant_folder& f, const fs::path& par
 
 /*------------------------------------------------------------------------------------------------*/
 
+/// @todo Try downloading some more times in case of failure.
 void
 pull::operator()(id_type parent_id, const distant_file& f, const fs::path& parent_path)
 {
