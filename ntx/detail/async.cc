@@ -1,5 +1,6 @@
 #include <chrono>
 #include <functional> // function
+#include <iostream>
 #include <thread>     // sleep_for
 
 #include "ntx/detail/async.hh"
@@ -19,7 +20,14 @@ async::~async()
 {
   for (auto& t : futures_)
   {
-    t.get();
+    try
+    {
+      t.get();
+    }
+    catch (const std::exception& e)
+    {
+      std::cerr << e.what() << '\n';
+    }
   }
 }
 
@@ -36,7 +44,14 @@ async::operator()(const std::function<void (void)>& t)
     {
       if (it->wait_for(std::chrono::nanoseconds{0}) == std::future_status::ready)
       {
-        it->get();
+        try
+        {
+          it->get();
+        }
+        catch (const std::exception& e)
+        {
+          std::cerr << e.what() << '\n';
+        }
         const auto to_erase = it++;
         futures_.erase(to_erase);
       }

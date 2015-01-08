@@ -65,7 +65,7 @@ pull::operator()(id_type parent_id, const distant_file& f, const fs::path& paren
 
       auto request = http::client::request{parameters};
       request << header("Connection", "close")
-      << header("Token", session_.token());
+              << header("Token", session_.token());
 
       const auto file_path = parent_path / fs::path{f.name()};
       auto&& file = fs::ofstream{file_path, std::ios::binary};
@@ -77,6 +77,7 @@ pull::operator()(id_type parent_id, const distant_file& f, const fs::path& paren
       auto fstream = std::ostreambuf_iterator<char>{file};
 
       const auto response = http::client{}.get( request
+                                                // Write to file on the fly
                                               , [&](const auto& range, const auto& /*error*/)
                                                 {
                                                   boost::copy(range, fstream);
