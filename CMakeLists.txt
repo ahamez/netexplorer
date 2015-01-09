@@ -72,6 +72,7 @@ ExternalProject_Add(
               -DCMAKE_INSTALL_PREFIX=${CMAKE_BINARY_DIR}/ext
               -DCMAKE_CXX_COMPILER=${CMAKE_CXX_COMPILER}
               -DCMAKE_C_COMPILER=${CMAKE_C_COMPILER}
+              -DCMAKE_MAKE_PROGRAM=${CMAKE_MAKE_PROGRAM}
 )
 
 #--------------------------------------------------------------------------------------------------#
