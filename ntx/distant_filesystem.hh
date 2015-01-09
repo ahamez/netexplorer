@@ -15,7 +15,18 @@ class distant_file final
 {
 public:
 
+  /// @brief Constructor.
+  /// @param id Unique identifier on the NetExplorer platform.
+  /// @param name File name.
+  /// @param size File size (bytes).
+  /// @param md5 MD5 checksum digest
   distant_file(id_type id, const std::string& name, std::size_t size, const md5_digest_type& md5);
+
+  /// @brief Constructor.
+  /// @param id Unique identifier on the NetExplorer platform.
+  /// @param name File name.
+  /// @param size File size (bytes).
+  /// @param md5 MD5 checksum digest
   distant_file(id_type id, std::string&& name, std::size_t size, md5_digest_type&& md5);
 
   /// @brief Copy
@@ -46,6 +57,7 @@ private:
 /// @related distanf_file
 bool operator<(const distant_file&, const distant_file&) noexcept;
 
+/*------------------------------------------------------------------------------------------------*/
 /*------------------------------------------------------------------------------------------------*/
 
 /// @brief Describe a distant folder.
