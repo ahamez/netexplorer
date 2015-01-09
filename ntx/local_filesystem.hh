@@ -55,6 +55,7 @@ private:
 /*------------------------------------------------------------------------------------------------*/
 
 /// @brief Compare two local_file using their names.
+/// @related local_file
 bool operator<(const local_file&, const local_file&) noexcept;
 
 /*------------------------------------------------------------------------------------------------*/
@@ -122,12 +123,12 @@ public:
 private:
 
   std::unique_ptr<detail::local_folder_impl> ptr_;
-
 };
 
 /*------------------------------------------------------------------------------------------------*/
 
 /// @brief Compare two local_folder using their names.
+/// @related local_file
 bool operator<(const local_folder&, const local_folder&) noexcept;
 
 /*------------------------------------------------------------------------------------------------*/

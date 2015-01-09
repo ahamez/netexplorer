@@ -10,6 +10,7 @@ namespace detail {
 /*------------------------------------------------------------------------------------------------*/
 
 /// @internal
+/// @brief Add an identifier to the basic file.
 class distant_file_impl_specific final
   : public any_file_impl
 {
@@ -21,8 +22,7 @@ public:
 
   template <typename... Args>
   distant_file_impl_specific(id_type id, Args&&... args)
-    : any_file_impl(std::forward<Args>(args)...)
-    , id_{id}
+    : any_file_impl(std::forward<Args>(args)...), id_{id}
   {}
 
   id_type id() const noexcept {return id_;}
@@ -31,6 +31,7 @@ public:
 /*------------------------------------------------------------------------------------------------*/
 
 /// @internal
+/// @brief Add an identifier to the basic folder.
 template <typename Folder, typename File>
 class distant_folder_impl_specific final
   : public any_folder_impl<Folder, File>
@@ -43,8 +44,7 @@ public:
 
   template <typename... Args>
   distant_folder_impl_specific(id_type id, Args&&... args)
-    : any_folder_impl<Folder, File>(std::forward<Args>(args)...)
-    , id_{id}
+    : any_folder_impl<Folder, File>(std::forward<Args>(args)...), id_{id}
   {}
 
   id_type id() const noexcept {return id_;}

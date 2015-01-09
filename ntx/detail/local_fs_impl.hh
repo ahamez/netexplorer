@@ -9,6 +9,7 @@ namespace detail {
 /*------------------------------------------------------------------------------------------------*/
 
 /// @internal
+/// @brief The same as a basic file.
 struct local_file_impl_specific final
   : public any_file_impl
 {
@@ -18,6 +19,7 @@ struct local_file_impl_specific final
 /*------------------------------------------------------------------------------------------------*/
 
 /// @internal
+/// @brief The same as a basic folder.
 template <typename Folder, typename File>
 struct local_folder_impl_specific final
   : public any_folder_impl<Folder, File>

@@ -14,6 +14,7 @@ namespace detail {
 /*------------------------------------------------------------------------------------------------*/
 
 /// @internal
+/// @brief Serve as a base class for any file implementation.
 class any_file_impl
 {
 private:
@@ -35,6 +36,7 @@ public:
 /*------------------------------------------------------------------------------------------------*/
 
 /// @internal
+/// @brief Serve as a base class for any folder implementation.
 template <typename Folder, typename File>
 class any_folder_impl
 {
