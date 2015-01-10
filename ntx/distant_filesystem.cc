@@ -1,4 +1,5 @@
 #include "ntx/distant_filesystem.hh"
+#include "ntx/detail/c++14.hh"
 
 namespace ntx {
 
@@ -6,19 +7,19 @@ namespace ntx {
 
 distant_file::distant_file( id_type id, const std::string& name, std::size_t size
                           , const md5_digest_type& md5)
-  : ptr_{std::make_unique<detail::distant_file_impl>(id, name, size, md5)}
+  : ptr_{detail::make_unique<detail::distant_file_impl>(id, name, size, md5)}
 {}
 
 /*------------------------------------------------------------------------------------------------*/
 
 distant_file::distant_file(id_type id, std::string&& name, std::size_t size, md5_digest_type&& md5)
-  : ptr_{std::make_unique<detail::distant_file_impl>(std::move(id), name, size, std::move(md5))}
+  : ptr_{detail::make_unique<detail::distant_file_impl>(std::move(id), name, size, std::move(md5))}
 {}
 
 /*------------------------------------------------------------------------------------------------*/
 
 distant_file::distant_file(const distant_file& rhs)
-  : ptr_{std::make_unique<detail::distant_file_impl>(rhs.id(), rhs.name(), rhs.size(), rhs.md5())}
+  : ptr_{detail::make_unique<detail::distant_file_impl>(rhs.id(), rhs.name(), rhs.size(), rhs.md5())}
 {}
 
 /*------------------------------------------------------------------------------------------------*/
@@ -28,7 +29,8 @@ distant_file::operator=(const distant_file& rhs)
 {
   if (&rhs != this)
   {
-    ptr_ = std::make_unique<detail::distant_file_impl>(rhs.id(), rhs.name(), rhs.size(), rhs.md5());
+    ptr_
+      = detail::make_unique<detail::distant_file_impl>(rhs.id(), rhs.name(), rhs.size(), rhs.md5());
   }
   return *this;
 }
@@ -81,19 +83,19 @@ noexcept
 /*------------------------------------------------------------------------------------------------*/
 
 distant_folder::distant_folder(id_type id, const std::string& name)
-  : ptr_{std::make_unique<detail::distant_folder_impl>(id, name)}
+  : ptr_{detail::make_unique<detail::distant_folder_impl>(id, name)}
 {}
 
 /*------------------------------------------------------------------------------------------------*/
 
 distant_folder::distant_folder(id_type id, std::string&& name)
-  : ptr_{std::make_unique<detail::distant_folder_impl>(id, std::move(name))}
+  : ptr_{detail::make_unique<detail::distant_folder_impl>(id, std::move(name))}
 {}
 
 /*------------------------------------------------------------------------------------------------*/
 
 distant_folder::  distant_folder(const distant_folder& rhs)
-  : ptr_{std::make_unique<detail::distant_folder_impl>(rhs.id(), rhs.name())}
+  : ptr_{detail::make_unique<detail::distant_folder_impl>(rhs.id(), rhs.name())}
 {
   for (const auto& f : rhs.files())
   {
@@ -112,7 +114,7 @@ distant_folder::operator=(const distant_folder& rhs)
 {
   if (&rhs != this)
   {
-    ptr_ = std::make_unique<detail::distant_folder_impl>(rhs.id(), rhs.name());
+    ptr_ = detail::make_unique<detail::distant_folder_impl>(rhs.id(), rhs.name());
     for (const auto& f : rhs.files())
     {
       add(f);

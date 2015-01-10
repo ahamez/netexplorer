@@ -1,8 +1,9 @@
 #pragma once
 
 #include <sstream>
-#include <type_traits> // enable_if, is_integral
 #include <utility>     // forward
+
+#include "ntx/detail/c++14.hh"
 
 namespace ntx {
 namespace detail {
@@ -10,7 +11,7 @@ namespace detail {
 /*------------------------------------------------------------------------------------------------*/
 
 template <typename Key, typename Value>
-std::enable_if_t<not std::is_integral<Value>::value, void>
+detail::enable_if_t<not std::is_integral<Value>::value, void>
 key_value(std::stringstream& ss, Key&& key, Value&& value)
 {
   ss << '\"' << key << '\"' << ':' << '\"' << value << '\"';
@@ -18,7 +19,7 @@ key_value(std::stringstream& ss, Key&& key, Value&& value)
 
 
 template <typename Key, typename Value>
-std::enable_if_t<std::is_integral<Value>::value, void>
+detail::enable_if_t<std::is_integral<Value>::value, void>
 key_value(std::stringstream& ss, Key&& key, Value&& value)
 {
   ss << '\"' << key << '\"' << ':' << std::to_string(value);

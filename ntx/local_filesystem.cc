@@ -9,6 +9,7 @@
 
 #include "ntx/local_filesystem.hh"
 #include "ntx/types.hh"
+#include "ntx/detail/c++14.hh"
 #include "ntx/detail/local_fs_impl.hh"
 
 namespace ntx {
@@ -16,19 +17,19 @@ namespace ntx {
 /*------------------------------------------------------------------------------------------------*/
 
 local_file::local_file(const std::string& name, std::size_t size, const md5_digest_type& md5)
-  : ptr_{std::make_unique<detail::local_file_impl>(name, size, md5)}
+  : ptr_{detail::make_unique<detail::local_file_impl>(name, size, md5)}
 {}
 
 /*------------------------------------------------------------------------------------------------*/
 
 local_file::local_file(std::string&& name, std::size_t size, md5_digest_type&& md5)
-  : ptr_{std::make_unique<detail::local_file_impl>(std::move(name), size, std::move(md5))}
+  : ptr_{detail::make_unique<detail::local_file_impl>(std::move(name), size, std::move(md5))}
 {}
 
 /*------------------------------------------------------------------------------------------------*/
 
 local_file::local_file(const local_file& rhs)
-  : ptr_{std::make_unique<detail::local_file_impl>(rhs.name(), rhs.size(), rhs.md5())}
+  : ptr_{detail::make_unique<detail::local_file_impl>(rhs.name(), rhs.size(), rhs.md5())}
 {}
 
 /*------------------------------------------------------------------------------------------------*/
@@ -38,7 +39,7 @@ local_file::operator=(const local_file& rhs)
 {
   if (&rhs != this)
   {
-    ptr_ = std::make_unique<detail::local_file_impl>(rhs.name(), rhs.size(), rhs.md5());
+    ptr_ = detail::make_unique<detail::local_file_impl>(rhs.name(), rhs.size(), rhs.md5());
   }
   return *this;
 }
@@ -83,19 +84,19 @@ noexcept
 /*------------------------------------------------------------------------------------------------*/
 
 local_folder::local_folder(const std::string& name)
-  : ptr_{std::make_unique<detail::local_folder_impl>(name)}
+  : ptr_{detail::make_unique<detail::local_folder_impl>(name)}
 {}
 
 /*------------------------------------------------------------------------------------------------*/
 
 local_folder::local_folder(std::string&& name)
-  : ptr_{std::make_unique<detail::local_folder_impl>(std::move(name))}
+  : ptr_{detail::make_unique<detail::local_folder_impl>(std::move(name))}
 {}
 
 /*------------------------------------------------------------------------------------------------*/
 
 local_folder::local_folder(const local_folder& rhs)
-  : ptr_{std::make_unique<detail::local_folder_impl>(rhs.name())}
+  : ptr_{detail::make_unique<detail::local_folder_impl>(rhs.name())}
 {
   for (const auto& f : rhs.files())
   {
@@ -114,7 +115,7 @@ local_folder::operator=(const local_folder& rhs)
 {
   if (&rhs != this)
   {
-    ptr_ = std::make_unique<detail::local_folder_impl>(rhs.name());
+    ptr_ = detail::make_unique<detail::local_folder_impl>(rhs.name());
     for (const auto& f : rhs.files())
     {
       add(f);

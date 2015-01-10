@@ -7,9 +7,9 @@ project (netexplorer)
 #--------------------------------------------------------------------------------------------------#
 
 include(CheckCXXCompilerFlag)
-CHECK_CXX_COMPILER_FLAG("-std=c++1y" COMPILER_SUPPORTS_CXX14)
-if(NOT COMPILER_SUPPORTS_CXX14)
-  message(FATAL_ERROR "Compiler ${CMAKE_CXX_COMPILER} has no C++14 support.")
+CHECK_CXX_COMPILER_FLAG("-std=c++11" COMPILER_SUPPORTS_CXX11)
+if(NOT COMPILER_SUPPORTS_CXX11)
+  message(FATAL_ERROR "Compiler ${CMAKE_CXX_COMPILER} has no C++11 support.")
 endif ()
 
 #--------------------------------------------------------------------------------------------------#
@@ -42,11 +42,11 @@ if (NOT CMAKE_BUILD_TYPE)
 endif()
 
 add_definitions("-Wall")
-add_definitions("-std=c++1y")
+add_definitions("-std=c++11")
 
 if("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")
   add_definitions("-stdlib=libc++")
-  set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -std=c++1y -stdlib=libc++")
+  set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -std=c++11 -stdlib=libc++")
 endif ()
 
 set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -O0")

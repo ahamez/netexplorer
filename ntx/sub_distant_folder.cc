@@ -30,7 +30,10 @@ sub_folder_impl(const distant_folder& f, const fs::path& path)
 
   const auto current_name = detail::normalize_utf8(cit->string());
   const auto search = std::find_if( begin(f.folders()), end(f.folders())
-                                  , [&](const auto& sub){return sub.name() == current_name;});
+                                  , [&](const distant_folder& sub)
+                                       {
+                                         return sub.name() == current_name;
+                                       });
 
   if (search == end(f.folders()))
   {

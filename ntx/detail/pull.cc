@@ -78,7 +78,8 @@ pull::operator()(id_type parent_id, const distant_file& f, const fs::path& paren
 
       const auto response = http::client{}.get( request
                                                 // Write to file on the fly
-                                              , [&](const auto& range, const auto& /*error*/)
+                                              , [&]( const boost::iterator_range<char const *>& range
+                                                   , const boost::system::error_code& /*error*/)
                                                 {
                                                   boost::copy(range, fstream);
                                                 });

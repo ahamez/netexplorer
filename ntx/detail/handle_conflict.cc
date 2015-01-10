@@ -59,7 +59,8 @@ handle_conflict::operator()( id_type parent_id, const distant_file& f, const loc
     auto fstream = std::ostreambuf_iterator<char>{file};
 
     const auto response = http::client{}.get( request
-                                            , [&](const auto& range, const auto& /*error*/)
+                                            , [&]( const boost::iterator_range<char const *>& range
+                                                 , const boost::system::error_code& /*error*/)
                                               {
                                                 boost::copy(range, fstream);
                                               });
