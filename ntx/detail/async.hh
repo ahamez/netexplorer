@@ -16,7 +16,7 @@ class async final
 {
 private:
 
-  // The shared_future is important: as futures are borrowed from other threads.
+  // The shared_future is important as futures are borrowed from other threads.
   std::list<std::shared_future<void>> futures_;
   std::mutex mutex_;
   std::size_t max_tasks_;

@@ -2,8 +2,6 @@
 
 #include <utility> // forward
 
-#include <boost/filesystem/fstream.hpp>
-
 #include "ntx/distant_filesystem.hh"
 #include "ntx/local_filesystem.hh"
 
