@@ -34,13 +34,13 @@ mk_folder(const rapidjson::Value& v)
   const auto& files = contents["files"];
   for (auto cit = files.Begin(); cit != files.End(); ++cit)
   {
-    res.add_file(mk_file(*cit));
+    res.add(mk_file(*cit));
   }
 
   const auto& folders = contents["folders"];
   for (auto cit = folders.Begin(); cit != folders.End(); ++cit)
   {
-    res.add_folder(mk_folder(*cit));
+    res.add(mk_folder(*cit));
   }
 
   return res;
