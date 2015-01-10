@@ -1,7 +1,8 @@
 set(
   NTX_SOURCES
-  configuration.cc
   automatic_session.cc
+  configuration.cc
+  distant_filesystem.cc
   local_filesystem.cc
   make_distant_filesystem.cc
   make_local_filesystem.cc
